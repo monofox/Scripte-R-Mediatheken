@@ -1,0 +1,17 @@
+#!/bin/sh
+
+URL=$@
+STREAM=`ardStream $URL`
+if [[ $? -eq 0 ]]; 
+then
+	STREAMURL=`echo "$STREAM" | grep '1.2.3.12.2' | awk -F \' '{ print $4; }'`
+	if [[ $? -eq 0 ]]; 
+	then
+		/usr/bin/vlc "$STREAMURL"
+	else
+		echo "Could not parse / extract a valid URL."
+		exit 1
+	fi
+else
+	exit $?
+fi

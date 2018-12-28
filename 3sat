@@ -1,0 +1,2 @@
+#!/bin/sh
+vlc 'http://zdf0910-lh.akamaihd.net/i/dach10_v1@392872/master.m3u8?'

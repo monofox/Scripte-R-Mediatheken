@@ -1,0 +1,546 @@
+{
+    "data": {
+        "playerPage": {
+            "__typename": "PlayerPage",
+            "availableTo": "2019-01-27T22:59:00Z",
+            "blockedByFsk": false,
+            "broadcastedOn": "2018-12-28T15:10:00Z",
+            "geoblocked": false,
+            "image": {
+                "__typename": "Image",
+                "producerName": "BR/Farah M'haimdat",
+                "src": "https://img.ardmediathek.de/standard/00/58/95/65/50/-1774185891/16x9/{width}?mandant=ard",
+                "title": "Überraschung auf den Fidschis (300) - Standbild"
+            },
+            "maturityContentRating": "NONE",
+            "mediaCollection": {
+                "__typename": "MediaCollection",
+                "_defaultQuality": [
+                    "auto",
+                    "2",
+                    "4",
+                    "3",
+                    "1",
+                    "0"
+                ],
+                "_duration": 2910,
+                "_dvrEnabled": false,
+                "_geoblocked": false,
+                "_isLive": false,
+                "_mediaArray": [
+                    {
+                        "__typename": "MediaArray",
+                        "_mediaStreamArray": [
+                            {
+                                "__typename": "MediaStreamArray",
+                                "_quality": "auto",
+                                "_stream": [
+                                    "https://dasersteuni-vh.akamaihd.net/i/int/2018/11/15/04feb37b-28c9-4e15-905b-a7464030fca9/,320-1,1280-1,512-1,640-1,480-1,960-1,.mp4.csmil/master.m3u8"
+                                ]
+                            },
+                            {
+                                "__typename": "MediaStreamArray",
+                                "_quality": "0",
+                                "_stream": [
+                                    "https://pdvideosdaserste-a.akamaihd.net/int/2018/11/15/04feb37b-28c9-4e15-905b-a7464030fca9/320-1.mp4"
+                                ]
+                            },
+                            {
+                                "__typename": "MediaStreamArray",
+                                "_quality": "1",
+                                "_stream": [
+                                    "https://pdvideosdaserste-a.akamaihd.net/int/2018/11/15/04feb37b-28c9-4e15-905b-a7464030fca9/512-1.mp4",
+                                    "https://pdvideosdaserste-a.akamaihd.net/int/2018/11/15/04feb37b-28c9-4e15-905b-a7464030fca9/480-1.mp4"
+                                ]
+                            },
+                            {
+                                "__typename": "MediaStreamArray",
+                                "_quality": "2",
+                                "_stream": [
+                                    "https://pdvideosdaserste-a.akamaihd.net/int/2018/11/15/04feb37b-28c9-4e15-905b-a7464030fca9/640-1.mp4",
+                                    "https://pdvideosdaserste-a.akamaihd.net/int/2018/11/15/04feb37b-28c9-4e15-905b-a7464030fca9/960-1.mp4"
+                                ]
+                            },
+                            {
+                                "__typename": "MediaStreamArray",
+                                "_quality": "3",
+                                "_stream": [
+                                    "https://pdvideosdaserste-a.akamaihd.net/int/2018/11/15/04feb37b-28c9-4e15-905b-a7464030fca9/1280-1.mp4"
+                                ]
+                            }
+                        ],
+                        "_plugin": 1
+                    }
+                ],
+                "_previewImage": "https://img.ardmediathek.de/standard/00/58/95/65/50/-1774185891/16x9/960?mandant=ard",
+                "_sortierArray": [
+                    1
+                ],
+                "_subtitleOffset": 0,
+                "_subtitleUrl": "https://www.ardmediathek.de/subtitle/275868",
+                "_type": "video"
+            },
+            "playerConfig": {
+                "__typename": "PlayerConfig",
+                "_pixelConfig": [
+                    {
+                        "__typename": "PixelConfig",
+                        "agfMetaDataSDK": {
+                            "__typename": "AgfMetaDataSDK",
+                            "assetid": "https://dasersteuni-vh.akamaihd.net/i/int/2018/11/15/04feb37b-28c9-4e15-905b-a7464030fca9/,320-1,1280-1,512-1,640-1,480-1,960-1,.mp4.csmil/master.m3u8",
+                            "length": "2910",
+                            "nol_c0": null,
+                            "nol_c10": "p10,Das Erste",
+                            "nol_c12": "p12,Content",
+                            "nol_c15": "p15,X004515164",
+                            "nol_c16": "p16,DasErste_Information|Dokumentation|16Uhr-Reportage|Verrückt nach Meer",
+                            "nol_c18": "p18,N",
+                            "nol_c19": "p19,BR",
+                            "nol_c2": "p2,N",
+                            "nol_c5": "p5,ARD Mediathek",
+                            "nol_c7": "p7,crid://daserste.de/verrückt nach meer/04feb37b-28c9-4e15-905b-a7464030fca9",
+                            "nol_c8": "p8,2910",
+                            "nol_c9": "p9,Verrückt nach Meer_Überraschung auf den Fidschis (300)_28.12.2018 16:10",
+                            "program": "Verrückt nach Meer",
+                            "title": "Das Erste_Verrückt nach Meer_Überraschung auf den Fidschis (300)_28.12.2018 16:10",
+                            "type": "content"
+                        },
+                        "apid": "PA02DC09C-B8D3-4098-87D2-2C023682D6D5",
+                        "clipTitle": "Überraschung auf den Fidschis (300)",
+                        "x14": "58956544",
+                        "x20": "2910",
+                        "x5": "Das+Erste",
+                        "x6": "Das+Erste",
+                        "x7": "Verr%C3%BCckt+nach+Meer"
+                    }
+                ],
+                "href": "http://page-gateway-service:8080/page-gateway/playerconfig/58956544"
+            },
+            "publicationService": {
+                "__typename": "PublicationService",
+                "name": "Das Erste"
+            },
+            "relates": [
+                {
+                    "__typename": "Teaser",
+                    "duration": 2910,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvZjYxNzcwNjYtOGNkNy00YTRjLWE1ZGQtMmQyODAyYTA4MTNm",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "src": "https://img.ardmediathek.de/standard/00/58/92/84/00/2121327408/16x9/{width}?mandant=ard",
+                            "title": "Faszinierende Fidschi-Inseln (299) - Standbild"
+                        }
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "href": "http://page-gateway-service:8080/page-gateway/pages/ard/item/Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvZjYxNzcwNjYtOGNkNy00YTRjLWE1ZGQtMmQyODAyYTA4MTNm",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvZjYxNzcwNjYtOGNkNy00YTRjLWE1ZGQtMmQyODAyYTA4MTNm"
+                        }
+                    },
+                    "mediumTitle": "Faszinierende Fidschi-Inseln (299)",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "show": {
+                        "__typename": "Show",
+                        "title": "Verrückt nach Meer"
+                    },
+                    "subtitled": true,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "duration": 2908,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNTNkZjIzZmEtZmIxMi00MjIwLWI0ZmQtZmFhOWMzM2QzMzU1",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "src": "https://img.ardmediathek.de/standard/00/58/80/32/28/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Südsee-Gefühle auf der Pinieninsel (298) - Standbild"
+                        }
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "href": "http://page-gateway-service:8080/page-gateway/pages/ard/item/Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNTNkZjIzZmEtZmIxMi00MjIwLWI0ZmQtZmFhOWMzM2QzMzU1",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNTNkZjIzZmEtZmIxMi00MjIwLWI0ZmQtZmFhOWMzM2QzMzU1"
+                        }
+                    },
+                    "mediumTitle": "Südsee-Gefühle auf der Pinieninsel (298)",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "show": {
+                        "__typename": "Show",
+                        "title": "Verrückt nach Meer"
+                    },
+                    "subtitled": true,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "duration": 2899,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNDcwODZjYjctZGQ1MS00YzY3LWE1ZWItNzUwZWE1ZjVhYjY4",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "src": "https://img.ardmediathek.de/standard/00/58/77/56/44/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Die wilden Vögel der Norfolkinsel (297) - Standbild"
+                        }
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "href": "http://page-gateway-service:8080/page-gateway/pages/ard/item/Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNDcwODZjYjctZGQ1MS00YzY3LWE1ZWItNzUwZWE1ZjVhYjY4",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNDcwODZjYjctZGQ1MS00YzY3LWE1ZWItNzUwZWE1ZjVhYjY4"
+                        }
+                    },
+                    "mediumTitle": "Die wilden Vögel der Norfolkinsel (297)",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "show": {
+                        "__typename": "Show",
+                        "title": "Verrückt nach Meer"
+                    },
+                    "subtitled": true,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "duration": 2905,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvMmZmMDdjNTgtMjI2Yi00Y2NjLTlhOTMtYzkzNDQyOWRkNzg0",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "src": "https://img.ardmediathek.de/standard/00/58/74/45/22/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Alles neu in Down Under (296) - Standbild"
+                        }
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "href": "http://page-gateway-service:8080/page-gateway/pages/ard/item/Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvMmZmMDdjNTgtMjI2Yi00Y2NjLTlhOTMtYzkzNDQyOWRkNzg0",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvMmZmMDdjNTgtMjI2Yi00Y2NjLTlhOTMtYzkzNDQyOWRkNzg0"
+                        }
+                    },
+                    "mediumTitle": "Alles neu in Down Under (296)",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "show": {
+                        "__typename": "Show",
+                        "title": "Verrückt nach Meer"
+                    },
+                    "subtitled": true,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "duration": 2860,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvYmQ2MTgwMDAtMzE0NC00NTk3LWEwZTEtOTA4YWNmZjRjZmIx",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "src": "https://img.ardmediathek.de/standard/00/58/71/16/26/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Wellenreiten am Bondy Beach (295) - Standbild"
+                        }
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "href": "http://page-gateway-service:8080/page-gateway/pages/ard/item/Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvYmQ2MTgwMDAtMzE0NC00NTk3LWEwZTEtOTA4YWNmZjRjZmIx",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvYmQ2MTgwMDAtMzE0NC00NTk3LWEwZTEtOTA4YWNmZjRjZmIx"
+                        }
+                    },
+                    "mediumTitle": "Wellenreiten am Bondi Beach (295)",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "show": {
+                        "__typename": "Show",
+                        "title": "Verrückt nach Meer"
+                    },
+                    "subtitled": true,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "duration": 2910,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvZGY4OWRlYWYtNDljMi00OTQ2LTk5ZjMtODI4NDgwYjkyMDdk",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "src": "https://img.ardmediathek.de/standard/00/58/67/94/50/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Folge 294: Tasmanische Teufel zum Knutschen - Standbild"
+                        }
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "href": "http://page-gateway-service:8080/page-gateway/pages/ard/item/Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvZGY4OWRlYWYtNDljMi00OTQ2LTk5ZjMtODI4NDgwYjkyMDdk",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvZGY4OWRlYWYtNDljMi00OTQ2LTk5ZjMtODI4NDgwYjkyMDdk"
+                        }
+                    },
+                    "mediumTitle": "Folge 294: Tasmanische Teufel zum Knutschen",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "show": {
+                        "__typename": "Show",
+                        "title": "Verrückt nach Meer"
+                    },
+                    "subtitled": true,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "duration": 2879,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvYzA1ZWRkY2UtY2MzYi00ZDUzLWFlZmItY2U4NjdhYTk4NDYz",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "src": "https://img.ardmediathek.de/standard/00/58/60/99/80/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Folge 293: Auf Kuschelkurs in Australien - Standbild"
+                        }
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "href": "http://page-gateway-service:8080/page-gateway/pages/ard/item/Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvYzA1ZWRkY2UtY2MzYi00ZDUzLWFlZmItY2U4NjdhYTk4NDYz",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvYzA1ZWRkY2UtY2MzYi00ZDUzLWFlZmItY2U4NjdhYTk4NDYz"
+                        }
+                    },
+                    "mediumTitle": "Folge 293: Auf Kuschelkurs in Australien",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "show": {
+                        "__typename": "Show",
+                        "title": "Verrückt nach Meer"
+                    },
+                    "subtitled": true,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "duration": 2909,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNDg3MjQ3ZGYtZGM0My00NzkwLTgxOWMtZTliZDdiMWVhNzkx",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "src": "https://img.ardmediathek.de/standard/00/58/57/60/18/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Folge 292: Willkommen in Australien - Standbild"
+                        }
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "href": "http://page-gateway-service:8080/page-gateway/pages/ard/item/Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNDg3MjQ3ZGYtZGM0My00NzkwLTgxOWMtZTliZDdiMWVhNzkx",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNDg3MjQ3ZGYtZGM0My00NzkwLTgxOWMtZTliZDdiMWVhNzkx"
+                        }
+                    },
+                    "mediumTitle": "Folge 292: Willkommen in Australien",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "show": {
+                        "__typename": "Show",
+                        "title": "Verrückt nach Meer"
+                    },
+                    "subtitled": true,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "duration": 2897,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvN2I5MTA1OGEtNDU4Mi00MzYyLTljMmUtYjRlN2ZiOWY3OGJj",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "src": "https://img.ardmediathek.de/standard/00/58/54/40/28/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Folge 291: Abenteuer Papua-Neuguinea - Standbild"
+                        }
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "href": "http://page-gateway-service:8080/page-gateway/pages/ard/item/Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvN2I5MTA1OGEtNDU4Mi00MzYyLTljMmUtYjRlN2ZiOWY3OGJj",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvN2I5MTA1OGEtNDU4Mi00MzYyLTljMmUtYjRlN2ZiOWY3OGJj"
+                        }
+                    },
+                    "mediumTitle": "Folge 291: Abenteuer Papua-Neuguinea",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "show": {
+                        "__typename": "Show",
+                        "title": "Verrückt nach Meer"
+                    },
+                    "subtitled": true,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "duration": 2901,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNDRmMGQ0ZDYtYjZkZi00MWI0LTg5YTItMDgzNGY3ZWQ1NTc4",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "src": "https://img.ardmediathek.de/standard/00/58/51/43/50/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Folge 290: Fasching auf dem Indischen Ozean - Standbild"
+                        }
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "href": "http://page-gateway-service:8080/page-gateway/pages/ard/item/Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNDRmMGQ0ZDYtYjZkZi00MWI0LTg5YTItMDgzNGY3ZWQ1NTc4",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNDRmMGQ0ZDYtYjZkZi00MWI0LTg5YTItMDgzNGY3ZWQ1NTc4"
+                        }
+                    },
+                    "mediumTitle": "Folge 290: Fasching auf dem Indischen Ozean",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "show": {
+                        "__typename": "Show",
+                        "title": "Verrückt nach Meer"
+                    },
+                    "subtitled": true,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "duration": 2887,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNzA4NjU0Y2ItMWM2Yi00YjA5LWE5NGUtYzQwM2Q1Y2YwZTY1",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "src": "https://img.ardmediathek.de/standard/00/58/48/13/58/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Folge 289: Heißer Flirt auf den Molukken - Standbild"
+                        }
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "href": "http://page-gateway-service:8080/page-gateway/pages/ard/item/Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNzA4NjU0Y2ItMWM2Yi00YjA5LWE5NGUtYzQwM2Q1Y2YwZTY1",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNzA4NjU0Y2ItMWM2Yi00YjA5LWE5NGUtYzQwM2Q1Y2YwZTY1"
+                        }
+                    },
+                    "mediumTitle": "Folge 289: Heißer Flirt auf den Molukken",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "show": {
+                        "__typename": "Show",
+                        "title": "Verrückt nach Meer"
+                    },
+                    "subtitled": true,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "duration": 2898,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNjc1MzYzM2MtZjAzZi00Mjc0LWI2MjItODFkMzAwNjI3N2Y0",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "src": "https://img.ardmediathek.de/standard/00/58/41/10/46/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Folge 288: Im Land, wo der Pfeffer wächst - Standbild"
+                        }
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "href": "http://page-gateway-service:8080/page-gateway/pages/ard/item/Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNjc1MzYzM2MtZjAzZi00Mjc0LWI2MjItODFkMzAwNjI3N2Y0",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXIvNjc1MzYzM2MtZjAzZi00Mjc0LWI2MjItODFkMzAwNjI3N2Y0"
+                        }
+                    },
+                    "mediumTitle": "Folge 288: Im Land, wo der Pfeffer wächst",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "show": {
+                        "__typename": "Show",
+                        "title": "Verrückt nach Meer"
+                    },
+                    "subtitled": true,
+                    "type": "ondemand"
+                }
+            ],
+            "show": {
+                "__typename": "Show",
+                "image": {
+                    "__typename": "Image",
+                    "producerName": "BR",
+                    "src": "https://img.ardmediathek.de/standard/00/57/99/66/16/-1774185891/16x9/{width}?mandant=ard",
+                    "title": ""
+                },
+                "title": "Verrückt nach Meer"
+            },
+            "synopsis": "Auf Viti-Levu geraten die Reiseleiter Maika und Moritz auf ihrem Weg ins Schlammbad unerwartet in ein farbenfrohes, hinduistisches Holi-Fest.",
+            "title": "Überraschung auf den Fidschis (300)",
+            "tracking": {
+                "__typename": "Tracking",
+                "aggregationLevelId": 38,
+                "atiCustomVars": {
+                    "__typename": "ATICustomVars",
+                    "channel": "Das Erste",
+                    "clipLength": 2910,
+                    "clipTitle": "Überraschung auf den Fidschis (300)",
+                    "contentId": 58956544,
+                    "contentTypes": "UT",
+                    "lra": "Das Erste",
+                    "mediaDistributionType": 1,
+                    "mediaType": "video",
+                    "metadataId": "crid://daserste.de/verrückt nach meer/04feb37b-28c9-4e15-905b-a7464030fca9",
+                    "show": "Verrückt nach Meer"
+                },
+                "chapter2": "Player",
+                "chapter3": "Verrückt nach Meer",
+                "environmentId": 511893,
+                "pageTitle": "Mediathek/Player/Verrückt nach Meer/Überraschung auf den Fidschis (300)/58956544/20181228_1510",
+                "szmType": "CP"
+            },
+            "type": "player_ondemand"
+        }
+    }
+}

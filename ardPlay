@@ -1,17 +1,191 @@
-#!/bin/sh
+#!/usr/bin/env python3
+from urllib.parse import urlparse, parse_qs	
+from xml.dom.minidom import parseString
+from lxml import etree
+from slimit import ast
+from slimit.visitors import nodevisitor
+import urllib.request
+import slimit
+import sys, shlex, subprocess, json
 
-URL=$@
-STREAM=`ardStream $URL`
-if [[ $? -eq 0 ]]; 
-then
-	STREAMURL=`echo "$STREAM" | grep '1.2.3.12.2' | awk -F \' '{ print $4; }'`
-	if [[ $? -eq 0 ]]; 
-	then
-		/usr/bin/vlc "$STREAMURL"
-	else
-		echo "Could not parse / extract a valid URL."
-		exit 1
-	fi
-else
-	exit $?
-fi
+PLAYER = '/usr/bin/mplayer'
+CMD_TPL = '{:s} "{:s}"'
+
+class ArdMediaHolder(object):
+
+	def __init__(self):
+		self._holder = []
+		self._js = {}
+
+	def appendJs(self, key, value):
+		if value._relevant:
+			self._js[key] = value
+
+	def append(self, quality, uri):
+		self._holder.append({
+			'_quality': quality,
+			'_stream': uri
+		})
+
+class ArdVisitorElement(object):
+
+	def __init__(self, key, callback):
+		self._key = key
+		self._cb = callback
+		self._type = None
+		self._quality = None
+		self._urls = []
+		self._relevant = False
+
+	def parse(self, node):
+		for child in node.right.children():
+			if str(child.left.value) == '"__typename"':
+				self._type = child.right.value.replace('"', '')
+				if self._type == 'MediaStreamArray':
+					self._relevant = True
+			elif str(child.left.value) == '"_quality"':
+				self._quality = child.right.value.replace('"', '')
+			elif str(child.left.value) == '"_stream"':
+				self._parseMedia(child.right)
+
+		if self._quality and self._urls:
+			for u in self._urls:
+				getattr(self._cb, 'append')(self._quality, u)
+
+	def _parseMedia(self, node):
+		for child in node.children():
+			if str(child.left.value) == '"json"':
+				for u in child.right.children():
+					self._urls.append(u.value[1:-1])
+
+class ArdVisitor(nodevisitor.ASTVisitor):
+	def visit_Object(self, node):
+		for prop in node:
+			left, right = prop.left, prop.right
+			if self.callback:
+				try:
+					getattr(self.callback, 'appendJs')(left.value, right.value)
+				except AttributeError:
+					ave = ArdVisitorElement(left.value, self.callback)
+					ave.parse(prop)
+					getattr(self.callback, 'appendJs')(left.value, ave)
+
+def parseArg(url):
+	url = url.strip()
+	req = urllib.request.Request(url)
+	r = urllib.request.urlopen(req)
+	if r.code != 200:
+		sys.stderr.write('Could not retrieve stream informations.\n')
+		sys.exit(1)
+
+	# now we need to extract some data.
+	playerPage = r.read().decode('utf-8')
+	parser = etree.XMLParser(recover=True)
+	root = etree.fromstring(playerPage, parser)
+	dom = parseString(etree.tostring(root))
+	script = ''
+	for s in dom.getElementsByTagName('script'):
+		if '__APOLLO_STATE__' in s.toxml():
+			for c in s.childNodes:
+				script += c.wholeText
+
+	if script:
+		for line in script.split('\n'):
+			line = line.strip()
+			if line and '__APOLLO_STATE__' in line:
+				var, value = line.split(' = ', 1)
+				p = slimit.parser.Parser()
+				tree = p.parse(line)
+				visitor = ArdVisitor()
+				holder = ArdMediaHolder()
+				visitor.callback = holder
+				visitor.visit(tree)
+
+				if holder._holder:
+					printStreams(holder, True)
+				else:
+					sys.stderr.write('Could not find any stream.\n')
+					sys.exit(1)
+	else:
+		sys.stderr.write('Could not parse or find script block.\n')
+		sys.exit(1)
+
+def printStreams(streams, play=False):
+	i = 0
+	streamNumbered = []
+	availableQualities = []
+	# get title of that language.
+	for metaStream in streams._holder:
+		qualKey = 'MQ'
+		if metaStream['_quality'] == '0':
+			qualKey = 'MQ'
+		elif metaStream['_quality'] == '1':
+			qualKey = 'HQ'
+		elif metaStream['_quality'] == '2':
+			qualKey = 'EQ'
+		elif metaStream['_quality'] == '3':
+			qualKey = 'SQ'
+		elif metaStream['_quality'] == 'auto':
+			qualKey = 'auto'
+		if qualKey not in availableQualities:
+			availableQualities.append(qualKey)
+
+	knownQuals = []
+	for qual in ['auto', 'XQ', 'MQ', 'HQ', 'EQ', 'SQ']:
+		if qual in availableQualities:
+			knownQuals.append(qual)
+	# we need to resort the qualStreams.
+	for quality in knownQuals:
+		print(quality + ':')
+		for metaStream in streams._holder:
+			qualKey = 'MQ'
+			if metaStream['_quality'] == '0':
+				qualKey = 'MQ'
+			elif metaStream['_quality'] == '1':
+				qualKey = 'HQ'
+			elif metaStream['_quality'] == '2':
+				qualKey = 'EQ'
+			elif metaStream['_quality'] == '3':
+				qualKey = 'SQ'
+			elif metaStream['_quality'] == 'auto':
+				qualKey = 'auto'
+			if qualKey == quality: 
+				playNo = ''
+				streamList = []
+				streamList.append(metaStream['_stream'])
+
+				for streamEntry in streamList:
+					if streamEntry.startswith('//'):
+						streamEntry = 'https:' + streamEntry
+					if play:
+						playNo = '[{:>2d}] '.format(i)
+						streamNumbered.append(streamEntry)
+						i += 1
+					print('    ' + playNo + ': ' + streamEntry)
+		print(' ')
+
+	if play:
+		playNo = input('> ')
+		try:
+			playNo = int(playNo.strip())
+		except ValueError:
+			sys.stderr.write('Invalid number given. Cancel.\n')
+		else:
+			try:
+				streamUrl = streamNumbered[playNo]
+			except KeyError:
+				sys.stderr.write('Stream # not existant.\n')
+			else:
+				cmd = CMD_TPL.format(PLAYER, streamUrl)
+				subprocess.run(cmd, shell=True, check=True)
+
+if __name__ == '__main__':
+	pp = None
+	if len(sys.argv) > 2:
+		sys.stderr.write('Give me only ONE url!\n')
+		sys.exit(1)
+	elif len(sys.argv) < 2:
+		sys.stderr.write('You have to pass an url!\n')
+		sys.exit(1)
+	else:
+		pp = parseArg(sys.argv[1])

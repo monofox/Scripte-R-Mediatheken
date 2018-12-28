@@ -1,0 +1,658 @@
+https://api.ardmediathek.de/public-gateway?variables={"client":"daserste","showId":"Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGlu"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"1f680c1618207fa89687afcdac128bd15f6923b5d1fef57fdd30aac716b9239e"}}
+
+{
+    "data": {
+        "showPage": {
+            "__typename": "ShowPage",
+            "id": "U2hvd1BhZ2UrRGFzIEVyc3RlK2NyaWQ6Ly9kYXNlcnN0ZS5kZS9iYWJ5bG9uLWJlcmxpbg",
+            "teasers": [
+                {
+                    "__typename": "Teaser",
+                    "availableTo": "2019-09-30T21:59:00Z",
+                    "broadcastedOn": "2018-09-29T20:30:00Z",
+                    "duration": 2623,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzE5NmY4ZGQxLTQ0OTEtNDQwNS1iZTY1LWZmZjc4ZmNjOGUwZA",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "rbb",
+                            "src": "https://img.ardmediathek.de/standard/00/56/51/72/38/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "1929 - Das Jahr Babylon - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzE5NmY4ZGQxLTQ0OTEtNDQwNS1iZTY1LWZmZjc4ZmNjOGUwZA",
+                            "title": "1929 - Das Jahr Babylon"
+                        }
+                    },
+                    "longTitle": "1929 - Das Jahr Babylon",
+                    "mediumTitle": "1929 - Das Jahr Babylon",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "1929 - Das Jahr Babylon",
+                    "subtitled": true,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-29T20:00:00Z",
+                    "duration": 2670,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluL2EzMGM3NTgyLTRkMTktNDUyYS04NmNlLTE4OGU5ZDc4MGFkYw",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD Degeto/X-Filme/Beta Film/Sky Deutschland/Frédéric Batier",
+                            "src": "https://img.ardmediathek.de/standard/00/56/15/45/00/2121327408/16x9/{width}?mandant=ard",
+                            "title": "Making-of: Babylon Berlin - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluL2EzMGM3NTgyLTRkMTktNDUyYS04NmNlLTE4OGU5ZDc4MGFkYw",
+                            "title": "Making-of: Babylon Berlin"
+                        }
+                    },
+                    "longTitle": "Making-of: Babylon Berlin",
+                    "mediumTitle": "Making-of: Babylon Berlin",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Making-of: Babylon Berlin",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-29T20:00:00Z",
+                    "duration": 330,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzQ1NzI4NTVjLTdjZjUtNGZhNi04N2RhLThiZGVkOGJiNWU5Zg",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD Degeto/X-Filme/Beta Film/Sky Deutschland/Frédéric Batier",
+                            "src": "https://img.ardmediathek.de/standard/00/56/15/44/98/2121327408/16x9/{width}?mandant=ard",
+                            "title": "Musikvideo: Zu Asche, Zu Staub - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzQ1NzI4NTVjLTdjZjUtNGZhNi04N2RhLThiZGVkOGJiNWU5Zg",
+                            "title": "Musikvideo: Zu Asche, Zu Staub"
+                        }
+                    },
+                    "longTitle": "Musikvideo: Zu Asche, Zu Staub",
+                    "mediumTitle": "Musikvideo: Zu Asche, Zu Staub",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Musikvideo: Zu Asche, Zu Staub",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-29T20:00:00Z",
+                    "duration": 1033,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluL2E5YWRiNzNjLTQ5M2EtNDI2Yy1hNmI5LWZhZDQwYmI1MTRkMA",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "NDR",
+                            "src": "https://img.ardmediathek.de/standard/00/56/70/61/48/2121327408/16x9/{width}?mandant=ard",
+                            "title": "Liv Lisa Fries und Volker Bruch bei der NDR Talkshow - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluL2E5YWRiNzNjLTQ5M2EtNDI2Yy1hNmI5LWZhZDQwYmI1MTRkMA",
+                            "title": "Liv Lisa Fries und Volker Bruch bei der NDR Talkshow"
+                        }
+                    },
+                    "longTitle": "Liv Lisa Fries und Volker Bruch bei der NDR Talkshow",
+                    "mediumTitle": "Liv Lisa Fries und Volker Bruch bei der NDR Talkshow",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Liv Lisa Fries und Volker Bruch bei der NDR Talkshow",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-29T20:00:00Z",
+                    "duration": 189,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzAzYmRkZTlmLTI5ZTktNDU5ZS04M2FjLWQ4NGQ0ZjllZDQ0NA",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "",
+                            "src": "https://img.ardmediathek.de/standard/00/56/77/80/88/2121327408/16x9/{width}?mandant=ard",
+                            "title": "Extra: \"So haben Sie die Stadt noch nie gesehen\" - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzAzYmRkZTlmLTI5ZTktNDU5ZS04M2FjLWQ4NGQ0ZjllZDQ0NA",
+                            "title": "Extra: \"So haben Sie die Stadt noch nie gesehen\""
+                        }
+                    },
+                    "longTitle": "Extra: \"So haben Sie die Stadt noch nie gesehen\"",
+                    "mediumTitle": "Extra: \"So haben Sie die Stadt noch nie gesehen\"",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Extra: \"So haben Sie die Stadt noch nie gesehen\"",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": "2019-09-30T18:15:00Z",
+                    "broadcastedOn": "2018-09-29T20:00:00Z",
+                    "duration": 332,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzQxZTg4NzU0LTMxYWItNGY1ZC1iMGRhLWQyZWFjMzI3YTY4ZQ",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD",
+                            "src": "https://img.ardmediathek.de/standard/00/56/22/66/26/2121327408/16x9/{width}?mandant=ard",
+                            "title": "Interview mit Volker Bruch - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzQxZTg4NzU0LTMxYWItNGY1ZC1iMGRhLWQyZWFjMzI3YTY4ZQ",
+                            "title": "Interview mit Volker Bruch"
+                        }
+                    },
+                    "longTitle": "Interview mit Volker Bruch",
+                    "mediumTitle": "Interview mit Volker Bruch",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Interview mit Volker Bruch",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-29T20:00:00Z",
+                    "duration": 529,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluL2VhNjYzNDE5LWJkNmItNGNmYy05NTQxLTA0NzA3OTFkNDUwZg",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD",
+                            "src": "https://img.ardmediathek.de/standard/00/56/22/66/48/2121327408/16x9/{width}?mandant=ard",
+                            "title": "Interview mit Liv Lisa Fries - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluL2VhNjYzNDE5LWJkNmItNGNmYy05NTQxLTA0NzA3OTFkNDUwZg",
+                            "title": "Interview mit Liv Lisa Fries"
+                        }
+                    },
+                    "longTitle": "Interview mit Liv Lisa Fries",
+                    "mediumTitle": "Interview mit Liv Lisa Fries",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Interview mit Liv Lisa Fries",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": "2019-09-30T18:15:00Z",
+                    "broadcastedOn": "2018-09-29T20:00:00Z",
+                    "duration": 719,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzQ1ZWRkYTFiLTgwMWQtNDg1Ni1iZTA3LTUxMDQ3NzcyNjdkYQ",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD",
+                            "src": "https://img.ardmediathek.de/standard/00/56/23/20/86/2121327408/16x9/{width}?mandant=ard",
+                            "title": "Interview mit den Regisseuren Tom Tykwer, Achim von Borries und Henk Handloegten - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzQ1ZWRkYTFiLTgwMWQtNDg1Ni1iZTA3LTUxMDQ3NzcyNjdkYQ",
+                            "title": "Interview mit den Regisseuren Tom Tykwer, Achim von Borries und Henk Handloegten"
+                        }
+                    },
+                    "longTitle": "Interview mit den Regisseuren Tom Tykwer, Achim von Borries und Henk Handloegten",
+                    "mediumTitle": "Interview mit den Regisseuren Tom Tykwer, Achim von Borries und Henk Handloegten",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Interview mit den Regisseuren Tom Tykwer, Achim von Borries und Henk Handloegten",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-23T18:15:00Z",
+                    "duration": 222,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluL2NjZjZkZTEwLWQxYmQtNGViZC1hMmEyLWVjNzg2MGJiODUzZA",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD",
+                            "src": "https://img.ardmediathek.de/standard/00/54/32/21/92/2121327408/16x9/{width}?mandant=ard",
+                            "title": "Extra: Neue Berliner Straße - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluL2NjZjZkZTEwLWQxYmQtNGViZC1hMmEyLWVjNzg2MGJiODUzZA",
+                            "title": "Extra: Neue Berliner Straße"
+                        }
+                    },
+                    "longTitle": "Extra: Neue Berliner Straße",
+                    "mediumTitle": "Extra: Neue Berliner Straße",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Extra: Neue Berliner Straße",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-23T18:15:00Z",
+                    "duration": 145,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzZkZTA3MzBkLTIwMWUtNGQyYy04NzkyLTJkYTc3MDNkNDcwMw",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD",
+                            "src": "https://img.ardmediathek.de/standard/00/56/15/44/92/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Extra: Willkommen am Set - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzZkZTA3MzBkLTIwMWUtNGQyYy04NzkyLTJkYTc3MDNkNDcwMw",
+                            "title": "Extra: Willkommen am Set"
+                        }
+                    },
+                    "longTitle": "Extra: Willkommen am Set",
+                    "mediumTitle": "Extra: Willkommen am Set",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Extra: Willkommen am Set",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-23T18:15:00Z",
+                    "duration": 210,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzQyN2Q4NDk3LTM0ZjUtNGE4Zi1iMTY1LThhODU4NGM1ZGNmOA",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD",
+                            "src": "https://img.ardmediathek.de/standard/00/56/15/44/86/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Extra: Volker Kutscher - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzQyN2Q4NDk3LTM0ZjUtNGE4Zi1iMTY1LThhODU4NGM1ZGNmOA",
+                            "title": "Extra: Volker Kutscher"
+                        }
+                    },
+                    "longTitle": "Extra: Volker Kutscher",
+                    "mediumTitle": "Extra: Volker Kutscher",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Extra: Volker Kutscher",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-23T18:15:00Z",
+                    "duration": 148,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzQwODMzZTQ3LTdjNDMtNDIzYi04MmNhLWU0OGM1OWUxYWIyNQ",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD",
+                            "src": "https://img.ardmediathek.de/standard/00/56/15/44/84/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Extra: Hauptfiguren - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzQwODMzZTQ3LTdjNDMtNDIzYi04MmNhLWU0OGM1OWUxYWIyNQ",
+                            "title": "Extra: Hauptfiguren"
+                        }
+                    },
+                    "longTitle": "Extra: Hauptfiguren",
+                    "mediumTitle": "Extra: Hauptfiguren",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Extra: Hauptfiguren",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-23T18:15:00Z",
+                    "duration": 289,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzVmODA4NDdjLTljYzItNDkzNy04ODNjLWZmNDJmYzc1YjYyMQ",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD",
+                            "src": "https://img.ardmediathek.de/standard/00/56/15/44/94/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Extra: Autoren und Regisseure - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzVmODA4NDdjLTljYzItNDkzNy04ODNjLWZmNDJmYzc1YjYyMQ",
+                            "title": "Extra: Autoren und Regisseure"
+                        }
+                    },
+                    "longTitle": "Extra: Autoren und Regisseure",
+                    "mediumTitle": "Extra: Autoren und Regisseure",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Extra: Autoren und Regisseure",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-23T18:15:00Z",
+                    "duration": 268,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzc0ZTZmM2FlLWFjM2EtNDhkMy04NGYwLWRmODdmN2ZkYmU5MQ",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD",
+                            "src": "https://img.ardmediathek.de/standard/00/56/15/44/90/-1774185891/16x9/{width}?mandant=ard",
+                            "title": "Extra: Musik zur Serie - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzc0ZTZmM2FlLWFjM2EtNDhkMy04NGYwLWRmODdmN2ZkYmU5MQ",
+                            "title": "Extra: Musik zur Serie"
+                        }
+                    },
+                    "longTitle": "Extra: Musik zur Serie",
+                    "mediumTitle": "Extra: Musik zur Serie",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Extra: Musik zur Serie",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-23T18:15:00Z",
+                    "duration": 239,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzZkOTZiZDdlLWZmZWItNDU4Ny1iMTEzLTNiYzNiNjYxNGQ5ZQ",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD",
+                            "src": "https://img.ardmediathek.de/standard/00/54/32/22/80/2121327408/16x9/{width}?mandant=ard",
+                            "title": "Extra: Kostümbild - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzZkOTZiZDdlLWZmZWItNDU4Ny1iMTEzLTNiYzNiNjYxNGQ5ZQ",
+                            "title": "Extra: Kostümbild"
+                        }
+                    },
+                    "longTitle": "Extra: Kostümbild",
+                    "mediumTitle": "Extra: Kostümbild",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Extra: Kostümbild",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-23T18:15:00Z",
+                    "duration": 233,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluL2JiMzlhMjFiLWUzZjYtNDkwYy04YzU3LTBhOTkzZDQxZDU3Yg",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD",
+                            "src": "https://img.ardmediathek.de/standard/00/54/32/23/02/2121327408/16x9/{width}?mandant=ard",
+                            "title": "Extra: Maskenbild - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluL2JiMzlhMjFiLWUzZjYtNDkwYy04YzU3LTBhOTkzZDQxZDU3Yg",
+                            "title": "Extra: Maskenbild"
+                        }
+                    },
+                    "longTitle": "Extra: Maskenbild",
+                    "mediumTitle": "Extra: Maskenbild",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Extra: Maskenbild",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-23T18:15:00Z",
+                    "duration": 188,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluL2E4YWM3NDI5LWQ3ZWQtNDRiMC05NWI1LWQyYTI3NDJiNGJkNQ",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD",
+                            "src": "https://img.ardmediathek.de/standard/00/54/32/22/36/2121327408/16x9/{width}?mandant=ard",
+                            "title": "Extra: Szenenbild - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluL2E4YWM3NDI5LWQ3ZWQtNDRiMC05NWI1LWQyYTI3NDJiNGJkNQ",
+                            "title": "Extra: Szenenbild"
+                        }
+                    },
+                    "longTitle": "Extra: Szenenbild",
+                    "mediumTitle": "Extra: Szenenbild",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Extra: Szenenbild",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-23T18:15:00Z",
+                    "duration": 276,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzhkYTNkNTcxLTIxZjctNGRmMi05YjI2LTczYzJhNGViNjQ5YQ",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "ARD",
+                            "src": "https://img.ardmediathek.de/standard/00/56/15/44/88/2121327408/16x9/{width}?mandant=ard",
+                            "title": "Extra: Berlin-Alexanderplatz - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluLzhkYTNkNTcxLTIxZjctNGRmMi05YjI2LTczYzJhNGViNjQ5YQ",
+                            "title": "Extra: Berlin-Alexanderplatz"
+                        }
+                    },
+                    "longTitle": "Extra: Berlin-Alexanderplatz",
+                    "mediumTitle": "Extra: Berlin-Alexanderplatz",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Extra: Berlin-Alexanderplatz",
+                    "subtitled": false,
+                    "type": "ondemand"
+                },
+                {
+                    "__typename": "Teaser",
+                    "availableTo": null,
+                    "broadcastedOn": "2018-09-23T18:15:00Z",
+                    "duration": 76,
+                    "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluL2U5NWEzNDBjLWNmODAtNDdjMi1iMzMyLTcxZjBkNzRiM2RhNA",
+                    "images": {
+                        "__typename": "TeaserImages",
+                        "aspect16x9": {
+                            "__typename": "Image",
+                            "producerName": "X Filme",
+                            "src": "https://img.ardmediathek.de/standard/00/56/15/44/96/2121327408/16x9/{width}?mandant=ard",
+                            "title": "Extra: Bei den Dreharbeiten von \"Babylon Berlin\" - Standbild"
+                        },
+                        "aspect1x1": null
+                    },
+                    "links": {
+                        "__typename": "TeaserLinks",
+                        "target": {
+                            "__typename": "Link",
+                            "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGluL2U5NWEzNDBjLWNmODAtNDdjMi1iMzMyLTcxZjBkNzRiM2RhNA",
+                            "title": "Extra: Bei den Dreharbeiten von \"Babylon Berlin\""
+                        }
+                    },
+                    "longTitle": "Extra: Bei den Dreharbeiten von \"Babylon Berlin\"",
+                    "mediumTitle": "Extra: Bei den Dreharbeiten von \"Babylon Berlin\"",
+                    "publicationService": {
+                        "__typename": "PublicationService",
+                        "name": "Das Erste"
+                    },
+                    "shortTitle": "Extra: Bei den Dreharbeiten von \"Babylon Berlin\"",
+                    "subtitled": false,
+                    "type": "ondemand"
+                }
+            ]
+        }
+    }
+}

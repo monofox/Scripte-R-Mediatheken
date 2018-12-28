@@ -1,0 +1,4 @@
+#!/bin/sh
+DOCID=$1
+echo $DOCID
+vlc `curl "http://www.ardmediathek.de/play/media/$DOCID?devicetype=pc&features=hls" | json_reformat | grep -A5 '"_quality": 3,' | grep '_stream' | awk -F'"' '{ print $4 }'`

@@ -6,16 +6,65 @@ from slimit import ast
 from slimit.visitors import nodevisitor
 import urllib.request
 import slimit
-import sys, shlex, subprocess, json
+import sys
+import shlex
+import subprocess
+import json
+import re
+import datetime
 
 PLAYER = '/usr/bin/mplayer'
+API_URL = 'https://api.ardmediathek.de/public-gateway?variables={variables}&extensions={extensions}'
+API_VARIABLES = {
+	'client': 'ard',
+	'clipId': '',
+	'deviceType': 'pc'
+}
+API_EXTENSIONS = {
+	'persistedQuery': {
+			'version':1,
+			'sha256Hash':'a9a9b15083dd3bf249264a7ff5d9e1010ec5d861539bc779bb1677a4a37872da'
+		}
+}
 CMD_TPL = '{:s} "{:s}"'
+
+def format_duration(seconds):
+	"""
+	Stole from: http://www.voidcn.com/article/p-qlzvdfdd-c.html
+	"""
+	if seconds == 0: return "now"
+	origin = seconds
+	dic = {
+		'year': 60 * 60 * 24 * 365,
+		'day': 60 * 60 * 24,
+		'hour': 60 * 60,
+		'minute': 60,
+		'second': 1
+	}
+	spent = {}
+	ans = ""
+	for x in ['year','day','hour','minute','second']:
+		spent[x] = seconds // dic[x]
+		ans += "{}{} {}{}".format('' if seconds == origin else ' and ' if seconds % dic[x] == 0 else ', ',spent[x],x,'s' if spent[x] > 1 else '') if spent[x] > 0 else ''
+		seconds %= dic[x]
+	return  ans
 
 class ArdMediaHolder(object):
 
 	def __init__(self):
 		self._holder = []
 		self._js = {}
+
+		# metadata information
+		self._title = ''
+		self._channel = ''
+		self._contentId = 0
+		self._clipLength = 0
+
+		self._geoBlocked = None
+		self._blockedByFsk = None
+		self._broadcastOn = None
+		self._availableUntil = None
 
 	def appendJs(self, key, value):
 		if value._relevant:
@@ -70,7 +119,49 @@ class ArdVisitor(nodevisitor.ASTVisitor):
 					ave.parse(prop)
 					getattr(self.callback, 'appendJs')(left.value, ave)
 
-def parseArg(url):
+def parsePublicApi(clipId):
+	ext = json.dumps(API_EXTENSIONS, separators=(',', ':'))
+	API_VARIABLES['clipId'] = clipId
+	var = json.dumps(API_VARIABLES, separators=(',', ':'))
+	cusHeaders = {
+		'TE': 'Trailers',
+		'Origin': 'https://www.ardmediathek.de',
+		'content-type': 'application/json',
+		'Accept': '*/*',
+		'User-Agent': 'monobear.business Crawler'
+	}
+
+	req = urllib.request.Request(API_URL.format(variables=var, extensions=ext), headers=cusHeaders)
+	r = urllib.request.urlopen(req, timeout=2)
+	if r.code != 200:
+		sys.stderr.write('Could not retrieve stream informations.\n')
+		sys.exit(1)
+
+	# now we need to extract some data.
+	js = json.loads(r.read().decode('utf-8'))
+	holder = ArdMediaHolder()
+	for sa in js['data']['playerPage']['mediaCollection']['_mediaArray']:
+		for media in sa['_mediaStreamArray']:
+			for stream in media['_stream']:
+				holder.append(media['_quality'], stream)
+
+	# some meta information?
+	holder._title = js['data']['playerPage']['title']
+	holder._clipLength = js['data']['playerPage']['tracking']['atiCustomVars']['clipLength']
+	holder._contentId = js['data']['playerPage']['tracking']['atiCustomVars']['contentId']
+	holder._channel = js['data']['playerPage']['tracking']['atiCustomVars']['channel']
+	holder._blockedByFsk = js['data']['playerPage']['blockedByFsk']
+	holder._geoBlocked = js['data']['playerPage']['geoblocked']
+	holder._broadcastOn = datetime.datetime.strptime(js['data']['playerPage']['broadcastedOn'], '%Y-%m-%dT%H:%M:%SZ')
+	holder._availableUntil = datetime.datetime.strptime(js['data']['playerPage']['availableTo'], '%Y-%m-%dT%H:%M:%SZ')
+
+	if holder._holder:
+		printStreams(holder, True)
+	else:
+		sys.stderr.write('Could not find any stream.\n')
+		sys.exit(1)
+
+def parseHtmlDom(url):
 	url = url.strip()
 	req = urllib.request.Request(url)
 	r = urllib.request.urlopen(req)
@@ -110,7 +201,32 @@ def parseArg(url):
 		sys.stderr.write('Could not parse or find script block.\n')
 		sys.exit(1)
 
+def parseArg(url):
+	# two variants we can try right now:
+	# extract the clip id here:
+	clipIdRe = re.compile(r'^http(s)?://(.*)/(?P<clipid>[a-zA-Z0-9]+)/.*$')
+	clipMatch = clipIdRe.match(url)
+	if clipMatch:
+		clipId = clipMatch.group('clipid')
+		try:
+			parsePublicApi(clipId)
+		except:
+			sys.stderr.write('Fallback to html DOM parsing.\n\n')
+			parseHtmlDom(url)
+	else:
+		parseHtmlDom(url)
+
 def printStreams(streams, play=False):
+	# do we have some kind of meta information?
+	if streams._title:
+		titleMsg = '{channel}: {title} ({clipLength})'.format(
+				channel=streams._channel,
+				title=streams._title,
+				clipLength=format_duration(streams._clipLength)
+			)
+		print(titleMsg)
+		print('-'*len(titleMsg) + '\n')
+
 	i = 0
 	streamNumbered = []
 	availableQualities = []
@@ -164,20 +280,54 @@ def printStreams(streams, play=False):
 					print('    ' + playNo + ': ' + streamEntry)
 		print(' ')
 
+	# some more information available?
+	if streams._blockedByFsk:
+		print('This media is restricted by FSK!')
+	
+	if streams._broadcastOn and streams._availableUntil:
+		print(
+			'Media is casted on {broadcast}Z and available until {available}Z'.format(
+				broadcast=streams._broadcastOn.strftime('%d.%m.%Y %H:%M:%S'),
+				available=streams._availableUntil.strftime('%d.%m.%Y %H:%M:%S')
+			)
+		)
+	elif streams._broadcastOn:
+		print(
+			'Media is casted on {broadcast}Z.'.format(
+				broadcast=streams._broadcastOn.strftime('%d.%m.%Y %H:%M:%S')
+			)
+		)
+	elif streams._availableUntil:
+		print(
+			'Media is available until {available}Z.'.format(
+				available=streams._availableUntil.strftime('%d.%m.%Y %H:%M:%S')
+			)
+		)
+
+	print(' ')
+
 	if play:
 		playNo = input('> ')
-		try:
-			playNo = int(playNo.strip())
-		except ValueError:
-			sys.stderr.write('Invalid number given. Cancel.\n')
+		if playNo.strip().lower() == 'q':
+			print('Bye, bye!')
 		else:
 			try:
-				streamUrl = streamNumbered[playNo]
-			except KeyError:
-				sys.stderr.write('Stream # not existant.\n')
+				playNo = int(playNo.strip())
+			except ValueError:
+				sys.stderr.write('Invalid number given. Cancel.\n')
 			else:
-				cmd = CMD_TPL.format(PLAYER, streamUrl)
-				subprocess.run(cmd, shell=True, check=True)
+				if playNo < 0:
+					sys.stderr.write('Invalid number given. Cancel.\n')
+				else:
+					try:
+						streamUrl = streamNumbered[playNo]
+					except KeyError:
+						sys.stderr.write('Stream # not existant.\n')
+					except IndexError:
+						sys.stderr.write('Stream # not existant.\n')
+					else:
+						cmd = CMD_TPL.format(PLAYER, streamUrl)
+						subprocess.run(cmd, shell=True, check=True)
 
 if __name__ == '__main__':
 	pp = None

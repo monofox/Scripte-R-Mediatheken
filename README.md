@@ -51,4 +51,4 @@ Die Livestreams lassen sich mit Aufruf des jeweiligen Senderscripts öffnen. Die
 Contributions, Proposals, Feedback sind herzlich willkommen.
 
 ## Lizenz
-Public Domain
+GNU GPL V3+

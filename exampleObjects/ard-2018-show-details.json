@@ -1,0 +1,43 @@
+https://api.ardmediathek.de/public-gateway?variables={"client":"daserste","showId":"Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGlu"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"e98095b5fed901f947f5c6683b82514fad519e7c96db065a52a60f92fbd4591f"}}
+
+{
+    "data": {
+        "showPage": {
+            "__typename": "ShowPage",
+            "id": "U2hvd1BhZ2UrRGFzIEVyc3RlK2NyaWQ6Ly9kYXNlcnN0ZS5kZS9iYWJ5bG9uLWJlcmxpbg",
+            "image": {
+                "__typename": "Image",
+                "src": "https://img.ardmediathek.de/standard/00/54/31/98/38/-2062574680/16x9/{width}?mandant=ard",
+                "title": "Babylon Berlin - Bevorzugt"
+            },
+            "publicationService": {
+                "__typename": "PublicationService",
+                "name": "Das Erste"
+            },
+            "synopsis": "Berlin, im Frühjahr 1929: Eine Metropole in Aufruhr. Ökonomie und Kultur, Politik und Unterwelt - alles befindet sich in radikalem Wandel. Spekulation und Inflation zehren an den Grundfesten der immer noch jungen Weimarer Republik.",
+            "title": "Babylon Berlin",
+            "tracking": {
+                "__typename": "Tracking",
+                "aggregationLevelId": 40,
+                "atiCustomVars": {
+                    "__typename": "ATICustomVars",
+                    "channel": null,
+                    "clipLength": null,
+                    "clipTitle": null,
+                    "contentId": null,
+                    "contentTypes": null,
+                    "lra": null,
+                    "mediaDistributionType": null,
+                    "mediaType": null,
+                    "metadataId": null,
+                    "show": null
+                },
+                "chapter2": "Sendung",
+                "chapter3": "Babylon Berlin",
+                "environmentId": 511893,
+                "pageTitle": "Mediathek/Sendung/Babylon Berlin",
+                "szmType": "CP"
+            }
+        }
+    }
+}

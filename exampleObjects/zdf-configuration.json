@@ -1,0 +1,329 @@
+https://www.zdf.de/ZDFplayer/configs/zdf/zdf2016/configuration.json
+
+{
+    "autoplay": true,
+    "preload": false,
+	"shortVideoLength": 120,
+	"loadTimeout": 9500,
+	"hlsLiveStreamFallbackWorkaround": true,
+    "muted": false,
+	"controlsTimeout": 2500,
+    "dvr": true,
+    "flash": true,
+    "logLevel": 2,
+    "stopButton": false,
+    "captionsButton": true,
+    "mediaLibraryButton": false,
+	"plusButton": false,
+    "privacyButton": "",
+	"nextVideoTeaser": true,
+	"epgServiceBaseUrl": "https://api.zdf.de/cmdm/epg/broadcasts", 
+	"embedBaseUrl": "https://ngp.zdf.de/miniplayer/embed/",
+    "chromecast": {
+        "enabled": true, 
+        "scriptUrl": "https://www.gstatic.com/cv/js/sender/v1/cast_sender.js",
+        "appId": "D8E46936"
+    },
+	"qualityLabels": {
+    "auto": "Automatisch|max. 23 MB/Min.",
+    "low": "Niedrig|max. 6 MB/Min.",
+    "med": "Mittel|max. 11 MB/Min.",
+    "high": "Hoch|max. 23 MB/Min.",
+    "veryhigh": "Sehr hoch|max. 23 MB/Min.",
+    "hd": "HD"
+  },
+"ads": {
+        "scriptUrl": "https://cd.adition.com/zdf-sdk/0.9.0/zdf-sdk.js",
+        "prerollUrl": "https://ad13.adfarm1.adition.com/banner?sid=3888580&wpt=X&prf[skip]=&prf[rubrik]=&prf[zweitverortung]=&prf[sendungstitel]=&prf[ausstrahlung]=&prf[videotitel]=&prf[mindestlaenge]=",
+        "postrollUrl": "https://ad13.adfarm1.adition.com/banner?sid=3888581&wpt=X&prf[skip]=&prf[rubrik]=&prf[zweitverortung]=&prf[sendungstitel]=&prf[ausstrahlung]=&prf[videotitel]=&prf[mindestlaenge]=",
+        "showAds": true,
+        "minAdViewTime": 7000,
+        "adLoadTimeout": 3000,
+		"minVideoLength": 300,
+		"blockedCategory": "ZDF Nachrichten,ZDFtivi,Nachrichten"
+    },
+	"audioChannelLabels": {
+		"main": "TV-Ton",
+		"ad": "Audiodeskription"
+  },
+    "tracking": {
+        "szmng": {
+            "enabled": true
+        },
+    "akamai": {
+        "enabled": true, 
+        "scriptUrl": "https://79423.analytics.edgekey.net/ma_library/javascript/javascript_malibrary.js",
+        "configUrl": "/ZDFplayer/common/xml/akamai-config.xml"
+    },
+        "atInternet": {
+            "enabled": true
+        },
+        "nielsen": {
+            "enabled": true,
+            "scriptUrl": "//cdn-gl.imrworldwide.com/novms/js/2/ggcmb510.js",
+			"clientTitle": "",
+            "config": {
+                "ZDF": {
+                    "apid":"P62F597DE-3710-433F-9915-31204700FA26",
+                    "sfcode":"eu",
+                    "apn":"NGP"
+                },
+                "ZDFneo": {
+                    "apid":"P62F597DE-3710-433F-9915-31204700FA26",
+                    "sfcode":"eu",
+                    "apn":"NGP"
+                },
+                "ZDFinfo": {
+                    "apid":"P62F597DE-3710-433F-9915-31204700FA26",
+                    "sfcode":"eu",
+                    "apn":"NGP"
+                },
+                "ZDF.kultur": {
+                    "apid":"P62F597DE-3710-433F-9915-31204700FA26",
+                    "sfcode":"eu",
+                    "apn":"NGP"
+                },
+                "3sat": {
+                    "apid":"P62F597DE-3710-433F-9915-31204700FA26",
+                    "sfcode":"eu",
+                    "apn":"NGP"
+                },
+                "KiKA": {
+                    "apid":"PF409F794-99AE-4F96-BD51-E30821229733",
+                    "sfcode":"eu",
+                    "apn":"NGP"
+                },
+				"KI.KA": {
+                    "apid":"PF409F794-99AE-4F96-BD51-E30821229733",
+                    "sfcode":"eu",
+                    "apn":"NGP"
+                },
+                "Phoenix": {
+                    "apid":"P62F597DE-3710-433F-9915-31204700FA26",
+                    "sfcode":"eu",
+                    "apn":"NGP"
+                },
+				 "PHOENIX": {
+                    "apid":"P62F597DE-3710-433F-9915-31204700FA26",
+                    "sfcode":"eu",
+                    "apn":"NGP"
+                },
+                "ZDFtivi": {
+                    "apid":"PF409F794-99AE-4F96-BD51-E30821229733",
+                    "sfcode":"eu",
+                    "apn":"NGP"
+                },
+				"arte": {
+                    "apid":"P62F597DE-3710-433F-9915-31204700FA26",
+                    "sfcode":"eu",
+                    "apn":"NGP"
+                },
+                "livestream": {
+                    "apid":"P62F597DE-3710-433F-9915-31204700FA26",
+                    "sfcode":"eu",
+                    "apn":"NGP"
+                }
+            }
+        }
+    },
+        "errors": {
+		"default": {
+     		 "message": "Es ist ein Fehler aufgetreten. Versuchen Sie es später noch einmal."
+   			 },
+        "embedNotAllowed": {
+            "message": "Diesen Beitrag können Sie nur in der ZDFmediathek ansehen."
+        },
+		"videoMissing": {
+      		"message": "Dieses Video existiert nicht (mehr)."
+   		 },
+    	"videoNotYetAvailable": {
+      		"message": "Dieses Video ist erst ab %DATUM% verfügbar."
+    },
+  		"noFormatSupported": {
+          "message": "Leider wird kein Videoformat von Ihrem Gerät unterstützt."
+    },
+	 "offline": {
+      "message": "Es scheint keine Internet-Verbindung zu geben.",
+      "reloadButton": true
+    },
+    "playbackError": {
+      "message": "Beim Abspielen ist ein Fehler aufgetreten."
+    },
+    "initDataMissing": {
+      "message": "Es ist ein Fehler aufgetreten. Versuchen Sie es später noch einmal. Errorcode:1",
+      "reloadButton": false
+    },
+    "configError": {
+      "message": "Es ist ein Fehler aufgetreten. Versuchen Sie es später noch einmal. Errorcode:2",
+      "reloadButton": false
+    },
+    "loadError": {
+      "message": "Es ist ein Fehler aufgetreten. Versuchen Sie es später noch einmal. Errorcode:3",
+      "reloadButton": true
+    },
+    "loadTimeout": {
+      "message": "Zeitüberschreitung beim Laden.",
+      "reloadButton": true
+    },
+    "embedNotAllowed": {
+      "message": "Diesen Beitrag können Sie nur in der ZDFmediathek ansehen."
+    },
+    "contentNotAllowed": {
+      "message": "Dieses Video darf nicht außerhalb von www.zdf.de abgespielt werden."
+    },	
+        "fsk12": {
+            "alt": "Diese Sendung ist erst ab 20:00 Uhr verfügbar.",
+            "image": {
+                "nano": "/ZDFplayer/common/images/zdf_altimages/nano/fsk_12.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/fsk_12.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/fsk_12.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/fsk_12.jpg",
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/fsk_12.jpg"
+            }
+        },
+        "fsk16": {
+            "alt": "Diese Sendung ist erst ab 22:00 Uhr verfügbar.",
+            "image": {
+                "nano": "/ZDFplayer/common/images/zdf_altimages/nano/fsk_16.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/fsk_16.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/fsk_16.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/fsk_16.jpg",
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/fsk_16.jpg"
+            }
+        },
+        "fsk18": {
+            "alt": "Diese Sendung ist erst ab 23:00 Uhr verfügbar.",
+            "image": {
+                "nano": "/ZDFplayer/common/images/zdf_altimages/nano/fsk_18.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/fsk_18.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/fsk_18.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/fsk_18.jpg",
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/fsk_18.jpg"
+            }
+        },
+        "deGeoblock": {
+            "alt": "Diese Sendung ist nur innerhalb Deutschlands verfügbar.",
+            "image": {
+                 "nano": "/ZDFplayer/common/images/zdf_altimages/nano/de.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/de.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/de.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/de.jpg",
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/de.jpg"
+            }
+        },
+        "dachGeoblock": {
+            "alt": "Diese Sendung ist nur in Deutschland, Österreich und der Schweiz verfügbar.",
+            "image": {
+                 "nano": "/ZDFplayer/common/images/zdf_altimages/nano/dach.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/dach.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/dach.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/dach.jpg",
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/dach.jpg"
+            }
+        },
+        "ebuGeoblock": {
+            "alt": "Diese Sendung ist nur innerhalb der EU verfügbar.",
+            "image": {
+                "nano": "/ZDFplayer/common/images/zdf_altimages/nano/ebu.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/ebu.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/ebu.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/ebu.jpg",
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/ebu.jpg"
+            }
+        },
+        "deGeoblockFsk12": {
+            "alt": "Diese Sendung ist erst ab 20:00 Uhr innerhalb Deutschlands verfügbar.",
+            "image": {
+                "nano": "/ZDFplayer/common/images/zdf_altimages/nano/fsk12_de.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/fsk12_de.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/fsk12_de.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/fsk12_de.jpg", 
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/fsk12_de.jpg"
+            }
+        },
+		 "ebuGeoblockFsk12": {
+            "alt": "Diese Sendung ist erst ab 20:00 Uhr innerhalb der EU verfügbar.",
+            "image": {
+                "nano": "/ZDFplayer/common/images/zdf_altimages/nano/fsk12_ebu.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/fsk12_ebu.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/fsk12_ebu.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/fsk12_ebu.jpg", 
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/fsk12_ebu.jpg"
+            }
+        }
+		,
+		 "dachGeoblockFsk12": {
+            "alt": "Diese Sendung ist erst ab 20:00 Uhr innerhalb Deutschland, Österreich und der Schweiz verfügbar.",
+            "image": {
+                "nano": "/ZDFplayer/common/images/zdf_altimages/nano/fsk12_dach.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/fsk12_dach.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/fsk12_dach.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/fsk12_dach.jpg", 
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/fsk12_dach.jpg"
+            }
+        },
+        "deGeoblockFsk16": {
+            "alt": "Diese Sendung ist erst ab 22:00 Uhr innerhalb Deutschlands verfügbar.",
+            "image": {
+                "nano": "/ZDFplayer/common/images/zdf_altimages/nano/fsk16_de.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/fsk16_de.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/fsk16_de.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/fsk16_de.jpg", 
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/fsk16_de.jpg"
+            }
+        },
+		 "ebuGeoblockFsk16": {
+            "alt": "Diese Sendung ist erst ab 22:00 Uhr innerhalb der EU verfügbar.",
+            "image": {
+                "nano": "/ZDFplayer/common/images/zdf_altimages/nano/fsk16_ebu.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/fsk16_ebu.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/fsk16_ebu.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/fsk16_ebu.jpg", 
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/fsk16_ebu.jpg"
+            }
+        }
+		,
+		 "dachGeoblockFsk16": {
+            "alt": "Diese Sendung ist erst ab 22:00 Uhr innerhalb Deutschland, Österreich und der Schweiz verfügbar.",
+            "image": {
+                "nano": "/ZDFplayer/common/images/zdf_altimages/nano/fsk16_dach.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/fsk16_dach.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/fsk16_dach.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/fsk16_dach.jpg", 
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/fsk16_dach.jpg"
+            }
+        },
+        "deGeoblockFsk18": {
+            "alt": "Diese Sendung ist erst ab 23:00 Uhr innerhalb Deutschlands verfügbar.",
+            "image": {
+                "nano": "/ZDFplayer/common/images/zdf_altimages/nano/fsk18_de.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/fsk18_de.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/fsk18_de.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/fsk18_de.jpg", 
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/fsk18_de.jpg"
+            }
+        },
+		 "ebuGeoblockFsk18": {
+            "alt": "Diese Sendung ist erst ab 23:00 Uhr innerhalb der EU verfügbar.",
+            "image": {
+                "nano": "/ZDFplayer/common/images/zdf_altimages/nano/fsk18_ebu.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/fsk18_ebu.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/fsk18_ebu.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/fsk18_ebu.jpg", 
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/fsk18_ebu.jpg"
+            }
+        }
+		,
+		 "dachGeoblockFsk18": {
+            "alt": "Diese Sendung ist erst ab 23:00 Uhr innerhalb Deutschland, Österreich und der Schweiz verfügbar.",
+            "image": {
+                "nano": "/ZDFplayer/common/images/zdf_altimages/nano/fsk18_dach.jpg",
+                "mini": "/ZDFplayer/common/images/zdf_altimages/mini/fsk18_dach.jpg",
+                "small": "/ZDFplayer/common/images/zdf_altimages/small/fsk18_dach.jpg",
+                "normal": "/ZDFplayer/common/images/zdf_altimages/normal/fsk18_dach.jpg", 
+                "maxi": "/ZDFplayer/common/images/zdf_altimages/maxi/fsk18_dach.jpg"
+            }
+        }
+    }
+}
+

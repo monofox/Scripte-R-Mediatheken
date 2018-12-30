@@ -1,0 +1,580 @@
+https://api.ardmediathek.de/public-gateway?variables={"client":"daserste"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"fdbab76da7d6aeb1ae859e1758dd1db068824dbf1623c02bc4c5f61facb474c2"}}
+
+{
+    "data": {
+        "showsPage": {
+            "__typename": "ShowsPage",
+            "glossary": {
+                "__typename": "Glossary",
+                "shows09": [],
+                "showsA": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2FiZW50ZXVlciB3aWxkZXIgd2VzdGVu"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2Flbm5hIGJ1cmRh"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2FubmEtdW5kLWRpZS13aWxkZW4tdGllcmU"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLm5kci5kZS8xMjQ2"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL3N3ci5kZS8yNjY1MTY"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2FyZC1zb25kZXJzZW5kdW5n"
+                    }
+                ],
+                "showsB": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JhYnlsb24tYmVybGlu"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JlcmljaHQgYXVzIGJlcmxpbg"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2hyLW9ubGluZS8zNzY3MjgxMA"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JyZW5ucHVua3Q"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2JyaXNhbnQ"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2J1bmRlc3RhZyBsaXZl"
+                    }
+                ],
+                "showsC": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2NvbWVkeVNhdGlyZQ"
+                    }
+                ],
+                "showsD": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2RhcyB3b3J0IHp1bSBzb25udGFn"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2RlciBiZXN0ZSBkZWFs"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2RlciBtYXJrZW5jaGVjaw"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2RlciBtb250YWdzLWNoZWNr"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2RldXRzY2hsYW5kYmlsZGVy"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2RpZS1iZXN0ZS1rbGFzc2UtZGV1dHNjaGxhbmRz"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2RpZS1jaGVja2Vy"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2RpZS1mZXN0ZS1taXQtZmxvcmlhbi1zaWxiZXJlaXNlbg"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2RpZS1oZWlsYW5kLXdpci1zaW5kLWFud2FsdA"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2RpZS1rYW56bGVp"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLm5kci5kZS8xMjU0"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3NlbmR1bmcgbWl0IGRlciBtYXVz"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2RpbmdzZGE"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2Rvbm5hIGxlb24"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2RydWNrZnJpc2No"
+                    }
+                ],
+                "showsE": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2VjaHRlcyBsZWJlbg"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2VybGVibmlzIGVyZGU"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2V1cm9wYW1hZ2F6aW4"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLm5kci5kZS8xNTkw"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLm5kci5kZS8xNDQw"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLm5kci5kZS8xNTI3"
+                    }
+                ],
+                "showsF": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2Zha3Q"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2ZhbWlsaWUgZHIuIGtsZWlzdA"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2ZhcmJlIGJla2VubmVu"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2Zlcm5zZWhmaWxtZSBpbSBlcnN0ZW4"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2ZpbG1taXR0d29jaCBpbSBlcnN0ZW4"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLm5kci5kZS80NDU5"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2ZyYWcgZG9jaCBtYWwgZGllIG1hdXM"
+                    }
+                ],
+                "showsG": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2dpcmFmZmUsIGVyZG3DpG5uY2hlbiAmIGNvLg"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2tpcmNobGljaGUgc2VuZHVuZ2Vu"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2dyb8Ofc3RhZHRyZXZpZXI"
+                    }
+                ],
+                "showsH": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL3dkci5kZS9oYXJ0IGFiZXIgZmFpcg"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2hpcnNjaGhhdXNlbnMtY2hlY2stdXA"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2hpcnNjaGhhdXNlbnMgcXVpeiBkZXMgbWVuc2NoZW4"
+                    }
+                ],
+                "showsI": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2ltIGFuZ2VzaWNodCBkZXMgdmVyYnJlY2hlbnM"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2luIGFsbGVyIGZyZXVuZHNjaGFmdA"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2luLWFsbGVyLWZyZXVuZHNjaGFmdC1kaWUtanVuZ2VuLWFlcnp0ZQ"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2luLWFsbGVyLWZyZXVuZHNjaGFmdC1kaWUta3JhbmtlbnNjaHdlc3Rlcm4"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLm5kci5kZS8xNDA5"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2ludGVydmlld3MgdW5kIGV4dHJhcw"
+                    }
+                ],
+                "showsJ": [],
+                "showsK": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2thbm4tZXMtam9oYW5uZXM"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2thcm5ldmFsIGltIGVyc3Rlbg"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2tpbmRlcmZpbG1lLXVuZC1raW5kZXJkb2t1cw"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2tsZWluLWdlZ2VuLWdyb3Nz"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL3JiYi1vbmxpbmUuZGUva29udHJhc3Rl"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2tyaWVnIGRlciB0csOkdW1l"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2tyaW1pbmFscmVwb3J0"
+                    }
+                ],
+                "showsL": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2xhZGllcyBuaWdodA"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2xpbmRlbnN0cmHDn2U"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2xpdmUgbmFjaCBuZXVu"
+                    }
+                ],
+                "showsM": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL21lbnNjaGVuIGJlaSBtYWlzY2hiZXJnZXI"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL3JiYi1vbmxpbmUuZGUvbWFlcmNoZW5maWxt"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL21laXN0ZXItZGVzLWFsbHRhZ3M"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2FyZC1taXR0YWdzbWFnYXppbg"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL21vbml0b3I"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL21vcmRlbi1pbS1ub3JkZW4"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL21vcmRrb21taXNzaW9uIGlzdGFuYnVs"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL21vcmdlbm1hZ2F6aW4"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL211c2lrc2VuZHVuZ2VuIGltIGVyc3Rlbg"
+                    }
+                ],
+                "showsN": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL25hY2h0bWFnYXppbg"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL25hc2hvcm4sIHplYnJhICYgY28u"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL25ldW5laW5oYWxi"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3NhdGlyZSBnaXBmZWw"
+                    }
+                ],
+                "showsO": [],
+                "showsP": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL3JiYi1vbmxpbmUuZGUvcGFuZGFfYXJk"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLm5kci5kZS8xMjUy"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3BhdWxhIHVuZCBkaWUgd2lsZGVuIHRpZXJl"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3BsdXNtaW51cw"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3BvbGl6ZWlydWYgMTEw"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ByZXNzZWNsdWI"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3Byb2dyYW1tdHJhaWxlciBkYXMgZXJzdGU"
+                    }
+                ],
+                "showsQ": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3F1YXJrcy1jYXNwZXJz"
+                    }
+                ],
+                "showsR": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3JhYmlhdA"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3JlbnRuZXJjb3Bz"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3JlcG9ydGFnZSBfIGRva3VtZW50YXRpb24gaW0gZXJzdGVu"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL3N3ci5kZS8yOTExOTI"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3JlcG9ydCBtw7xuY2hlbg"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3JvdGUgcm9zZW4"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLm5kci5kZS8xMjU1"
+                    }
+                ],
+                "showsS": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3NhZ2VuaGFmdC1tYWVyY2hlbi1hdXMtYWxsZXItd2VsdA"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3NjaGxlaWNoZmVybnNlaGVu"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3Nob3dzIGltIGVyc3Rlbg"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3Nwb3J0c2NoYXU"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3Nwb3J0c2NoYXUvc3BvcnRzY2hhdS1jbHVi"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL3JiYi1vbmxpbmUuZGUvc3RhZHRfbGFuZF9oYXVz"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3N0dXJtIGRlciBsaWViZQ"
+                    }
+                ],
+                "showsT": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3RhZ2Vzc2NoYXU"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3RzMTAwcw"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3RhZ2Vzc2NoYXUgbWl0IEdlYsOkcmRlbnNwcmFjaGU"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3RhZ2VzdGhlbWVu"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3RhdG9ydA"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL3N3ci5kZS81NzI0MDMy"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL3N3ci5kZS8xMDE1Njk0MA"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL3N3ci5kZS80MTE4NzE0"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3R0dCAtIHRpdGVsIHRoZXNlbiB0ZW1wZXJhbWVudGU"
+                    }
+                ],
+                "showsU": [],
+                "showsV": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnJ1ZWNrdCBuYWNoIGNhbXBpbmc"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnLDvGNrdCBuYWNoIG1lZXI"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3ZlcnJ1ZWNrdC1uYWNoLXp1Zw"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL3N3ci5kZS8yMjUxMDAy"
+                    }
+                ],
+                "showsW": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3dlaXNzZW5zZWU"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL3dkci5kZS93ZWx0cmVpc2UgZGV1dHNjaGxhbmQ"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3dlbHRzcGllZ2Vs"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3dlci13ZWlzcy1kZW5uLXNvd2Fz"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL2RhcyB3ZXR0ZXIgaW0gZXJzdGVu"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3dpc3NlbiBtYWNodCBhaCE"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3dpc3NlbiB2b3IgYWNodCAtIG1lbnNjaA"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3dpc3NlbiB2b3IgYWNodCAtIG5hdHVy"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3dpc3NlbiB2b3IgOCAtIHdlcmtzdGF0dA"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3dpc3NlbiB2b3IgOCAtIHp1a3VuZnQ"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3dvLXVuc2VyLXdldHRlci1lbnRzdGVodA"
+                    },
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3cgd2llIHdpc3Nlbg"
+                    }
+                ],
+                "showsX": [],
+                "showsY": [],
+                "showsZ": [
+                    {
+                        "__typename": "Teaser",
+                        "id": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3plaWcgbWlyIGRlaW5lIHdlbHQ"
+                    }
+                ]
+            },
+            "id": "R2xvc3NhcnkrRGFzIEVyc3Rl",
+            "title": "Sendungen A-Z",
+            "tracking": {
+                "__typename": "Tracking",
+                "aggregationLevelId": 40,
+                "atiCustomVars": {
+                    "__typename": "ATICustomVars",
+                    "channel": null,
+                    "clipLength": null,
+                    "clipTitle": null,
+                    "contentId": null,
+                    "contentTypes": null,
+                    "lra": null,
+                    "mediaDistributionType": null,
+                    "mediaType": null,
+                    "metadataId": null,
+                    "show": null
+                },
+                "chapter2": "Sendung A-Z",
+                "chapter3": null,
+                "environmentId": 511893,
+                "pageTitle": "Mediathek/Sendung A-Z",
+                "szmType": "CP"
+            }
+        }
+    }
+}

@@ -5,6 +5,7 @@ from lxml import etree
 from slimit import ast
 from slimit.visitors import nodevisitor
 import urllib.request
+import urllib.parse
 import slimit
 import sys
 import shlex
@@ -105,7 +106,15 @@ class ArdVisitorElement(object):
 		for child in node.children():
 			if str(child.left.value) == '"json"':
 				for u in child.right.children():
-					self._urls.append(u.value[1:-1])
+					stream = u.value[1:-1]
+					try:
+						stream = urllib.parse.unquote(stream)
+					except Exception as e:
+						print(str(e))
+						pass
+					else:
+						stream = stream.replace('\\u002F', '/')
+					self._urls.append(stream)
 
 class ArdVisitor(nodevisitor.ASTVisitor):
 	def visit_Object(self, node):
@@ -146,7 +155,13 @@ def parsePublicApi(clipId):
 	for sa in js['data']['playerPage']['mediaCollection']['_mediaArray']:
 		for media in sa['_mediaStreamArray']:
 			for stream in media['_stream']:
-				holder.append(media['_quality'], stream)
+				# try to decode first!
+				streamDecoded = stream
+				try:
+					streamDecoded = urllib.parse.unquote(stream)
+				except:
+					pass
+				holder.append(media['_quality'], streamDecoded)
 
 	# some meta information?
 	holder._title = js['data']['playerPage']['title']

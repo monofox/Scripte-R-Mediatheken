@@ -131,6 +131,9 @@ def parsePublicApi(clipId):
 		'User-Agent': 'monobear.business Crawler'
 	}
 
+	# first send OPTIONS
+	respOptions = urllib.request.urlopen(urllib.request.Request(API_URL.format(variables=var, extensions=ext), headers=cusHeaders, method='OPTIONS'))
+
 	req = urllib.request.Request(API_URL.format(variables=var, extensions=ext), headers=cusHeaders)
 	r = urllib.request.urlopen(req, timeout=2)
 	if r.code != 200:

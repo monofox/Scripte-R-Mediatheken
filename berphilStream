@@ -1,0 +1,237 @@
+#!/usr/bin/env python3
+# Example URL: https://www.digitalconcerthall.com/de/concert/52494
+# First get a "playlist" of the works part of the concert: https://www.digitalconcerthall.com/json_services/get_stream_urls?id=52494&language=de
+# (relevant is the id 52494). I might be wrong, but seems that there is no real authentication mechanism.
+# BUT: with curl, only the second part of the concert is given. Firefox retrieves both. Figured out, it has something to do with the cookie.
+# For each work in the get_stream_urls, we can retrieve the CUE points: https://www.digitalconcerthall.com/text_services/get_work_cuepoints?id=52494-1&language=de
+# Furthermore for each work we can retrieve the master playlist: https://world-vod.dchdns.net/hlss/dch/52494-1/,h264_LOW_THREE,h264_LOW_TWO,h264_LOW_ONE,h264_MEDIUM_TWO,h264_MEDIUM_ONE,h264_HIGH,h264_VERY_HIGH_ONE,.mp4.urlset/master.m3u8
+# And strange is, that there is an "encryption" key: https://world-vod.dchdns.net/hlss/dch/52494-1/h264_VERY_HIGH_ONE.mp4/encryption.key
+# User information retrieved via: https://www.digitalconcerthall.com/json_services/get_user (via cookies)
+# 
+# login done e.g. via curl 'https://www.digitalconcerthall.com/de/login' (POST, data: action=login, username, password)
+# Favorites via curl 'https://www.digitalconcerthall.com/json_services/get_favourites'
+import urllib.parse
+import requests
+import json
+import sys
+import shlex
+import subprocess
+import os
+import getpass
+
+class BerPhilStream(object):
+
+	def __init__(self, concertId, fragmentId, url, streamType):
+		self._concertId = concertId
+		self._fragmentId = fragmentId
+		self._playlistUrl = url
+		self._streamType = streamType
+
+class BerPhilConcert(object):
+
+	def __init__(self, concertId, fragmentId, cookies, streams):
+		self._concertId = concertId
+		self._fragmentId = fragmentId
+		self._cookies = cookies
+		self._cueContent = None
+		self._streams = []
+		self._parseStreams(streams)
+
+	def _parseStreams(self, streams):
+		for e in streams:
+			self._streams.append(
+				BerPhilStream(
+					self._concertId,
+					self._fragmentId,
+					e['url'],
+					e['details']['type']
+				)
+			)
+
+	def getFragmentNumber(self):
+		return int(self._fragmentId.rsplit('-', 1)[-1])
+
+	def getCuePoints(self, endpoint):
+		payload = {
+			'id': self._fragmentId,
+			'language': 'de'
+		}
+		r = requests.get(endpoint, params=payload, cookies=self._cookies, allow_redirects=True)
+		if r:
+			self._cueContent = r.text
+
+class BerPhilApi(object):
+
+	def __init__(self):
+		self._cookies = None
+		self._baseUrl = 'https://www.digitalconcerthall.com'
+		self._authenticationPath = '/de/login'
+		self._jsonServices = '/json_services'
+		self._textServices = '/text_services'
+		self._user = ''
+		self._pwd = ''
+
+		self._concertList = []
+
+	def _extractConcertId(self, url):
+		ux = urllib.parse.urlsplit(url)
+		if not ux.path:
+			raise Exception('No path available in URL to extract concert ID')
+
+		pathFragments = ux.path.split('/')
+		pathFragments.reverse()
+		concertId = None
+		for elm in pathFragments:
+			try:
+				concertId = int(elm)
+			except ValueError:
+				pass
+			else:
+				return concertId
+
+		raise Exception('Could not find any concert ID within the given URL')
+
+	def _playUrl(self, streamUrls):
+		urlList = ''
+		for f in streamUrls:
+			urlList += ' "' + f + '" '
+		fullCmd = shlex.split('vlc' + urlList)
+		subprocess.Popen(fullCmd)
+
+	def getUserInformation(self):
+		userInfoUrl = self._baseUrl + self._jsonServices + '/get_user'
+		r = requests.get(userInfoUrl, cookies=self._cookies, allow_redirects=True)
+
+	def checkSettings(self):
+		settingsFile = os.path.join(os.path.expanduser('~'), '.berphiluser')
+		if os.path.exists(settingsFile):
+			settings = None
+			with open(settingsFile, 'rb') as f:
+				settings = json.loads(f.read().decode('utf-8'))
+			if settings:
+				self._user = settings['user']
+				self._pwd = settings['pwd']
+				return True
+
+		# ask for credentials:
+		self._user = input('Username: ')
+		if not self._user:
+			sys.stderr.write('User aborted login.' + os.linesep)
+			return False
+		self._pwd = getpass.getpass('Password: ')
+		if not self._pwd:
+			sys.stderr.write('User aborted login.' + os.linesep)
+			return False
+
+		return True
+
+	def _saveSettings(self):
+		data = {
+			'user': self._user,
+			'pwd': self._pwd
+		}
+
+		settingsFile = os.path.join(os.path.expanduser('~'), '.berphiluser')
+		with open(settingsFile, 'wb') as f:
+			f.write(json.dumps(data).encode('utf-8'))
+
+	def authenticate(self):
+		# credentials available?
+		if not self._user or not self._pwd:
+			return False
+
+		r = requests.get(self._baseUrl)
+		self._cookies = r.cookies
+		urlLogin = self._baseUrl + self._authenticationPath
+		r = requests.post(urlLogin, data={'action': 'login', 'username': self._user, 'password': self._pwd}, cookies=self._cookies, allow_redirects=True)
+		self._cookies = r.cookies
+
+		# successful?
+		loginOk = False
+		if r.status_code >= 200 and r.status_code <= 399 and 'loggedin' in r.cookies and r.cookies['loggedin'] == 'true':
+			self._saveSettings()
+			loginOk = True
+		else:
+			sys.stderr.write('Couldn\'t login to digital concert hall.' + os.linesep)
+
+		return loginOk
+
+	def fetchStreams(self, url):
+		urlGetStreamUrls = self._baseUrl + self._jsonServices + '/get_stream_urls'
+		concertId = self._extractConcertId(url)
+		payload = {
+			'id': concertId,
+			'language': 'de'
+		}
+		r = requests.get(urlGetStreamUrls, params=payload, cookies=self._cookies, allow_redirects=True)
+		if r.status_code != 200:
+			raise Exception('No streams could be found.')
+
+		data = r.json()
+		for fragmentId, fragmentCnt in data['urls'].items():
+			concert = BerPhilConcert(concertId, fragmentId, self._cookies, fragmentCnt)
+			concert.getCuePoints(self._baseUrl + self._textServices + '/get_work_cuepoints')
+			self._concertList.append(concert)
+
+	def printStreams(self, url, play=False):
+		self.fetchStreams(url)
+		streamNumbered = []
+		
+		i = 0
+		for c in self._concertList:
+			print('Part {:d}: #{:s}'.format(c.getFragmentNumber(), c._fragmentId))
+			print('='*20)
+			for s in c._streams:
+				i += 1
+				print('[{:>2d}] {:s}'.format(i, s._playlistUrl))
+				streamNumbered.append(s._playlistUrl)
+			print('')
+
+		if play:
+			print('0 = play all urls!')
+			playNo = input('> ')
+			try:
+				playNo = int(playNo.strip())
+			except ValueError:
+				sys.stderr.write('Invalid number given. Cancel.' + os.linesep)
+			else:
+				if playNo < 0 or playNo > len(streamNumbered):
+					sys.stderr.write('Invalid number given. Cancel.' + os.linesep)
+				elif playNo == 0:
+					self._playUrl(streamNumbered)
+				else:
+					try:
+						streamUrl = streamNumbered[playNo - 1]
+					except KeyError:
+						sys.stderr.write('Stream # not existant.' + os.linesep)
+					else:
+						self._playUrl([streamUrl])
+
+	def playStreams(self, url):
+		self.printStreams(url, play=True)
+
+if __name__ == '__main__':	
+	playUrl = False
+	if len(sys.argv) > 2:
+		if sys.argv[1] == '--play':
+			playUrl = True
+			url = sys.argv[2]
+		else:
+			url = sys.argv[1]
+	elif len(sys.argv) > 1:
+		url = sys.argv[1]
+	else:
+		url = input('Give me the URL: ')
+
+	bpa = BerPhilApi()
+	# check if the user needs to authenticate.
+	if not bpa.checkSettings():
+		sys.exit(1)
+	if not bpa.authenticate():
+		sys.exit(1)
+	elif playUrl:
+		bpa.playStreams(url)
+	else:
+		bpa.printStreams(url)
+
+

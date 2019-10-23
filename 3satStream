@@ -1,62 +1,90 @@
 #!/usr/bin/env python3
 import urllib.request, urllib.parse
-import sys
 import json
+import sys
 import shlex
 import subprocess
-from xml.dom.minidom import parseString
 
-CONFIG_URL = 'https://www.3sat.de/mediaplayer/ngp/6/config/config_3sat.json'
+API_TOKEN_PREFIX = 'Bearer'
+#API_TOKEN = '%s f4ba81fa117681c42383194a7103251db2981962' % (API_TOKEN_PREFIX,)
+API_TOKEN = '%s 7afe5efa279e5039d47a07f9a2c9974d0f53d7e1' % (API_TOKEN_PREFIX,)
+# NEW: d2726b6c8c655e42b68b0db26131b15b22bd1a32'
+API_URL = 'https://api.3sat.de'
+API_PATH = 'content/documents/zdf'
+API_PARAMS = '?profile=player'
 PLAYER_ID = 'ngplayer_2_3'
 PLAYER = 'mplayer'
 PLAYER_HLS = 'vlc'
 
-def fetchStream(url):
-	# get urls like http://www.3sat.de/mediathek/?mode=play&obj=71859
-	# Need to extract the obj
-	streams = {}
-	streamObject = None
-	streamQuery = urllib.parse.parse_qs(urllib.parse.urlparse(url).query)
-	if 'obj' not in streamQuery:
-		raise Exception('Object ID not found in URL.')
-	else:
-		streamObject = streamQuery['obj'][0]
+def getBasePath(url):
+	urlAnalyze = urllib.parse.urlparse(url)
+	try:
+		return urlAnalyze.path.rstrip('.html')
+	except:
+		raise Exception('Invalid URL given!')
 
-	# fetch config
-	print('Fetch URL: ', CONFIG_URL)
-	req = urllib.request.Request(CONFIG_URL)
+def getAPIToken(url):
+	# alternative: ask json uri through https://zdf-cdn.live.cellular.de/mediathekV2/token
+	global API_TOKEN
+	api = None
+	print('Fetch URL: ', url)
+	req = urllib.request.Request(url)
+	r = urllib.request.urlopen(req)
+	if r.code == 200:
+		cnt = r.read().decode('utf-8')
+		startPosition = cnt.find('data-zdfplayer-jsb')
+		if startPosition > -1:
+			endPosition = cnt.find('}', cnt.find('data-zdfplayer-jsb'))
+			if endPosition > -1:
+				jc = cnt[startPosition+20:endPosition+1]
+				try:
+					jc = json.loads(jc.replace('\n', ''))
+					api = '%s %s' % (API_TOKEN_PREFIX, jc['apiToken'])
+				except:
+					pass
+
+	if api is None:
+		sys.stderr.write('Could not retrieve the API token!')
+	else:
+		print('Found API: %s' % (api,))
+		API_TOKEN = api
+
+def fetchStream(url):
+	streams = {}
+	streamFileName = getBasePath(url)
+	getAPIToken(url)
+
+	fullUrl = API_URL + '/' + API_PATH + '/' + streamFileName + '.json' + API_PARAMS
+	print('Fetch URL: ', fullUrl)
+	req = urllib.request.Request(fullUrl)
+	req.add_header('Api-Auth', API_TOKEN)
 	r = urllib.request.urlopen(req)
 	if r.code != 200:
 		raise Exception('Could not retrieve the configuration file!')
 
 	config = json.loads(r.read().decode('utf-8'))
-	contentDescUrl = config['contentPrefix']
+	if not 'hasVideo' in config.keys():
+		raise Exception('Could not retrieve the configuration file (important info not given)!')
+	if not config['hasVideo']:
+		raise Exception('Site does not contain any video anymore!')
+	try:
+		nextUrlPath = config['mainVideoContent']['http://zdf.de/rels/target']['http://zdf.de/rels/streams/ptmd']
+	except KeyError:
+		nextUrlPath = config['mainVideoContent']['http://zdf.de/rels/target']['http://zdf.de/rels/streams/ptmd-template']
+	finally:
+		nextUrlPath = nextUrlPath.replace('{playerId}', PLAYER_ID)
+	print('Found next URL path: %s' % (nextUrlPath,))
 
-	# fetch the 3sat details
-	fullUrl = ('https:' if contentDescUrl.startswith('//') else '') + contentDescUrl + streamObject
+	fullUrl = API_URL + ('/' if nextUrlPath[:1] != '/' else '') + nextUrlPath
 	print('Fetch URL: ', fullUrl)
 	req = urllib.request.Request(fullUrl)
+	req.add_header('Api-Auth', API_TOKEN)
 	r = urllib.request.urlopen(req)
 	if r.code != 200:
-		raise Exception('Could not retrieve the content description file!')
+		raise Exception('Could not retrieve the stream information!')
 
-	contentDesc = parseString(r.read().decode('utf-8'))
-	if len(contentDesc.childNodes) <= 0:
-		raise Exception('Config empty!')
-	
-	baseName = contentDesc.childNodes[0].getElementsByTagName('basename')[0].firstChild.wholeText
-	fullUrl = ('https:' if config['vcmsPtmdVodBaseUrl'].startswith('//') else '') + \
-		config['vcmsPtmdVodBaseUrl'].format(playerId=PLAYER_ID) + '/' + baseName + '/2'
-
-	print('Fetch URL: ', fullUrl)
-	req = urllib.request.Request(fullUrl)
-	r = urllib.request.urlopen(req)
-	if r.code != 200:
-		raise Exception('Could not retrieve the content description file!')
-
-	print('')
-
-	streamInfo = json.loads(r.read().decode('utf-8'))
+	rawJson = r.read().decode('utf-8')
+	streamInfo = json.loads(rawJson)
 	# now try to fetch.
 	for e in streamInfo['priorityList']:
 		for fl in e['formitaeten']:

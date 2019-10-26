@@ -9,7 +9,65 @@
 # User information retrieved via: https://www.digitalconcerthall.com/json_services/get_user (via cookies)
 # 
 # login done e.g. via curl 'https://www.digitalconcerthall.com/de/login' (POST, data: action=login, username, password)
-# Favorites via curl 'https://www.digitalconcerthall.com/json_services/get_favourites'
+# Favorites via curl 'https://www.digitalconcerthall.com/json_services/get_favourites' (get)
+# Set favorites: https://www.digitalconcerthall.com/json_services/set_favourite?product_id=52428-1
+# delete favorite: https://www.digitalconcerthall.com/json_services/set_favourite?product_id=52428-1&remove=true
+# some pings are executed frequently: https://www.digitalconcerthall.com/miniscripts/ping.php?token=1de1agp0afg5d8ptlcd9h78kq1 (no idea for what)
+# live stream times: https://www.digitalconcerthall.com/json_cacheable_services/get_livestream_times?timezone=Europe%2FBerlin (all!)
+# articles (whatever): https://bphil.zendesk.com/api/v2/help_center/de/sections/115000717353/articles.json?per_page=100
+# #### AWESOME ####
+"""
+    json_userGet: '/json_services/get_user',
+    newsletterSet: '/json_services/newsletter',
+    json_userResendActivationMail: '/json_services/resend_activation_mail',
+    json_deviceSet: '/json_services/device',
+    json_checkEmail: '/json_services/check_email',
+    json_favouriteGet: '/json_services/get_favourites',
+    json_favouriteSet: '/json_services/set_favourite',
+    json_getLivestreamTimes: '/json_cacheable_services/get_livestream_times',
+    json_getTimezones: '/json_cacheable_services/get_timezones',
+    json_setTimezone: '/json_services/set_timezone',
+    json_getInstitutionForClient: '/json_services/get_institution_for_client',
+    json_validateInstitutionalAccess: '/json_services/validate_institutional_access',
+    json_setInstitutionalAccess: '/json_services/set_institutional_access',
+    json_logDirectAccessAccepted: '/json_services/log_direct_access_accepted',
+    streamlogTracking: 'https://api.digitalconcerthall.com/streamlog.php',
+    json_getArtistFilter: '/json_cacheable_services/get_artist_filter',
+    json_getStates: '/json_cacheable_services/get_states',
+    vtt_getWorkCuepoints: '/text_services/get_work_cuepoints',
+    vtt_getWorkCaptions: '/text_services/get_work_captions',
+    json_getStreamUrls: '/json_services/get_stream_urls',
+    pingUrl: '/miniscripts/ping.php',
+    media_playerIntroDe: '//www.digitalconcerthall.com/concerthall/intro/logo_animation_nosony_de_400kbps.mp4',
+    media_playerIntroEn: '//www.digitalconcerthall.com/concerthall/intro/logo_animation_nosony_en_400kbps.mp4',
+    json_getSearchAutosuggestBase: '//www.digitalconcerthall.com/cms/cachedcontent/',
+"""
+# Secret (Production):
+# apiKey = <censored>
+# apiSecret = <censored> (obfuscated)
+# baseUrl = https://api.digitalconcerthall.com/v1.2
+# baseUrlV2 = https://api.digitalconcerthall.com/v2/
+# thumbnailBaseUrl = https://www.digitalconcerthall.com/cms/thumbnails
+# manifestV2Url = https://api.digitalconcerthall.com/v2/manifest
+# textEndpoint = https://api.digitalconcerthall.com/v2/text/
+# countriesUrl = https://api.digitalconcerthall.com/v2/countries
+# authentication via oauth2 (working with token) https://api.digitalconcerthall.com/v2/oauth2/token?
+# 		client_secret				<censored> (obfuscated)
+# 		app_id						com.novoda.dch 		=> dch.android
+# 		device_vendor				Google
+# 		affiliate					google-mobile
+# 		app_version					v2.5.0-0-google
+# 		device_model				Pixel 10
+# 		app_distributor				google-play
+# 		grant_type					device
+# Lets sign in via oauth2:
+# 		username 					<username>
+# 		password 					<password>
+# 		grant_type 					password
+# Get user information:
+# 		curl -v 'https://api.digitalconcerthall.com/v2/user' -H 'Accept: application/json' -H 'Cache-Control: no-cache' -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImViNGQxZGIyYjkxNDU4MzE1ZGY4YmIzZjBkMGQ3MjE1MzFiNjczNjgxYWI2NmY5M2NmZTVmZjYxNDhkZGNlOWIzMTkyMjIyMjNmNTM3ZjVmIn0.eyJhdWQiOiJkY2guYW5kcm9pZCIsImp0aSI6ImViNGQxZGIyYjkxNDU4MzE1ZGY4YmIzZjBkMGQ3MjE1MzFiNjczNjgxYWI2NmY5M2NmZTVmZjYxNDhkZGNlOWIzMTkyMjIyMjNmNTM3ZjVmIiwiaWF0IjoxNTcyMDMzMjQzLCJuYmYiOjE1NzIwMzMyNDMsImV4cCI6MTU4Nzg0NDQ0Mywic3ViIjoiIiwic2NvcGVzIjpbXX0.mdwfUSTkkA1BVMHXswkOGeS2afC8XRSiZkENguDhiZUzc1V9T-9pwdSshNxbgaRbkUwYQt8rSe33FKpi1cgTHOfBsvIa-HkF6VYhB8CYirFkWYdj3Di1BxF011GgSKpsIVeeO0jFmzetZRiL0vtzY9s8gB4bNlHZHWuVBhtEq-8' -XGET
+# Concert info: (Accept-Language set to de,en to receive german text, here you find everything!!)
+# 		curl -v 'https://api.digitalconcerthall.com/v2/concert/52501' -H 'Accept: application/json' -H 'Accept-Language: de,en' -H 'Cache-Control: no-cache' -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImViNGQxZGIyYjkxNDU4MzE1ZGY4YmIzZjBkMGQ3MjE1MzFiNjczNjgxYWI2NmY5M2NmZTVmZjYxNDhkZGNlOWIzMTkyMjIyMjNmNTM3ZjVmIn0.eyJhdWQiOiJkY2guYW5kcm9pZCIsImp0aSI6ImViNGQxZGIyYjkxNDU4MzE1ZGY4YmIzZjBkMGQ3MjE1MzFiNjczNjgxYWI2NmY5M2NmZTVmZjYxNDhkZGNlOWIzMTkyMjIyMjNmNTM3ZjVmIiwiaWF0IjoxNTcyMDMzMjQzLCJuYmYiOjE1NzIwMzMyNDMsImV4cCI6MTU4Nzg0NDQ0Mywic3ViIjoiIiwic2NvcGVzIjpbXX0.mdwfUSTkkA1BVMHXswkOGeS2afC8XRSiZkENguDhiZUzc1V9T-9pwdSshNxbgaRbkUwYQt8rSe33FKpi1cgTHOfBsvIa-HkF6VYhB8CYirFkWYdj3Di1BxF011GgSKpsIVeeO0jFmzetZRiL0vtzY9s8gB4bNlHZHWuVBhtEq-8' -XGET
 import urllib.parse
 import requests
 import json
@@ -18,78 +76,588 @@ import shlex
 import subprocess
 import os
 import getpass
+import datetime
 
 class BerPhilStream(object):
 
-	def __init__(self, concertId, fragmentId, url, streamType):
+	def __init__(self, concertId=None, fragmentId=None, url=None, streamType=None):
 		self._concertId = concertId
 		self._fragmentId = fragmentId
 		self._playlistUrl = url
 		self._streamType = streamType
+		self.audioLanguage = None
+		self.videoLanguage = None
+		self.quality = None
+		self.url = None
 
-class BerPhilConcert(object):
-
-	def __init__(self, concertId, fragmentId, cookies, streams):
-		self._concertId = concertId
-		self._fragmentId = fragmentId
-		self._cookies = cookies
-		self._cueContent = None
-		self._streams = []
-		self._parseStreams(streams)
-
-	def _parseStreams(self, streams):
-		for e in streams:
-			self._streams.append(
-				BerPhilStream(
-					self._concertId,
-					self._fragmentId,
-					e['url'],
-					e['details']['type']
-				)
-			)
-
-	def getFragmentNumber(self):
-		return int(self._fragmentId.rsplit('-', 1)[-1])
-
-	def getCuePoints(self, endpoint):
-		payload = {
-			'id': self._fragmentId,
-			'language': 'de'
+	@staticmethod
+	def getQualityLevels():
+		return {
+			'AUDIO': '0p',
+			'LOW_THREE': '360p', 
+			'LOW_TWO': '370p', 
+			'LOW_ONE': '380p', 
+			'MEDIUM_TWO': '540p', 
+			'MEDIUM_ONE': '720p', 
+			'HIGH': '740p', 
+			'VERY_HIGH_ONE': '1080p', 
+			'ULTRA_HIGH': '2160p'
 		}
-		r = requests.get(endpoint, params=payload, cookies=self._cookies, allow_redirects=True)
-		if r:
-			self._cueContent = r.text
 
-class BerPhilApi(object):
+	def __lt__(self, other):
+		qtl = list(self.getQualityLevels().keys())
+		if self.quality is None or other.quality is None:
+			return False
+
+		if qtl.index(self.quality) < qtl.index(other.quality):
+			return True
+
+	def __gt__(self, other):
+		qtl = self.getQualityLevels()
+		if self.quality is None or other.quality is None:
+			return False
+
+		if qtl.index(self.quality) > qtl.index(other.quality):
+			return True
+
+	def __eq__(self, other):
+		raise NotImplemented('__eq__ not implemented for BerPhilStream')
+
+	@classmethod
+	def createFromJson(bps, jsobj):
+		self = bps()
+		self.audioLanguage = jsobj['audio_language']
+		self.videoLanguage = jsobj['video_language']
+		self.quality = jsobj['quality']
+		self.url = jsobj['url']
+
+		return self
+
+class BerPhilStreamChannel(list):
+
+	def __init__(self, *args, **kwargs):
+		super().__init__()
+		self.codec = None
+		self.dynamicRange = None
+		self.hasAudioOnly = False
+		self.isEncrypted = False
+		self.maxResolution = None
+		self.streamingTechnique = None
+
+	def getBestQuality(self):
+		if self.maxResolution is not None:
+			return self.maxResolution
+
+		bestResolution = None
+		qualityLevels = BerPhilStream.getQualityLevels()
+		for f in self:
+			if f.quality:
+				if bestResolution is None:
+					bestResolution = qualityLevels[f.quality]
+				elif qualityLevels[f.quality] > bestResolution:
+					bestResolution = qualityLevels[f.quality]
+
+		self.maxResolution = bestResolution
+		return bestResolution
+
+	@classmethod
+	def createFromJson(bpsc, jskey, jsobj):
+		self = bpsc()
+		self.key = jskey
+		self.codec = jsobj['codec']
+		self.dynamicRange = jsobj['dynamic_range']
+		self.hasAudioOnly = jsobj['has_audio_only']
+		self.isEncrypted = jsobj['is_encrypted']
+		self.maxResolution = jsobj['max_resolution']
+		self.streamingTechnique = jsobj['streaming_technique']
+		for stream in jsobj['stream']:
+			self.append(BerPhilStream.createFromJson(stream))
+		self.sort()
+
+		return self
+
+class BerPhilStreamList(dict):
+
+	def __init__(self, *args, **kwargs):
+		super().__init__()
+
+	def getBestStream(self):
+		bestStream = None
+		for f in self.values():
+			if f.hasAudioOnly:
+				continue
+			elif bestStream is None or (f.maxResolution and f.maxResolution > bestStream.maxResolution):
+				bestStream = f
+				if not f.maxResolution:
+					f.getBestQuality()
+			elif not f.maxResolution and f.getBestQuality() > bestStream.maxResolution:
+				bestStream = f
+
+		return bestStream
+
+	@classmethod
+	def createFromJson(bpsl, jsobj):
+		self = bpsl()
+		for streamKey, streamData in jsobj['channel'].items():
+			self[streamKey] = BerPhilStreamChannel.createFromJson(streamKey, streamData)
+
+		return self
+
+class BerPhilCuePoint(object):
+
+	@classmethod
+	def createFromJson(bpcp, jsobj):
+		self = bpcp()
+		self.duration = jsobj['duration']
+		self.time = jsobj['time']
+		self.text = jsobj['text']
+
+		return self
+
+class BerPhilMedia(object):
 
 	def __init__(self):
-		self._cookies = None
-		self._baseUrl = 'https://www.digitalconcerthall.com'
-		self._authenticationPath = '/de/login'
-		self._jsonServices = '/json_services'
-		self._textServices = '/text_services'
-		self._user = ''
-		self._pwd = ''
+		self._streamEndpoint = None
 
-		self._concertList = []
+		self.id = None
+		self.isFree = False
+		self.title = None
+		self.type = None
+		self.shortDescription = None
+		self.programme = None
+		self.worksIntroduction = None
+		self.totalDuration = None
+		self.maxResolution = None
+		self.copyright = None
+		self.artistBiographies = None
+		self.trailerUrls = {}
+		self.images = {}
+		self.imageCredit = None
+		self.updated = None
+		self.beginDate = None
+		self.endDate = None
+		self.publishedDate = None
 
-	def _extractConcertId(self, url):
+		self.streamList = None
+
+	def fetchStreams(self, bps):
+		# does it have an endpoint?
+		if self._streamEndpoint:
+			self.streamList = bps.getStreams(self._streamEndpoint)
+
+	@staticmethod
+	def createDate(jsobj, dateType):
+		if 'date' not in jsobj.keys() or dateType not in jsobj['date'].keys():
+			return None
+
+		return datetime.datetime.fromtimestamp(jsobj['date'][dateType])
+
+	@classmethod
+	def createFromJson(bpm, jsobj):
+		self = bpm()
+		self.id = jsobj['id']
+		self.isFree = jsobj['is_free']
+		self.title = jsobj['title']
+		self.type = jsobj['type'] if 'type' in jsobj.keys() else None
+		self.totalDuration = jsobj['duration_total'] if 'duration_total' in jsobj.keys() else None
+		self.maxResolution = jsobj['max_resolution']
+		self.copyright = jsobj['copyright']
+		self.imageCredit = jsobj['image_credit']
+		self.updated = datetime.datetime.fromtimestamp(jsobj['updated'])
+		self.images = jsobj['image']
+		self.beginDate = self.createDate(jsobj, 'begin')
+		self.endDate = self.createDate(jsobj, 'end')
+		self.publishedDate = self.createDate(jsobj, 'published')
+
+		# check for references (e.g. stream endpoint)
+		if '_links' in jsobj.keys():
+			if 'streams' in jsobj['_links'].keys():
+				self._streamEndpoint = jsobj['_links']['streams']['href']
+
+		return self
+
+class BerPhilInterview(BerPhilMedia):
+
+	def __init__(self):
+		super().__init__()
+
+	@classmethod
+	def createFromJson(bpi, jsobj):
+		self = super().createFromJson(jsobj)
+		self.description = jsobj['description']
+		self.isHighlight = jsobj['is_highlight']
+		self.duration = jsobj['duration']
+		self.composerName = jsobj['name_composer']
+		if 'cuepoints' in jsobj.keys() and jsobj['cuepoints']:
+			for cp in jsobj['cuepoints']:
+				self.cuepoints.append(BerPhilCuePoint.createFromJson(cp))
+		return self
+
+class BerPhilFilm(BerPhilMedia):
+
+	def __init__(self):
+		super().__init__()
+
+	@classmethod
+	def createFromJson(bpi, jsobj):
+		self = super().createFromJson(jsobj)
+		self.description = jsobj['description']
+		self.duration = jsobj['duration']
+		self.totalDuration = self.duration
+		if 'cuepoints' in jsobj.keys() and jsobj['cuepoints']:
+			for cp in jsobj['cuepoints']:
+				self.cuepoints.append(BerPhilCuePoint.createFromJson(cp))
+		return self
+
+class BerPhilWork(BerPhilMedia):
+
+	def __init__(self):
+		super().__init__()
+		self.id = None
+		self.cuepoints = []
+
+	@classmethod
+	def createFromJson(bpw, jsobj):
+		self = super().createFromJson(jsobj)
+		self.isHighlight = jsobj['is_highlight']
+		self.duration = jsobj['duration']
+		self.composerName = jsobj['name_composer']
+		if 'cuepoints' in jsobj.keys() and jsobj['cuepoints']:
+			for cp in jsobj['cuepoints']:
+				self.cuepoints.append(BerPhilCuePoint.createFromJson(cp))
+
+		return self
+
+class BerPhilConcert(BerPhilMedia):
+
+	def __init__(self):
+		super().__init__()
+		self.trailerUrls = {}
+		self.artistBiographies = None
+		self.program = []
+
+	def fetchStreams(self, bps):
+		for p in self.program:
+			p.fetchStreams(bps)
+
+	@classmethod
+	def createFromJson(bpc, jsobj):
+		self = super().createFromJson(jsobj)
+		self.artistBiographies = jsobj['artist_biographies']
+		self.programme = jsobj['programme']
+		self.worksIntroduction = jsobj['works_introduction']
+		self.shortDescription = jsobj['short_description']
+		self.trailerUrls = {
+			'HD': jsobj['trailer_url_hd'],
+			'SD': jsobj['trailer_url_sd']
+		}
+
+		# is there anything embedded?
+		if '_embedded' in jsobj.keys():
+			for programType in jsobj['_embedded'].keys():
+				for work in jsobj['_embedded'][programType]:
+					className = 'BerPhil' + programType.capitalize()
+					if className not in globals().keys():
+						raise Exception('Does not know how to handle program type ' + programType)
+					creationMethod = getattr(globals()[className], 'createFromJson')
+					self.program.append(creationMethod(work))
+				self.program.sort(key=lambda x: x.id)
+
+		return self
+
+class BerPhilSession(object):
+	MEDIA_TYPE_CONCERT = 'concert'
+	MEDIA_TYPE_FILM = 'film'
+	MEDIA_TYPE_INTERVIEW = 'interview'
+
+	def __init__(self):
+		self._apiBaseUrl = 'https://api.digitalconcerthall.com/v2'
+		self._apiOfferUrl = 'https://apps.digitalconcerthall.com/offers.json'
+		# device client token
+		self._clientTokenType = None
+		self._clientToken = None
+		self._clientRefreshToken = None
+		self._clientTokenTime = None
+		self._clientTokenExpires = None
+		# client secret
+		self._clientSecret = None
+
+	def _parseTypeAndId(self, url):
 		ux = urllib.parse.urlsplit(url)
 		if not ux.path:
 			raise Exception('No path available in URL to extract concert ID')
 
 		pathFragments = ux.path.split('/')
 		pathFragments.reverse()
-		concertId = None
-		for elm in pathFragments:
-			try:
-				concertId = int(elm)
-			except ValueError:
-				pass
-			else:
-				return concertId
 
-		raise Exception('Could not find any concert ID within the given URL')
+		# min. 2 elements are required.
+		if len(pathFragments) < 2:
+			raise Exception('Invalid URI to DCH media given.')
+
+		if pathFragments[1] not in [self.MEDIA_TYPE_INTERVIEW, self.MEDIA_TYPE_FILM, self.MEDIA_TYPE_CONCERT]:
+			raise Exception('DCH media type ' + pathFragments[1] + ' unknown.')
+
+		return (pathFragments[1], pathFragments[0])
+
+	def setSecret(self, secret):
+		self._clientSecret = secret
+
+	def getAppInformation(self):
+		return {
+			'app_id': 'dch.android',
+			'app_version': 'v2.5.0-0-google',
+			'app_distributor': 'google-play'
+		}
+
+	def getDeviceInformation(self):
+		return {
+			'device_vendor': 'Google',
+			'device_model': 'Pixel 10'
+		}
+
+	def _setToken(self, tokenJson):
+		if tokenJson:
+			self._clientToken = tokenJson['access_token']
+			self._clientTokenExpires = tokenJson['expires_in']
+			self._clientRefreshToken = tokenJson['refresh_token']
+			self._clientTokenType = tokenJson['token_type']
+			self._clientTokenTime = datetime.datetime.now()
+			if 'pin' in tokenJson:
+				self._clientTokenPin = tokenJson['pin']
+		else:
+			self._clientToken = None
+			self._clientTokenType = None
+			self._clientTokenTime = None
+
+	def _getClientToken(self, clientSecret=None):
+		# token already known and still valid?
+		if self._clientToken and datetime.datetime.now() < (self._clientTokenTime + datetime.timedelta(seconds=self._clientTokenExpires)):
+			return self._clientToken
+		# FIXME: refresh
+		# If token is expired, we need to re-request (thats why we save the refresh token). 
+		# In case, we know already username + password, we shall auto-login.
+
+		# if clientSecret is not given as parameter, take from login.
+		if clientSecret is None:
+			clientSecret = self._clientSecret
+
+		# if the _clientSecret is not available, the user didn't logged in yet.
+		if not clientSecret:
+			raise Exception('No secret known yet... Oh no!!')
+
+		oauth2TokenUri = self._apiBaseUrl + '/oauth2/token'
+		data = {
+			'grant_type': 'device',
+			'client_secret': clientSecret, # <<< this is top-secret (but was easy to figure out). 
+			# Altough my opinion is that the security must be done on server side, i better do not publish 
+			# this "secret" key.
+			'affiliate': 'google-mobile'
+		}
+		data.update(self.getAppInformation())
+		data.update(self.getDeviceInformation())
+		hdr = {
+			'Accept': 'application/json',
+			'Accept-Language': 'de, en',
+			'Cache-Control': 'no-cache'
+		}
+		r = requests.post(oauth2TokenUri, data=data, headers=hdr, allow_redirects=True)
+		if not r:
+			self._setToken(None)
+			raise Exception('Could not fetch a device token.')
+		else:
+			self._setToken(r.json())
+
+		return self._clientToken
+
+	def signIn(self, username, password):
+		token = self._getClientToken()
+		oauth2TokenUri = self._apiBaseUrl + '/oauth2/token'
+		data = {
+			'grant_type': 'password',
+			'username': username,
+			'password': password
+		}
+		hdr = {
+			'Accept': 'application/json',
+			'Accept-Language': 'de, en',
+			'Cache-Control': 'no-cache',
+			'Authorization': 'Bearer ' + token
+		}
+		r = requests.post(oauth2TokenUri, data=data, headers=hdr, allow_redirects=True)
+		if r:
+			# this is now overwriting the regular token!
+			self._setToken(r.json())
+			return True
+		else:
+			self._setToken(None)
+			return False
+
+	def getToken(self):
+		# FIXME: check what to do and either execute regular client token or signin (to avoid loop).
+		return self._getClientToken()
+
+	def updateDeviceInformation(self):
+		token = self.getToken()
+		data = {
+			'affiliate': 'google-mobile',
+		}
+		data.update(self.getAppInformation())
+		data.update(self.getDeviceInformation())
+		hdr = {
+			'Accept': 'application/json',
+			'Accept-Language': 'de, en',
+			'Cache-Control': 'no-cache',
+			'Authorization': 'Bearer ' + token
+		}
+		r = requests.post(self._apiBaseUrl + '/device', headers=hdr)
+		if r:
+			return r.json()
+		else:
+			raise Exception('Could not update device information.')
+
+	def getUser(self):
+		token = self.getToken()
+		hdr = {
+			'Accept': 'application/json',
+			'Accept-Language': 'de, en',
+			'Cache-Control': 'no-cache',
+			'Authorization': 'Bearer ' + token
+		}
+		r = requests.get(self._apiBaseUrl + '/user', headers=hdr)
+		if r:
+			return r.json()
+		else:
+			raise Exception('Could not retrieve any user information. Are you logged in?')
+
+	def getFavourites(self):
+		token = self.getToken()
+		hdr = {
+			'Accept': 'application/json',
+			'Accept-Language': 'de, en',
+			'Cache-Control': 'no-cache',
+			'Authorization': 'Bearer ' + token
+		}
+		r = requests.get(self._apiBaseUrl + '/user/favourites', headers=hdr)
+		if r:
+			return r.json()
+		else:
+			raise Exception('Could not retrieve any user favourites. Are you logged in?')
+
+	def _updateFavourite(self, action, mediaId):
+		token = self.getToken()
+		data = {
+			'action': action,
+			'id': mediaId
+		}
+		hdr = {
+			'Accept': 'application/json',
+			'Accept-Language': 'de, en',
+			'Cache-Control': 'no-cache',
+			'Authorization': 'Bearer ' + token
+		}
+		r = requests.post(self._apiBaseUrl + '/user/favourites', headers=hdr)
+		if r:
+			return r.json()
+		else:
+			raise Exception('Could not update favourites. Are you logged in?')
+
+	def addFavourite(self, mediaId):
+		return self._updateFavourite('add', mediaId)
+
+	def removeFavourite(self, mediaId):
+		return self._updateFavourite('remove', mediaId)
+
+	def getOffers(self):
+		hdr = {
+			'Accept': 'application/json',
+			'Accept-Language': 'de, en',
+			'Cache-Control': 'no-cache'
+		}
+		r = requests.get(self._apiOfferUrl, headers=hdr)
+		if r:
+			return r.json()
+		else:
+			raise Exception('Could not retrieve any offers.')
+
+	def getClientInfo(self):
+		token = self.getToken()
+		hdr = {
+			'Accept': 'application/json',
+			'Accept-Language': 'de, en',
+			'Cache-Control': 'no-cache',
+			'Authorization': 'Bearer ' + token
+		}
+
+		r = requests.get(self._apiBaseUrl + '/client_info', headers=hdr)
+		if r:
+			return r.json()
+		else:
+			raise Exception('Could not retrieve client information.')
+
+	def _getMedia(self, mediaType, mediaId):
+		# https://api.digitalconcerthall.com/v2/mediaType/mediaId
+		concertEndpoint = self._apiBaseUrl + '/' + mediaType + '/' + mediaId
+		token = self.getToken()
+		hdr = {
+			'Accept': 'application/json',
+			'Accept-Language': 'de, en',
+			'Cache-Control': 'no-cache',
+			'Authorization': 'Bearer ' + token
+		}
+		r = requests.get(concertEndpoint, headers=hdr)
+		if r:
+			return r.json()
+		else:
+			raise Exception('Could not retrieve concert info.')
+
+	def getMedia(self, url):
+		mediaType, mediaId = self._parseTypeAndId(url)
+		tx = self._getMedia(mediaType, mediaId)
+		className = 'BerPhil' + mediaType.capitalize()
+		if className not in globals().keys():
+			raise Exception('Media not known: ' + mediaType)
+		
+		createMethod = getattr(globals()[className], 'createFromJson')
+		mediaObj = createMethod(tx)
+		mediaObj.fetchStreams(self)
+
+		return mediaObj
+
+	def getConcert(self, mediaId):
+		return self._getMedia('concert', mediaId)
+
+	def getFilm(self, mediaId):
+		return self._getMedia('film', mediaId)
+
+	def getInterview(self, mediaId):
+		return self._getMedia('interview', mediaId)
+
+	def getPlaylist(self, mediaId):
+		return self._getMedia('playlist', mediaId)
+
+	def getStreams(self, endpoint):
+		token = self.getToken()
+		if endpoint.startswith('//'):
+			endpoint = 'https:' + endpoint
+		hdr = {
+			'Accept': 'application/json',
+			'Accept-Language': 'de, en',
+			'Cache-Control': 'no-cache',
+			'Authorization': 'Bearer ' + token
+		}
+		r = requests.get(endpoint, headers=hdr)
+		if r:
+			return BerPhilStreamList.createFromJson(r.json())
+		else:
+			raise Exception('Could not retrieve concert info.')
+
+class BerPhilApi(object):
+
+	def __init__(self):
+		self._user = ''
+		self._pwd = ''
+		self._secret = ''
+		self._bps = BerPhilSession()
 
 	def _playUrl(self, streamUrls):
 		urlList = ''
@@ -98,9 +666,16 @@ class BerPhilApi(object):
 		fullCmd = shlex.split('vlc' + urlList)
 		subprocess.Popen(fullCmd)
 
-	def getUserInformation(self):
-		userInfoUrl = self._baseUrl + self._jsonServices + '/get_user'
-		r = requests.get(userInfoUrl, cookies=self._cookies, allow_redirects=True)
+	def login(self, username=None, password=None, secret=None):
+		if not username or not password or not secret:
+			if not self.checkSettings():
+				return False
+		else:
+			self._user = username
+			self._pwd = password
+			self._secret = secret
+		self._bps.setSecret(self._secret)
+		return self._bps.signIn(self._user, self._pwd)
 
 	def checkSettings(self):
 		settingsFile = os.path.join(os.path.expanduser('~'), '.berphiluser')
@@ -111,6 +686,7 @@ class BerPhilApi(object):
 			if settings:
 				self._user = settings['user']
 				self._pwd = settings['pwd']
+				self._secret = settings['api-secret']
 				return True
 
 		# ask for credentials:
@@ -122,96 +698,142 @@ class BerPhilApi(object):
 		if not self._pwd:
 			sys.stderr.write('User aborted login.' + os.linesep)
 			return False
+		self._secret = getpass.getpass('Client secret (API): ')
+		if not self._secret:
+			sys.stderr.write('User aborted login.' + os.linesep)
+			return False
 
 		return True
 
 	def _saveSettings(self):
 		data = {
 			'user': self._user,
-			'pwd': self._pwd
+			'pwd': self._pwd,
+			'api-secret': self._secret
 		}
 
 		settingsFile = os.path.join(os.path.expanduser('~'), '.berphiluser')
 		with open(settingsFile, 'wb') as f:
 			f.write(json.dumps(data).encode('utf-8'))
 
-	def authenticate(self):
-		# credentials available?
-		if not self._user or not self._pwd:
-			return False
+	def _playProgram(self, tx):
+		# each program
+		for p in tx.program:
+			# first streamlist.
+			sl = p.streamList.values()[0][0]
+			self._playUrl(sl)
 
-		r = requests.get(self._baseUrl)
-		self._cookies = r.cookies
-		urlLogin = self._baseUrl + self._authenticationPath
-		r = requests.post(urlLogin, data={'action': 'login', 'username': self._user, 'password': self._pwd}, cookies=self._cookies, allow_redirects=True)
-		self._cookies = r.cookies
-
-		# successful?
-		loginOk = False
-		if r.status_code >= 200 and r.status_code <= 399 and 'loggedin' in r.cookies and r.cookies['loggedin'] == 'true':
-			self._saveSettings()
-			loginOk = True
+	def _printProgram(self, p, i, mediaSelectionList, dspTitle=True):
+		if dspTitle:
+			titleMsg = '{title} ({clipLength})'.format(
+				title=p.title,
+				clipLength=self.format_duration(p.totalDuration)
+			)
+			print(titleMsg)
+			print('-'*len(titleMsg))
+		if p.streamList:
+			bs = p.streamList.getBestStream()
+			s = bs[-1]
+			print(
+				'[{id}] {quality}: {url}'.format(
+					id=i,
+					quality=s.quality, url=s.url
+				)
+			)
+			mediaSelectionList.append(s.url)
+			i += 1
 		else:
-			sys.stderr.write('Couldn\'t login to digital concert hall.' + os.linesep)
+			print('/No streams available/')
 
-		return loginOk
+		return (i, mediaSelectionList)
 
-	def fetchStreams(self, url):
-		urlGetStreamUrls = self._baseUrl + self._jsonServices + '/get_stream_urls'
-		concertId = self._extractConcertId(url)
-		payload = {
-			'id': concertId,
-			'language': 'de'
-		}
-		r = requests.get(urlGetStreamUrls, params=payload, cookies=self._cookies, allow_redirects=True)
-		if r.status_code != 200:
-			raise Exception('No streams could be found.')
-
-		data = r.json()
-		for fragmentId, fragmentCnt in data['urls'].items():
-			concert = BerPhilConcert(concertId, fragmentId, self._cookies, fragmentCnt)
-			concert.getCuePoints(self._baseUrl + self._textServices + '/get_work_cuepoints')
-			self._concertList.append(concert)
-
-	def printStreams(self, url, play=False):
-		self.fetchStreams(url)
-		streamNumbered = []
-		
+	def printStreamsCool(self, url, play=False):
+		tx = self._bps.getMedia(url)
+		mediaSelectionList = []
 		i = 0
-		for c in self._concertList:
-			print('Part {:d}: #{:s}'.format(c.getFragmentNumber(), c._fragmentId))
-			print('='*20)
-			for s in c._streams:
-				i += 1
-				print('[{:>2d}] {:s}'.format(i, s._playlistUrl))
-				streamNumbered.append(s._playlistUrl)
+
+		#import pprint
+		#pprint.pprint(tx)
+		titleMsg = '{title} ({clipLength})'.format(
+				title=tx.title,
+				clipLength=self.format_duration(tx.totalDuration)
+			)
+		print(titleMsg)
+		print('='*len(titleMsg))
+		print('This media ' + ('is free.' if tx.isFree else 'requires a ticket.') + os.linesep)
+
+		# now the streams, etc. is handled differently depending on the media type.
+		#print(tx)
+		#print(vars(tx))
+		if tx.shortDescription:
+			print(tx.shortDescription + os.linesep)
+
+		# now each program.
+		try:
+			for p in tx.program:
+				(i, mediaSelectionList) = self._printProgram(p, i, mediaSelectionList, dspTitle=True)
+				print('')
+		except AttributeError:
+			(i, mediaSelectionList) = self._printProgram(tx, i, mediaSelectionList, dspTitle=False)
 			print('')
 
-		if play:
-			print('0 = play all urls!')
+		if mediaSelectionList and play:
+			print('-1 = play whole program!')
 			playNo = input('> ')
 			try:
 				playNo = int(playNo.strip())
 			except ValueError:
-				sys.stderr.write('Invalid number given. Cancel.' + os.linesep)
+				sys.stderr.write('Invalid number given. Quit? Cancel!' + os.linesep)
 			else:
-				if playNo < 0 or playNo > len(streamNumbered):
+				if playNo < -1 or playNo >= len(mediaSelectionList):
 					sys.stderr.write('Invalid number given. Cancel.' + os.linesep)
-				elif playNo == 0:
-					self._playUrl(streamNumbered)
+				elif playNo == -1:
+					self._playProgram(tx)
 				else:
 					try:
-						streamUrl = streamNumbered[playNo - 1]
+						streamUrl = mediaSelectionList[playNo]
 					except KeyError:
 						sys.stderr.write('Stream # not existant.' + os.linesep)
 					else:
 						self._playUrl([streamUrl])
 
-	def playStreams(self, url):
-		self.printStreams(url, play=True)
+	@staticmethod
+	def format_duration(seconds):
+		"""
+		Stole from: http://www.voidcn.com/article/p-qlzvdfdd-c.html
+		"""
+		if seconds == 0: return "now"
+		origin = seconds
+		dic = {
+			'year': 60 * 60 * 24 * 365,
+			'day': 60 * 60 * 24,
+			'hour': 60 * 60,
+			'minute': 60,
+			'second': 1
+		}
+		spent = {}
+		ans = ""
+		for x in ['year','day','hour','minute','second']:
+			spent[x] = seconds // dic[x]
+			ans += "{}{} {}{}".format('' if seconds == origin else ' and ' if seconds % dic[x] == 0 else ', ',spent[x],x,'s' if spent[x] > 1 else '') if spent[x] > 0 else ''
+			seconds %= dic[x]
+		return ans
 
 if __name__ == '__main__':	
 	playUrl = False
+	# experimental area.
+	if len(sys.argv) > 1 and sys.argv[1] == '--be-curious':
+		url = 'https://www.digitalconcerthall.com/de/concert/52501'
+		url = 'https://www.digitalconcerthall.com/de/film/366'
+		url = 'https://www.digitalconcerthall.com/de/interview/52502-4'
+		bpa = BerPhilApi()
+		if bpa.login():
+			bpa.printStreamsCool(url, play=True)
+		else:
+			print('Login failure')
+			sys.exit(1)
+		sys.exit(0)
+
 	if len(sys.argv) > 2:
 		if sys.argv[1] == '--play':
 			playUrl = True
@@ -225,13 +847,8 @@ if __name__ == '__main__':
 
 	bpa = BerPhilApi()
 	# check if the user needs to authenticate.
-	if not bpa.checkSettings():
+	if not bpa.login():
+		sys.stderr.write('Login failure.' + os.linesep)
 		sys.exit(1)
-	if not bpa.authenticate():
-		sys.exit(1)
-	elif playUrl:
-		bpa.playStreams(url)
 	else:
-		bpa.printStreams(url)
-
-
+		bpa.printStreamsCool(url, play=playUrl)

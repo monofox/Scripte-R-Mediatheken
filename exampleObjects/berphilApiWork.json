@@ -1,0 +1,95 @@
+{
+    "_links": {
+        "artist": [
+            {
+                "display_name": "Sibelius, Jean",
+                "fame": 0,
+                "fields_of_work": [
+                    "composer"
+                ],
+                "href": "//api.digitalconcerthall.com/v2/artist/217",
+                "id": "217",
+                "image": {
+                    "landscape": {
+                        "credit": null,
+                        "path": null
+                    },
+                    "portrait": {
+                        "credit": null,
+                        "path": null
+                    }
+                },
+                "is_highlighted": false,
+                "name": "Jean Sibelius",
+                "role": {
+                    "name": null,
+                    "type": "composer"
+                },
+                "sort_letter": "S",
+                "title": null,
+                "updated": 1567084066
+            }
+        ],
+        "concert": [
+            {
+                "date": {
+                    "begin": 1570899600,
+                    "end": 1570907460,
+                    "published": 1571226840
+                },
+                "href": "//api.digitalconcerthall.com/v2/concert/52501",
+                "id": "52501",
+                "image": {
+                    "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg",
+                    "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg"
+                },
+                "is_free": false,
+                "title": "Janine Jansen spielt Tschaikowskys Violinkonzert",
+                "updated": 1571973598
+            }
+        ],
+        "streams": {
+            "href": "//api.digitalconcerthall.com/v2/streams/52501-1"
+        }
+    },
+    "blocked_in": [],
+    "caption": null,
+    "concert_href": "//api.digitalconcerthall.com/v2/concert/52501",
+    "concert_id": "52501",
+    "copyright": null,
+    "cuepoints": [
+        {
+            "duration": 1154,
+            "text": "Tapiola",
+            "time": 29
+        },
+        {
+            "duration": 67,
+            "text": "Applaus",
+            "time": 1183
+        }
+    ],
+    "date": {
+        "begin": 1570831200,
+        "published": 1571226840
+    },
+    "display_name_composer": "Sibelius, Jean",
+    "duration": 1154,
+    "duration_total": 1250,
+    "hdr_formats": [
+        "hlg"
+    ],
+    "id": "52501-1",
+    "image": {
+        "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg",
+        "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg"
+    },
+    "image_credit": null,
+    "is_free": false,
+    "is_highlight": false,
+    "max_resolution": "2160p",
+    "name_composer": "Jean Sibelius",
+    "short_title": null,
+    "title": "[Tapiola], Tondichtung op. 112",
+    "updated": 1571973598
+}

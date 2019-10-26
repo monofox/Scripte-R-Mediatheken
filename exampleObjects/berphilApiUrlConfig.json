@@ -1,0 +1,114 @@
+{
+    "_links": {
+        "artists_composers": {
+            "href": "//api.digitalconcerthall.com/v2/artists/composers",
+            "updated": 1570537347
+        },
+        "artists_conductors": {
+            "href": "//api.digitalconcerthall.com/v2/artists/conductors",
+            "updated": 1567180073
+        },
+        "artists_film_participants": {
+            "href": "//api.digitalconcerthall.com/v2/artists/film_participants",
+            "updated": 1569577860
+        },
+        "artists_interview_participants": {
+            "href": "//api.digitalconcerthall.com/v2/artists/interview_participants",
+            "updated": 1569577860
+        },
+        "artists_soloists": {
+            "href": "//api.digitalconcerthall.com/v2/artists/soloists",
+            "updated": 1569577860
+        },
+        "categories": {
+            "href": "//api.digitalconcerthall.com/v2/categories",
+            "updated": 1567090905
+        },
+        "concert_categories": {
+            "href": "//api.digitalconcerthall.com/v2/concert_categories",
+            "updated": 1567090905
+        },
+        "concerts_in_post_production": {
+            "href": "//api.digitalconcerthall.com/v2/post-production-concerts",
+            "updated": 1568207384
+        },
+        "concerts_live": {
+            "href": "//api.digitalconcerthall.com/v2/live-concerts",
+            "updated": 1572018946
+        },
+        "concerts_vod": {
+            "href": "//api.digitalconcerthall.com/v2/vod-concerts",
+            "updated": 1572018950
+        },
+        "countries": {
+            "href": "//api.digitalconcerthall.com/v2/countries",
+            "updated": 1569861916
+        },
+        "epochs": {
+            "href": "//api.digitalconcerthall.com/v2/epochs",
+            "updated": 1571933075
+        },
+        "film_categories": {
+            "href": "//api.digitalconcerthall.com/v2/film_categories",
+            "updated": 1569946928
+        },
+        "films": {
+            "href": "//api.digitalconcerthall.com/v2/films",
+            "updated": 1570720950
+        },
+        "films_by_year_of_release": {
+            "href": "//api.digitalconcerthall.com/v2/films_by_year_of_release",
+            "updated": 1570720950
+        },
+        "hiresaudio_editions": {
+            "href": "//api.digitalconcerthall.com/v2/hiresaudio/editions",
+            "updated": 1473775655
+        },
+        "home": {
+            "href": "//api.digitalconcerthall.com/v2/home",
+            "updated": 1572018946
+        },
+        "interview_categories": {
+            "href": "//api.digitalconcerthall.com/v2/interview_categories",
+            "updated": 1569249489
+        },
+        "interviews": {
+            "href": "//api.digitalconcerthall.com/v2/interviews",
+            "updated": 1571931540
+        },
+        "labels": {
+            "href": "//api.digitalconcerthall.com/v2/labels",
+            "updated": 1534789734
+        },
+        "playlists": {
+            "href": "//api.digitalconcerthall.com/v2/playlists",
+            "updated": 1571934633
+        },
+        "seasons": {
+            "href": "//api.digitalconcerthall.com/v2/seasons",
+            "updated": 1572018950
+        },
+        "self": {
+            "href": "//api.digitalconcerthall.com/v2/manifest"
+        },
+        "text_contents": {
+            "href": "//api.digitalconcerthall.com/v2/text_contents",
+            "updated": 1569494007
+        }
+    },
+    "config": {
+        "url_templates": {
+            "artist": "//api.digitalconcerthall.com/v2/artist/{id}",
+            "category": "//api.digitalconcerthall.com/v2/category/{id}",
+            "concert": "//api.digitalconcerthall.com/v2/concert/{id}",
+            "concerts_with_works": "//api.digitalconcerthall.com/v2/concerts_with_works/by_{type}/{id}",
+            "epoch": "//api.digitalconcerthall.com/v2/epoch/{id}",
+            "film": "//api.digitalconcerthall.com/v2/film/{id}",
+            "interview": "//api.digitalconcerthall.com/v2/interview/{id}",
+            "playlist": "//api.digitalconcerthall.com/v2/playlist/{id}",
+            "season": "//api.digitalconcerthall.com/v2/season/{id}",
+            "text_content": "//api.digitalconcerthall.com/v2/text/{key}"
+        }
+    },
+    "updated": 1572018950
+}

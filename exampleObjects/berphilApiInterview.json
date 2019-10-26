@@ -1,0 +1,128 @@
+{
+    "_links": {
+        "artist": [
+            {
+                "display_name": "Järvi, Paavo",
+                "fame": 0,
+                "fields_of_work": [
+                    "conductor"
+                ],
+                "href": "//api.digitalconcerthall.com/v2/artist/599",
+                "id": "599",
+                "image": {
+                    "landscape": {
+                        "credit": null,
+                        "path": null
+                    },
+                    "portrait": {
+                        "credit": null,
+                        "path": null
+                    }
+                },
+                "is_highlighted": false,
+                "name": "Paavo Järvi",
+                "role": {
+                    "name": null,
+                    "type": "other"
+                },
+                "sort_letter": "J",
+                "title": null,
+                "updated": 1567084074
+            },
+            {
+                "display_name": "Willis, Sarah",
+                "fame": 0,
+                "fields_of_work": [
+                    "soloist"
+                ],
+                "href": "//api.digitalconcerthall.com/v2/artist/356",
+                "id": "356",
+                "image": {
+                    "landscape": {
+                        "credit": null,
+                        "path": null
+                    },
+                    "portrait": {
+                        "credit": null,
+                        "path": null
+                    }
+                },
+                "is_highlighted": false,
+                "name": "Sarah Willis",
+                "role": {
+                    "name": "Horn und Moderation",
+                    "type": "other"
+                },
+                "sort_letter": "W",
+                "title": null,
+                "updated": 1569577860
+            }
+        ],
+        "category": [
+            {
+                "count": {
+                    "concert": 0,
+                    "film": 0,
+                    "interview": 183
+                },
+                "href": "//api.digitalconcerthall.com/v2/category/9",
+                "id": "9",
+                "name": "Dirigenten",
+                "type": "work",
+                "updated": 1569249489
+            }
+        ],
+        "concert": [
+            {
+                "date": {
+                    "begin": 1570899600,
+                    "end": 1570907460,
+                    "published": 1571226840
+                },
+                "href": "//api.digitalconcerthall.com/v2/concert/52501",
+                "id": "52501",
+                "image": {
+                    "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg",
+                    "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg"
+                },
+                "is_free": false,
+                "title": "Janine Jansen spielt Tschaikowskys Violinkonzert",
+                "updated": 1571973598
+            }
+        ],
+        "self": {
+            "href": "//api.digitalconcerthall.com/v2/interview/52501-5"
+        },
+        "streams": {
+            "href": "//api.digitalconcerthall.com/v2/streams/52501-5"
+        }
+    },
+    "blocked_in": [],
+    "caption": null,
+    "copyright": "© 2019 Berlin Phil Media GmbH",
+    "cuepoints": null,
+    "date": {
+        "begin": 1570658400,
+        "published": 1571226840
+    },
+    "description": "Jean Sibelius letzte veröffentlichte Komposition Tapiola, Robert Schumanns Dritte Symphonie und Peter Tschaikowskys Violinkonzert dirigierte Paavo Järvi in einem Programm der Berliner Philharmoniker im Oktober 2019. Wie sehr er die Solistin des Abends – die Geigerin Janine Jansen – bewundert, wie er sich seinen individuellen Zugang zu Schumanns Rheinischer Symphonie eroberte und warum Sibelius in seinen letzten 30 Lebensjahren das Komponieren nahezu vollständig aufgegeben hat, erzählt der Dirigent in diesem Interview mit der philharmonischen Hornistin Sarah Willis. Außerdem erläutert Järvi die Ähnlichkeiten und Unterschiede zwischen den drei Spitzenorchestern in Bremen, Zürich und Tokyo, die ihn zu ihrem künstlerischen Leiter berufen hatten.",
+    "display_name_composer": null,
+    "duration": 1119,
+    "duration_total": 1119,
+    "hdr_formats": [],
+    "id": "52501-5",
+    "image": {
+        "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/PJaervi_itw191017.jpg",
+        "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/PJaervi_itw191017.jpg"
+    },
+    "image_credit": null,
+    "is_free": true,
+    "is_highlight": false,
+    "max_resolution": "2160p",
+    "name_composer": null,
+    "short_description": "In diesem Pausengespräch unterhält sich Dirigent Paavo Järvi mit Sarah Willis, Hornistin der Berliner Philharmoniker. Anlass war ein Konzert des Orchesters mit Werken von Sibelius, Schumann und Tschaikowsky.",
+    "short_title": null,
+    "title": "Paavo Järvi im Gespräch mit Sarah Willis",
+    "transcript": null,
+    "updated": 1571973598
+}

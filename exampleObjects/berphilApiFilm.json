@@ -1,0 +1,135 @@
+{
+    "_links": {
+        "artist": [
+            {
+                "display_name": "Jacobsen, Torben",
+                "fame": null,
+                "fields_of_work": [],
+                "href": "//api.digitalconcerthall.com/v2/artist/1273",
+                "id": "1273",
+                "image": {
+                    "landscape": {
+                        "credit": null,
+                        "path": null
+                    },
+                    "portrait": {
+                        "credit": null,
+                        "path": null
+                    }
+                },
+                "is_highlighted": false,
+                "name": "Torben Jacobsen",
+                "role": {
+                    "name": null,
+                    "type": "director"
+                },
+                "sort_letter": "J",
+                "title": null,
+                "updated": 1567084090
+            },
+            {
+                "display_name": "Weidmann, Markus",
+                "fame": null,
+                "fields_of_work": [],
+                "href": "//api.digitalconcerthall.com/v2/artist/1733",
+                "id": "1733",
+                "image": {
+                    "landscape": {
+                        "credit": null,
+                        "path": null
+                    },
+                    "portrait": {
+                        "credit": null,
+                        "path": null
+                    }
+                },
+                "is_highlighted": false,
+                "name": "Markus Weidmann",
+                "role": {
+                    "name": null,
+                    "type": "protagonist"
+                },
+                "sort_letter": "W",
+                "title": null,
+                "updated": 1567084097
+            }
+        ],
+        "category": [
+            {
+                "count": {
+                    "concert": 0,
+                    "film": 32,
+                    "interview": 0
+                },
+                "href": "//api.digitalconcerthall.com/v2/category/14",
+                "id": "14",
+                "name": "Musiker im Porträt",
+                "type": "film",
+                "updated": 1569946832
+            },
+            {
+                "count": {
+                    "concert": 0,
+                    "film": 28,
+                    "interview": 0
+                },
+                "href": "//api.digitalconcerthall.com/v2/category/15",
+                "id": "15",
+                "name": "Die Berliner Philharmoniker",
+                "type": "film",
+                "updated": 1569946928
+            },
+            {
+                "count": {
+                    "concert": 0,
+                    "film": 19,
+                    "interview": 0
+                },
+                "href": "//api.digitalconcerthall.com/v2/category/18",
+                "id": "18",
+                "name": "Kurzfilme",
+                "type": "film",
+                "updated": 1569946906
+            }
+        ],
+        "self": {
+            "href": "//api.digitalconcerthall.com/v2/film/366"
+        },
+        "streams": {
+            "href": "//api.digitalconcerthall.com/v2/streams/366"
+        },
+        "streams_trailer": {
+            "href": "//api.digitalconcerthall.com/v2/streams/366-t"
+        }
+    },
+    "caption": null,
+    "copyright": "© 2019 Berlin Phil Media GmbH",
+    "credits": null,
+    "cuepoints": [],
+    "date": {
+        "published": 1562227200
+    },
+    "description": "<p>Man könnte das Fagott wegen seines Tonumfangs und seines Klangcharakters als das Cello in der Familie der Holzblasinstrumente bezeichnen. Kein Wunder, dass Markus Weidmann Bachs Cello-Suiten zu seinen Lieblingswerken zählt und sie immer wieder zu Übungszwecken auf das Notenpult legt. Der Musiker wurde 1997 Mitglied der Berliner Philharmoniker; er war außerdem bereits Stipendiat der Karajan-Akademie. In diesem Filmporträt aus unserer Reihe <em>Die Berliner Philharmoniker und ihre Instrumente</em> spricht Weidmann – der in Konzerten der Philharmoniker auch mit dem Kontrafagott zu erleben ist – über die eigenhändige Herstellung des Mundstücks, Lieblingswerke im Repertoire und seine Leidenschaft für die Fotografie.</p>",
+    "directors": [
+        "Torben Jacobsen"
+    ],
+    "duration": 527,
+    "hdr_formats": [],
+    "id": "366",
+    "image": {
+        "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/MP_Weidmann_Teaser.jpg",
+        "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/MP_Weidmann_DE.jpg"
+    },
+    "image_credit": "Sebastian Hänel",
+    "is_free": true,
+    "max_resolution": "1080p",
+    "position": 2,
+    "poster": "images/core/MP_Weidmann_DE.jpg",
+    "short_description": "Mit Markus Weidmann steht zum ersten Mal ein Fagottist im Mittelpunkt eines Filmporträts aus der Reihe [Die Berliner Philharmoniker und ihre Instrumente]. Weidmann wurde 1997 Mitglied des Orchesters; er war außerdem bereits Stipendiat der Karajan-Akademie. Über den Charakter des tiefsten Instruments in der Familie der Holzbläser spricht der Musiker in diesem Film ebenso wie über die handwerklich anspruchsvolle Herstellung des Mundstücks. Weitere Themen sind persönliche Favoriten im Repertoire wie Béla Bartóks [Konzert für Orchester] sowie Weidmanns Leidenschaft für die Fotografie.",
+    "tiny_description": null,
+    "title": "Markus Weidmann im Porträt",
+    "trailer_url_hd": "//trailers.digitalconcerthall.com/trailers/films/musikerportrait_weidmann_de_trailer_h264_high_2500.mp4",
+    "trailer_url_sd": "//trailers.digitalconcerthall.com/trailers/films/musikerportrait_weidmann_de_trailer_h264_high_1500.mp4",
+    "updated": 1569946928,
+    "year_of_release": 2019
+}

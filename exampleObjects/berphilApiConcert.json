@@ -1,0 +1,750 @@
+{
+    "_embedded": {
+        "interview": [
+            {
+                "_links": {
+                    "artist": [
+                        {
+                            "display_name": "Järvi, Paavo",
+                            "fame": 0,
+                            "fields_of_work": [
+                                "conductor"
+                            ],
+                            "href": "//api.digitalconcerthall.com/v2/artist/599",
+                            "id": "599",
+                            "image": {
+                                "landscape": {
+                                    "credit": null,
+                                    "path": null
+                                },
+                                "portrait": {
+                                    "credit": null,
+                                    "path": null
+                                }
+                            },
+                            "is_highlighted": false,
+                            "name": "Paavo Järvi",
+                            "role": {
+                                "name": null,
+                                "type": "other"
+                            },
+                            "sort_letter": "J",
+                            "title": null,
+                            "updated": 1567084074
+                        },
+                        {
+                            "display_name": "Willis, Sarah",
+                            "fame": 0,
+                            "fields_of_work": [
+                                "soloist"
+                            ],
+                            "href": "//api.digitalconcerthall.com/v2/artist/356",
+                            "id": "356",
+                            "image": {
+                                "landscape": {
+                                    "credit": null,
+                                    "path": null
+                                },
+                                "portrait": {
+                                    "credit": null,
+                                    "path": null
+                                }
+                            },
+                            "is_highlighted": false,
+                            "name": "Sarah Willis",
+                            "role": {
+                                "name": null,
+                                "type": "other"
+                            },
+                            "sort_letter": "W",
+                            "title": null,
+                            "updated": 1569577860
+                        }
+                    ],
+                    "category": [
+                        {
+                            "count": {
+                                "concert": 0,
+                                "film": 0,
+                                "interview": 183
+                            },
+                            "href": "//api.digitalconcerthall.com/v2/category/9",
+                            "id": "9",
+                            "name": "Conductors",
+                            "type": "work",
+                            "updated": 1569249489
+                        }
+                    ],
+                    "concert": [
+                        {
+                            "date": {
+                                "begin": 1570899600,
+                                "end": 1570907460,
+                                "published": 1571226840
+                            },
+                            "href": "//api.digitalconcerthall.com/v2/concert/52501",
+                            "id": "52501",
+                            "image": {
+                                "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg",
+                                "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg"
+                            },
+                            "is_free": false,
+                            "title": "Janine Jansen plays Tchaikovsky’s Violin Concerto",
+                            "updated": 1571957926
+                        }
+                    ],
+                    "self": {
+                        "href": "//api.digitalconcerthall.com/v2/interview/52501-5"
+                    },
+                    "streams": {
+                        "href": "//api.digitalconcerthall.com/v2/streams/52501-5"
+                    }
+                },
+                "blocked_in": [],
+                "caption": null,
+                "copyright": "© 2019 Berlin Phil Media GmbH",
+                "cuepoints": null,
+                "date": {
+                    "begin": 1570658400,
+                    "published": 1571226840
+                },
+                "description": "In October 2019, Paavo Järvi conducted a programme with the Berliner Philharmoniker which included Jean Sibelius’s last published composition <em>Tapiola</em>, Robert Schumann’s Third Symphony, and Piotr Ilyich Tchaikovsky’s Violin Concerto. The conductor explains here in an interview with the Philharmoniker’s horn player Sarah Willis how much he admires the soloist of the evening – the violinist Janine Jansen –, how he developed his individual approach to Schumann’s <em>Rhenish</em> Symphony, and why Sibelius almost completely gave up composing in his last 30 years of life. Järvi also talks about the similarities and differences between the top three orchestras in Bremen, Zurich and Tokyo who appointed him artistic director.",
+                "display_name_composer": null,
+                "duration": 1119,
+                "duration_total": 1119,
+                "hdr_formats": [],
+                "id": "52501-5",
+                "image": {
+                    "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/PJaervi_itw191017.jpg",
+                    "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/PJaervi_itw191017.jpg"
+                },
+                "image_credit": null,
+                "is_free": true,
+                "is_highlight": false,
+                "max_resolution": "2160p",
+                "name_composer": null,
+                "short_description": "In this interval feature, conductor Paavo Järvi talks to Sarah Willis, horn player with the Berliner Philharmoniker. The occasion was a concert with the orchestra of works by Sibelius, Schumann and Tchaikovsky.",
+                "short_title": null,
+                "title": "Paavo Järvi in conversation with Sarah Willis",
+                "transcript": null,
+                "updated": 1571957926
+            }
+        ],
+        "work": [
+            {
+                "_links": {
+                    "artist": [
+                        {
+                            "display_name": "Sibelius, Jean",
+                            "fame": 0,
+                            "fields_of_work": [
+                                "composer"
+                            ],
+                            "href": "//api.digitalconcerthall.com/v2/artist/217",
+                            "id": "217",
+                            "image": {
+                                "landscape": {
+                                    "credit": null,
+                                    "path": null
+                                },
+                                "portrait": {
+                                    "credit": null,
+                                    "path": null
+                                }
+                            },
+                            "is_highlighted": false,
+                            "name": "Jean Sibelius",
+                            "role": {
+                                "name": null,
+                                "type": "composer"
+                            },
+                            "sort_letter": "S",
+                            "title": null,
+                            "updated": 1567084066
+                        }
+                    ],
+                    "concert": [
+                        {
+                            "date": {
+                                "begin": 1570899600,
+                                "end": 1570907460,
+                                "published": 1571226840
+                            },
+                            "href": "//api.digitalconcerthall.com/v2/concert/52501",
+                            "id": "52501",
+                            "image": {
+                                "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg",
+                                "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg"
+                            },
+                            "is_free": false,
+                            "title": "Janine Jansen plays Tchaikovsky’s Violin Concerto",
+                            "updated": 1571957926
+                        }
+                    ],
+                    "streams": {
+                        "href": "//api.digitalconcerthall.com/v2/streams/52501-1"
+                    }
+                },
+                "blocked_in": [],
+                "caption": null,
+                "concert_href": "//api.digitalconcerthall.com/v2/concert/52501",
+                "concert_id": "52501",
+                "copyright": null,
+                "cuepoints": [
+                    {
+                        "duration": 1154,
+                        "text": "Tapiola",
+                        "time": 29
+                    },
+                    {
+                        "duration": 67,
+                        "text": "Applause",
+                        "time": 1183
+                    }
+                ],
+                "date": {
+                    "begin": 1570831200,
+                    "published": 1571226840
+                },
+                "display_name_composer": "Sibelius, Jean",
+                "duration": 1154,
+                "duration_total": 1250,
+                "hdr_formats": [
+                    "hlg"
+                ],
+                "id": "52501-1",
+                "image": {
+                    "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg",
+                    "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg"
+                },
+                "image_credit": null,
+                "is_free": false,
+                "is_highlight": false,
+                "max_resolution": "2160p",
+                "name_composer": "Jean Sibelius",
+                "short_title": null,
+                "title": "[Tapiola], Symphonic Poem, op. 112",
+                "updated": 1571957926
+            },
+            {
+                "_links": {
+                    "artist": [
+                        {
+                            "display_name": "Tchaikovsky, Piotr Ilyich",
+                            "fame": 0,
+                            "fields_of_work": [
+                                "composer"
+                            ],
+                            "href": "//api.digitalconcerthall.com/v2/artist/306",
+                            "id": "306",
+                            "image": {
+                                "landscape": {
+                                    "credit": null,
+                                    "path": null
+                                },
+                                "portrait": {
+                                    "credit": null,
+                                    "path": null
+                                }
+                            },
+                            "is_highlighted": false,
+                            "name": "Piotr Ilyich Tchaikovsky",
+                            "role": {
+                                "name": null,
+                                "type": "composer"
+                            },
+                            "sort_letter": "T",
+                            "title": null,
+                            "updated": 1567084067
+                        },
+                        {
+                            "display_name": "Jansen, Janine",
+                            "fame": 2,
+                            "fields_of_work": [
+                                "soloist"
+                            ],
+                            "href": "//api.digitalconcerthall.com/v2/artist/192",
+                            "id": "192",
+                            "image": {
+                                "landscape": {
+                                    "credit": null,
+                                    "path": null
+                                },
+                                "portrait": {
+                                    "credit": null,
+                                    "path": null
+                                }
+                            },
+                            "is_highlighted": false,
+                            "name": "Janine Jansen",
+                            "role": {
+                                "name": "violin",
+                                "type": "instrument"
+                            },
+                            "sort_letter": "J",
+                            "title": null,
+                            "updated": 1567084064
+                        }
+                    ],
+                    "concert": [
+                        {
+                            "date": {
+                                "begin": 1570899600,
+                                "end": 1570907460,
+                                "published": 1571226840
+                            },
+                            "href": "//api.digitalconcerthall.com/v2/concert/52501",
+                            "id": "52501",
+                            "image": {
+                                "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg",
+                                "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg"
+                            },
+                            "is_free": false,
+                            "title": "Janine Jansen plays Tchaikovsky’s Violin Concerto",
+                            "updated": 1571957926
+                        }
+                    ],
+                    "streams": {
+                        "href": "//api.digitalconcerthall.com/v2/streams/52501-2"
+                    }
+                },
+                "blocked_in": [],
+                "caption": null,
+                "concert_href": "//api.digitalconcerthall.com/v2/concert/52501",
+                "concert_id": "52501",
+                "copyright": null,
+                "cuepoints": [
+                    {
+                        "duration": 1187,
+                        "text": "1. Allegro moderato",
+                        "time": 38
+                    },
+                    {
+                        "duration": 388,
+                        "text": "2. Canzonetta: Andante –",
+                        "time": 1225
+                    },
+                    {
+                        "duration": 622,
+                        "text": "3. Allegro vivacissimo",
+                        "time": 1613
+                    },
+                    {
+                        "duration": 190,
+                        "text": "Applause",
+                        "time": 2235
+                    }
+                ],
+                "date": {
+                    "begin": 1570831200,
+                    "published": 1571226840
+                },
+                "display_name_composer": "Tchaikovsky, Piotr Ilyich",
+                "duration": 2197,
+                "duration_total": 2425,
+                "hdr_formats": [
+                    "hlg"
+                ],
+                "id": "52501-2",
+                "image": {
+                    "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg",
+                    "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg"
+                },
+                "image_credit": null,
+                "is_free": false,
+                "is_highlight": false,
+                "max_resolution": "2160p",
+                "name_composer": "Piotr Ilyich Tchaikovsky",
+                "short_title": null,
+                "title": "Concerto for Violin and Orchestra in D major, op. 35",
+                "updated": 1571973598
+            },
+            {
+                "_links": {
+                    "artist": [
+                        {
+                            "display_name": "Bach, Johann Sebastian",
+                            "fame": 0,
+                            "fields_of_work": [
+                                "composer"
+                            ],
+                            "href": "//api.digitalconcerthall.com/v2/artist/93",
+                            "id": "93",
+                            "image": {
+                                "landscape": {
+                                    "credit": null,
+                                    "path": null
+                                },
+                                "portrait": {
+                                    "credit": null,
+                                    "path": null
+                                }
+                            },
+                            "is_highlighted": false,
+                            "name": "Johann Sebastian Bach",
+                            "role": {
+                                "name": null,
+                                "type": "composer"
+                            },
+                            "sort_letter": "B",
+                            "title": null,
+                            "updated": 1567084061
+                        },
+                        {
+                            "display_name": "Jansen, Janine",
+                            "fame": 2,
+                            "fields_of_work": [
+                                "soloist"
+                            ],
+                            "href": "//api.digitalconcerthall.com/v2/artist/192",
+                            "id": "192",
+                            "image": {
+                                "landscape": {
+                                    "credit": null,
+                                    "path": null
+                                },
+                                "portrait": {
+                                    "credit": null,
+                                    "path": null
+                                }
+                            },
+                            "is_highlighted": false,
+                            "name": "Janine Jansen",
+                            "role": {
+                                "name": "violin",
+                                "type": "instrument"
+                            },
+                            "sort_letter": "J",
+                            "title": null,
+                            "updated": 1567084064
+                        }
+                    ],
+                    "concert": [
+                        {
+                            "date": {
+                                "begin": 1570899600,
+                                "end": 1570907460,
+                                "published": 1571226840
+                            },
+                            "href": "//api.digitalconcerthall.com/v2/concert/52501",
+                            "id": "52501",
+                            "image": {
+                                "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg",
+                                "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg"
+                            },
+                            "is_free": false,
+                            "title": "Janine Jansen plays Tchaikovsky’s Violin Concerto",
+                            "updated": 1571957926
+                        }
+                    ],
+                    "streams": {
+                        "href": "//api.digitalconcerthall.com/v2/streams/52501-3"
+                    }
+                },
+                "blocked_in": [],
+                "caption": null,
+                "concert_href": "//api.digitalconcerthall.com/v2/concert/52501",
+                "concert_id": "52501",
+                "copyright": null,
+                "cuepoints": [
+                    {
+                        "duration": 167,
+                        "text": "Partita No. 2 in D minor, BWV 1004: 3. Sarabande",
+                        "time": 30
+                    },
+                    {
+                        "duration": 77,
+                        "text": "Applause",
+                        "time": 197
+                    }
+                ],
+                "date": {
+                    "begin": 1571004000,
+                    "published": 1571226840
+                },
+                "display_name_composer": "Bach, Johann Sebastian",
+                "duration": 168,
+                "duration_total": 274,
+                "hdr_formats": [
+                    "hlg"
+                ],
+                "id": "52501-3",
+                "image": {
+                    "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg",
+                    "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg"
+                },
+                "image_credit": null,
+                "is_free": false,
+                "is_highlight": false,
+                "max_resolution": "2160p",
+                "name_composer": "Johann Sebastian Bach",
+                "short_title": null,
+                "title": "Partita for solo violin No. 2 in D minor, BWV 1004: Sarabande",
+                "updated": 1571957926
+            },
+            {
+                "_links": {
+                    "artist": [
+                        {
+                            "display_name": "Schumann, Robert",
+                            "fame": 0,
+                            "fields_of_work": [
+                                "composer"
+                            ],
+                            "href": "//api.digitalconcerthall.com/v2/artist/23",
+                            "id": "23",
+                            "image": {
+                                "landscape": {
+                                    "credit": null,
+                                    "path": null
+                                },
+                                "portrait": {
+                                    "credit": null,
+                                    "path": null
+                                }
+                            },
+                            "is_highlighted": false,
+                            "name": "Robert Schumann",
+                            "role": {
+                                "name": null,
+                                "type": "composer"
+                            },
+                            "sort_letter": "S",
+                            "title": null,
+                            "updated": 1567084058
+                        }
+                    ],
+                    "concert": [
+                        {
+                            "date": {
+                                "begin": 1570899600,
+                                "end": 1570907460,
+                                "published": 1571226840
+                            },
+                            "href": "//api.digitalconcerthall.com/v2/concert/52501",
+                            "id": "52501",
+                            "image": {
+                                "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg",
+                                "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg"
+                            },
+                            "is_free": false,
+                            "title": "Janine Jansen plays Tchaikovsky’s Violin Concerto",
+                            "updated": 1571957926
+                        }
+                    ],
+                    "streams": {
+                        "href": "//api.digitalconcerthall.com/v2/streams/52501-4"
+                    }
+                },
+                "blocked_in": [],
+                "caption": null,
+                "concert_href": "//api.digitalconcerthall.com/v2/concert/52501",
+                "concert_id": "52501",
+                "copyright": null,
+                "cuepoints": [
+                    {
+                        "duration": 551,
+                        "text": "1. Lebhaft",
+                        "time": 37
+                    },
+                    {
+                        "duration": 374,
+                        "text": "2. Scherzo: Sehr mäßig",
+                        "time": 588
+                    },
+                    {
+                        "duration": 301,
+                        "text": "3. Nicht schnell",
+                        "time": 962
+                    },
+                    {
+                        "duration": 361,
+                        "text": "4. Feierlich",
+                        "time": 1263
+                    },
+                    {
+                        "duration": 316,
+                        "text": "5. Lebhaft – Schneller",
+                        "time": 1624
+                    },
+                    {
+                        "duration": 259,
+                        "text": "Applause",
+                        "time": 1940
+                    }
+                ],
+                "date": {
+                    "begin": 1570831200,
+                    "published": 1571226840
+                },
+                "display_name_composer": "Schumann, Robert",
+                "duration": 1903,
+                "duration_total": 2199,
+                "hdr_formats": [
+                    "hlg"
+                ],
+                "id": "52501-4",
+                "image": {
+                    "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg",
+                    "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg"
+                },
+                "image_credit": null,
+                "is_free": false,
+                "is_highlight": false,
+                "max_resolution": "2160p",
+                "name_composer": "Robert Schumann",
+                "short_title": null,
+                "title": "Symphony No. 3 in E flat major, op. 97 “Rhenish”",
+                "updated": 1571957926
+            }
+        ]
+    },
+    "_links": {
+        "artist": [
+            {
+                "display_name": "Berliner Philharmoniker",
+                "fame": 1,
+                "fields_of_work": [],
+                "href": "//api.digitalconcerthall.com/v2/artist/1",
+                "id": "1",
+                "image": {
+                    "landscape": {
+                        "credit": null,
+                        "path": null
+                    },
+                    "portrait": {
+                        "credit": null,
+                        "path": null
+                    }
+                },
+                "is_highlighted": true,
+                "name": "Berliner Philharmoniker",
+                "role": {
+                    "name": null,
+                    "type": "group"
+                },
+                "sort_letter": "B",
+                "title": null,
+                "updated": 1567087955
+            },
+            {
+                "display_name": "Järvi, Paavo",
+                "fame": 1,
+                "fields_of_work": [
+                    "conductor"
+                ],
+                "href": "//api.digitalconcerthall.com/v2/artist/599",
+                "id": "599",
+                "image": {
+                    "landscape": {
+                        "credit": null,
+                        "path": null
+                    },
+                    "portrait": {
+                        "credit": null,
+                        "path": null
+                    }
+                },
+                "is_highlighted": false,
+                "name": "Paavo Järvi",
+                "role": {
+                    "name": "conductor",
+                    "type": "conductor"
+                },
+                "sort_letter": "J",
+                "title": null,
+                "updated": 1567084074
+            }
+        ],
+        "season": [
+            {
+                "count": {
+                    "concert": 38,
+                    "concert_in_post_production": 1,
+                    "concert_live": 29,
+                    "concert_total": 38,
+                    "concert_vod": 8,
+                    "interview": 10,
+                    "live": 29,
+                    "vod": 8,
+                    "work": 27,
+                    "work_in_post_production": 1,
+                    "work_live": 70,
+                    "work_total": 98,
+                    "work_vod": 27
+                },
+                "href": "//api.digitalconcerthall.com/v2/season/16",
+                "id": "16",
+                "label": "2019/2020",
+                "updated": 1571973598
+            }
+        ],
+        "self": {
+            "href": "//api.digitalconcerthall.com/v2/concert/52501"
+        },
+        "star": [
+            {
+                "display_name": "Jansen, Janine",
+                "fame": 2,
+                "fields_of_work": [
+                    "soloist"
+                ],
+                "href": "//api.digitalconcerthall.com/v2/artist/192",
+                "id": "192",
+                "image": {
+                    "landscape": {
+                        "credit": null,
+                        "path": null
+                    },
+                    "portrait": {
+                        "credit": null,
+                        "path": null
+                    }
+                },
+                "is_highlighted": false,
+                "name": "Janine Jansen",
+                "role": {
+                    "name": "violin",
+                    "type": "instrument"
+                },
+                "sort_letter": "J",
+                "title": null,
+                "updated": 1567084064
+            }
+        ],
+        "streams": {
+            "href": null
+        },
+        "streams_trailer": {
+            "href": "//api.digitalconcerthall.com/v2/streams/52501-t"
+        }
+    },
+    "artist_biographies": "<p class=\"standard\"><strong>Paavo Järvi</strong> was born in Tallinn in 1962 and studied percussion and conducting at the conservatory in his home town. In 1980 he emigrated to the USA and completed his studies at the Curtis Institute of Music in Philadelphia, and – with Leonard Bernstein – at the Los Angeles Philharmonic Institute. After positions as principal guest conductor of the Royal Stockholm Philharmonic Orchestra and the City of Birmingham Symphony Orchestra, Paavo Järvi was chief conductor of the Cincinnati Symphony Orchestra from 2001 to 2011, where he still has ties as “Music Director Laureate”. In 2004, he took over the artistic direction of the Deutsche Kammerphilharmonie Bremen, and from 2006 to 2013 he has also been chief conductor of the Frankfurt Radio Symphony Orchestra, and from 2010 until 2016 he was music director of the Orchestre de Paris. Since the start of the 2015/2016 season he is chief conductor the NHK Symphony Orchestra, and starting this season he has taken on the same role with the Tonhalle-Orchester Zürich. The Estonian, who has been honoured with numerous awards, including the prestigious “Commandeur de l’Ordre des Arts et des Lettres” by the French Ministry of Culture and the Order of the White Star by the President of Estonia, is also a welcome guest at renowned orchestras such as the Royal Concertgebouw Orchestra, the Vienna and the New York Philharmonic. The artist is particularly interested in the music of Estonian composers such as Arvo Pärt, Erkki-Sven Tüür, Lepo Sumera and Eduard Tubin. Paavo Järvi’s artistic work is documented in many recordings, several of which have won awards. He gave his debut with the Berliner Philharmoniker in February 2000 and last conducted the orchestra in May 2019 with works by Bach, Berg and Bruckner. </p><p class=\"standard\"><strong>Janine Jansen</strong> was born in the Netherlands and studied the violin with Coosje Wijzenbeek, Philippe Hirshhorn and Boris Belkin. Her debut with the Philharmonia Orchestra of London under Vladimir Ashkenazy in 2002 launched her on her international career. Since then she has appeared in many of the world’s leading concert halls with orchestras of the eminence of the Royal Concertgebouw of Amsterdam, the Gewandhaus Orchestra of Leipzig, the City of Birmingham Symphony Orchestra, the Mahler Chamber Orchestra, the NHK Symphony Orchestra of Tokyo and the great North American orchestras in New York, Philadelphia and Cleveland. In the 2018/19 season she was Artist in Residence at the Tonhalle Orchestra Zurich as well as with the Gothenburg Symphony Orchestra. She was “Portrait Artist 2019” at the Schleswig Holstein Musik Festival. Among the conductors with whom she has worked are Semyon Bychkov, Paavo Järvi, Yannick Nézet-Séguin and Antonio Pappano, while her chamber music partners include Martha Argerich, Itamar Golan, Mischa Maisky, Julian Rachlin and Jean-Yves Thibaudet. Janine Jansen returns to her roots to be “Guest Artistic Director 2019” at the International Chamber Music Festival Utrecht, which she herself founded in 2003 and led until 2016. She first appeared with the Berliner Philharmoniker at a Waldbühne concert in June 2006, under the direction of Neeme Järvi. Her last appearance with the orchestra was in March 2016 at the Baden-Baden Easter Festival performing Max Bruch’s First Violin Concerto (direction: Sir Simon Rattle). Janine Jansen has won numerous prizes, including the Vermeer Prize 2018, the NDR Musikpreis (2007) and the Concertgebouw Prize. Janine Jansen plays the 1707 Stradivarius “Rivaz – Baron Gutmann” violin kindly on loan from Dextra Musica.</p><p class=\"standard\"/>",
+    "copyright": "© 2019 Berlin Phil Media GmbH",
+    "date": {
+        "begin": 1570899600,
+        "end": 1570907460,
+        "published": 1571226840
+    },
+    "duration_total": 6148,
+    "event_title": null,
+    "hdr_formats": [
+        "hlg"
+    ],
+    "id": "52501",
+    "image": {
+        "detail": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg",
+        "overview": "//www.digitalconcerthall.com/cms/thumbnails/{width}x{height}/images/core/Philharmoniker-38.jpg"
+    },
+    "image_credit": "Frederike van der Stæten",
+    "is_free": false,
+    "max_resolution": "2160p",
+    "programme": "<p class=\"standard\">Conductor Paavo Järvi, acclaimed for his thrilling interpretations, and charismatic violinist Janine Jansen, who impresses with flawless technical know-how, a masterful sound and the highest level of musical sensitivity, will at these concerts take on two compositions that initially diverged greatly in terms of the public’s acceptance.</p>\r\n<p class=\"standard\">Piotr Tchaikovsky’s Violin Concerto, composed after a period of drastic personal crises for the composer, is “unviolinistic”, Leopold Auer, the work’s dedicatee, stated at one time – and thus entrusted it to a colleague to launch Tchaikovsky’s only contribution to the violin concerto genre on 4 December 1881 in Vienna. Hardly anything good could be read about the memorable event in newspapers’ arts pages of the time. Viennese critic Eduard Hanslick even asked his readers the disrespectful question of whether “music can exist which stinks to the ear”. Many years would elapse until Tchaikovsky’s violin concerto, which follows classical formal principles and poses enormous technical demands in the service of realms of expression never heard before, was recognised by audience and press as an epoch-making milestone in the history of the concerto genre.</p>\r\n<p class=\"standard\">Robert Schumann’s Third Symphony fared quite differently: when performed for the first time on 6 February 1851 in Düsseldorf, conducted by the composer, the press and public were immediately enthusiastic. Criticism was voiced about the piece, which was composed in just one month, from an unexpected quarter: Schumann’s wife Clara wrote about the last movement that it is “the one that is still least clear to me; it is of the highest art, that I can hear, but I cannot follow it properly”. Later, in a similar vein, Tchaikovsky of all people wrote that he attested Schumann’s composition, despite the “undiminished power of its content, external formal defects” that came to light “ever more perceptibly”. At the end of the day, neither Schumann, who in his own words wanted to awaken “friendlier moods” in his listeners with the Third Symphony, nor his audience, let themselves be put off by this nit-picking. Nowadays the work, which explores completely divergent expressive values in five movements but, thanks to subtle motivic interconnections, nonetheless constitutes a compelling unity, is rightly considered one of Schumann’s symphonic tours de force.</p>\r\n<p class=\"standard\">Paavo Järvi has placed <em>Tapiola</em> by Jean Sibelius at the beginning of the programme. The symphonic poem inspired by Finnish tales of nature was commissioned by the American conductor Walter Damrosch, who premiered the work in New York in 1926. It would end up being Sibeliusʼs last composition for orchestra. Leevi Madetoja, one of Sibeliusʼs students, described his impressions of <em>Tapiola</em>: “At times we hear the melancholy, repeated call of an elf, at times the elves dance heatedly, at times a lonely wanderer in the woods is giving vent to the pain of life. A beautiful work, technically close to the seventh symphony.”</p>",
+    "short_description": "[The New York Times] attests that the violinist Janine Jansen has “a kind of radiant modesty”, and indeed: even in moments of utmost virtuosity, her performances captivate with introspection and substance. This ability is particularly well demonstrated in Tchaikovsky’s Violin Concerto, which, despite its fast yet expressive tempos, is always interspersed with subtle nuances. To bring the concert to a close, Paavo Järvi conducts Robert Schumann’s sonorous and exuberant [Rhenish] Symphony.",
+    "title": "Janine Jansen plays Tchaikovsky’s Violin Concerto",
+    "trailer_url_hd": "//trailers.digitalconcerthall.com/trailers/1920/20191012_0_jaervi_4k-sdr_h264_high_2500.mp4",
+    "trailer_url_sd": "//trailers.digitalconcerthall.com/trailers/1920/20191012_0_jaervi_4k-sdr_h264_high_1500.mp4",
+    "type": "vod",
+    "updated": 1571973598,
+    "works_introduction": "<h1 class=\"title\">Endless Diversity in Unity</h1><h2 class=\"subtitle\">Astonishing Amalgams by Sibelius, Tchaikovsky and Schumann</h2><h3 class=\"caption\">The tone poem<em> Tapiola</em> by Jean Sibelius</h3><p class=\"standard\">Significant musical works are seldom what they purport to be. It isn’t easy, therefore, to discern or divine a composer’s intentions. Jean Sibelius may be viewed as an especially interesting case, and not in this respect alone. His last piece for large orchestra, the tone poem <em>Tapiola</em> – premiered in New York in 1926 under Walter Damrosch – is one of the most ambiguous and enigmatic of its period. The original working title was <em>Skogen </em>(The Forest), but this led to fears that a literal translation would awaken undesirable associations with forestry. Consequently, Sibelius changed the title to connect it with Tapio, the forest god from the Finnish national epic, the <em>Kalevala</em>. He sent a prose sketch to New York explaining the meaning of the title: </p><p class=\"standard\">Wide-spread they stand, the Northland’s dusky forests,<br/>Ancient, mysterious, brooding savage dreams;<br/>Within them dwells the Forest’s mighty God,<br/>And wood-sprites in the gloom weave magic secrets.</p><p class=\"standard\">This is not the real Finland, but rather the Finland – more precisely, the Northland or Lapland – of mythology, a region situated, roughly speaking, above the Arctic Circle. Sibelius had no personal experience of it. He travelled through it only once, by train in 1915 en route to Sweden. This strange world, geographically and temporally remote, is the subject of the composition in Dorian B minor: the unrelenting elemental force of Nature, the inaccessible, inscrutable, even disturbing Other. The tonal language is in complete accordance with the “subject”. As the English musicologist Benedict Taylor formulated it in a ground-breaking study: “Just as Tapio, the genius loci of the Finnish forest, does not readily reveal his face to modern audiences but rather manifests himself in various forms, so Sibelius’s dark work does not divulge the mysteries of its organization from any single perspective but must be understood from multiple aspects.”</p><h3 class=\"caption\">The Violin Concerto by Pyotr Ilyich Tchaikovsky</h3><p class=\"standard\">Tchaikovsky’s Violin Concerto follows no narrative, which is rather surprising for a composer who gave names to three of his seven symphonies and disclosed vague programmes for two others. The Concerto, though not based on a poetic subject, nonetheless arose from a strongly autobiographical impulse. It is marked by Tchaikovsky’s friendship with his composition pupil Iosif Kotek, a young violinist who assisted in the concerto’s creation. And his collaboration went beyond playing through the work as Tchaikovsky wrote it. In January 1877 the composer had already confessed to his brother Modest: “When I tire in the struggle against the urge to fall at his feet and kiss these little feet, passion rages with me with unimaginable force, my voice trembles like that of a youth, and I talk some kind of nonsense.” As the violinist was not homosexual, the relationship cooled, and in July 1877 Kotek was one of the two witnesses at Tchaikovsky’s foolhardy wedding with Antonina Milyukova. After the marriage led the bridegroom to a half-hearted suicide attempt and, predictably, to the couple’s separation, the two friends met up again and spent several weeks in the village of Clarens on Lake Geneva.</p><p class=\"standard\">It was Kotek who had encouraged Tchaikovsky to compose a violin concerto. The work is interesting formally, joining two weighty outer movements by a brief, wistful Canzonetta. It owes much of its effectiveness and popularity to the shape-shifting capacity of its main theme, a lightly disguised polonaise, presented, after a short orchestral introduction, in the violin’s first entrance. The soloist also brings two further themes, but they are shoved aside at the beginning of the development section by the full orchestral apparatus: the main theme pompously and repeatedly takes charge of the proceedings – Tchaikovsky the melodic genius was famously lavish in capitalizing on his inspirations. The Canzonetta is followed without a break by the impetuous finale, a confrontation between two opposing spheres: unbridled sanguine passages in the “gypsy-romantic” style and a more popular melody, at once rustic and melancholic. The Viennese critic Eduard Hanslick heard in it “the brutal and wretched jollity of a Russian church festival”, but he probably had drunk a bit too much in Grinzing. </p><h3 class=\"caption\">The Third Symphony of Robert Schumann</h3><p class=\"standard\">If the name of Robert Schumann now follows this reference to winebibbing, the connection is only natural, not malicious. After all, he wrote a <em>Festival Overture on the Rhine-wine Lied “Bekränzt mit Laub”. </em>But it must also be noted that the “Rhenish” Symphony was the product of an intermittent teetotaller. Schumann wrote it within five weeks at the end of 1850, having come to Düsseldorf only two months earlier to take up his position as municipal music director. He relished the impressions of his new surroundings, and that meant the experiences that the Rhine had to offer him.</p><p class=\"standard\">Was it the riverbanks of Düsseldorf and Cologne that inspired him, or rather the romantic wine region further south on the Middle Rhine around Rüdesheim? Was it the actual river or the romantic myths connected with it? Clearly, it was a synthesis of all of these. As a Heidelberg university student in 1829, Schumann undertook a Main-Rhine journey by steamship from Frankfurt to Koblenz and marvelled at the Lorelei rock and medieval castles. And he had often set to music the lyrics of Heinrich Heine, that great poet of the Rhine. Old and new associations and impressions flowed like two rivers into the Third Symphony.</p><p class=\"standard\">The ebullient, swaggeringly celebratory main theme of the opening movement formulates the spontaneous joy that would have overcome the composer as he stood once again, after more than two decades, on the banks of the Rhine. As extrovert as this theme may sound, it is also a cunning invention: set across the bar lines – obliquely, as it were, to the ¾ metre – it captures the listener at once. Harmonically tending more to E major than heroic E flat major, the theme is also unusual in containing an augmented 4th, or tritone – the so-called <em>diabolus in musica</em>, stillconsidered dissonant in Schumann’s time. Whereas the seemingly sedate Scherzo, evoking Rhenish country life, is not entirely cloudless, the third movement is given over to unburdened, almost Biedermeier reveries. It is followed by a solemn ceremony, a piece of sacred grandeur often linked with Cologne Cathedral. The Schumann admirer Tchaikovsky commented on this: “The brief, lovely theme of this part of the symphony, which is also meant to serve as a musical simulation of Gothic linearity, permeates the whole piece, now in the form of the basic motif, now as the tiniest embellishment, lending the work that endless diversity in unity that generates the peculiar feature of Gothic architecture.” The finale ties things up amiably, possibly conjuring up images of the Rhenish Carnival, maybe even the hopes for Germany’s democratization awakened after the Revolution of 1848-49. The Rhinelander and revolutionary Ludwig van Beethoven couldn’t have done it better.</p><p class=\"author\"><em>Volker Tarnow</em></p><p class=\"author\"><em>Translation: Richard Evidon</em></p>"
+}

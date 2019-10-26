@@ -1,0 +1,350 @@
+{
+    "_links": {
+        "self": {
+            "href": "//api.digitalconcerthall.com/v2/streams/52501-1"
+        }
+    },
+    "channel": {
+        "vod_flac_pd": {
+            "codec": "flac",
+            "dynamic_range": "sdr",
+            "has_audio_only": true,
+            "is_encrypted": false,
+            "max_resolution": null,
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": "AUDIO",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/AUDIO.flac?token=exp=1572079189~acl=/sdl/dch/52501-1/*~hmac=600d50860e4e62a52daccc24ac71716a69deb16ba7f12e499fc4687ac85ac397",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "progressive_download"
+        },
+        "vod_h264_hls_abr": {
+            "codec": "h264",
+            "dynamic_range": "sdr",
+            "has_audio_only": false,
+            "is_encrypted": false,
+            "max_resolution": "1080p",
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": null,
+                    "url": "https://world-vod.dchdns.net/hls/dch/52501-1/h264_,LOW_THREE,LOW_TWO,LOW_ONE,MEDIUM_TWO,MEDIUM_ONE,HIGH,VERY_HIGH_ONE,.mp4.urlset/master.m3u8",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "hls_abr"
+        },
+        "vod_h264_hls_abr_max_720": {
+            "codec": "h264",
+            "dynamic_range": "sdr",
+            "has_audio_only": false,
+            "is_encrypted": false,
+            "max_resolution": "720p",
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": null,
+                    "url": "https://world-vod.dchdns.net/hls/dch/52501-1/h264_,LOW_THREE,LOW_TWO,LOW_ONE,MEDIUM_TWO,MEDIUM_ONE,HIGH,.mp4.urlset/master.m3u8",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "hls_abr"
+        },
+        "vod_h264_hls_abr_mobile": {
+            "codec": "h264",
+            "dynamic_range": "sdr",
+            "has_audio_only": true,
+            "is_encrypted": false,
+            "max_resolution": "1080p",
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": null,
+                    "url": "https://world-vod.dchdns.net/shls/dch/52501-1/h264_,LOW_THREE,LOW_TWO,LOW_ONE,MEDIUM_TWO,MEDIUM_ONE,HIGH,VERY_HIGH_ONE,AUDIO_256,.mp4.urlset/master.m3u8?token=exp=1572100779~acl=/shls/dch/52501-1/*~hmac=a173b6606487137c51f4bd169119b9dbdeafc304164b95feb449268eebb54ede",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "hls_abr"
+        },
+        "vod_h264_mss_abr": {
+            "codec": "h264",
+            "dynamic_range": "sdr",
+            "has_audio_only": false,
+            "is_encrypted": false,
+            "max_resolution": "1080p",
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": null,
+                    "url": "https://world-vod.dchdns.net/mss/dch/52501-1/h264_,LOW_THREE,LOW_TWO,LOW_ONE,MEDIUM_TWO,MEDIUM_ONE,HIGH,VERY_HIGH_ONE,.mp4.urlset/manifest",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "mss_abr"
+        },
+        "vod_h264_mss_abr_max_720": {
+            "codec": "h264",
+            "dynamic_range": "sdr",
+            "has_audio_only": false,
+            "is_encrypted": false,
+            "max_resolution": "720p",
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": null,
+                    "url": "https://world-vod.dchdns.net/mss/dch/52501-1/h264_,LOW_THREE,LOW_TWO,LOW_ONE,MEDIUM_TWO,MEDIUM_ONE,HIGH,.mp4.urlset/manifest",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "mss_abr"
+        },
+        "vod_h264_pd": {
+            "codec": "h264",
+            "dynamic_range": "sdr",
+            "has_audio_only": false,
+            "is_encrypted": false,
+            "max_resolution": null,
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": "LOW_THREE",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/h264_LOW_THREE.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                },
+                {
+                    "audio_language": null,
+                    "quality": "LOW_TWO",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/h264_LOW_TWO.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                },
+                {
+                    "audio_language": null,
+                    "quality": "LOW_ONE",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/h264_LOW_ONE.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                },
+                {
+                    "audio_language": null,
+                    "quality": "MEDIUM_TWO",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/h264_MEDIUM_TWO.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                },
+                {
+                    "audio_language": null,
+                    "quality": "MEDIUM_ONE",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/h264_MEDIUM_ONE.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                },
+                {
+                    "audio_language": null,
+                    "quality": "HIGH",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/h264_HIGH.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                },
+                {
+                    "audio_language": null,
+                    "quality": "VERY_HIGH_ONE",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/h264_VERY_HIGH_ONE.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "progressive_download"
+        },
+        "vod_hevc_dash_abr_hlg": {
+            "codec": "hevc",
+            "dynamic_range": "hlg",
+            "has_audio_only": false,
+            "is_encrypted": false,
+            "max_resolution": "2160p",
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": null,
+                    "url": "https://world-vod.dchdns.net/dash/dch/52501-1/hevc_hlg_,LOW_ONE,MEDIUM_ONE,HIGH,VERY_HIGH_ONE,ULTRA_HIGH,.mp4.urlset/manifest.mpd",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "dash_abr"
+        },
+        "vod_hevc_dash_abr_max_1080_hlg": {
+            "codec": "hevc",
+            "dynamic_range": "hlg",
+            "has_audio_only": false,
+            "is_encrypted": false,
+            "max_resolution": "1080p",
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": null,
+                    "url": "https://world-vod.dchdns.net/dash/dch/52501-1/hevc_hlg_,LOW_ONE,MEDIUM_ONE,HIGH,VERY_HIGH_ONE,.mp4.urlset/manifest.mpd",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "dash_abr"
+        },
+        "vod_hevc_dash_abr_max_1080_sdr": {
+            "codec": "hevc",
+            "dynamic_range": "sdr",
+            "has_audio_only": false,
+            "is_encrypted": false,
+            "max_resolution": "1080p",
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": null,
+                    "url": "https://world-vod.dchdns.net/dash/dch/52501-1/hevc_,LOW_ONE,HIGH,VERY_HIGH_ONE,.mp4.urlset/manifest.mpd",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "dash_abr"
+        },
+        "vod_hevc_dash_abr_sdr": {
+            "codec": "hevc",
+            "dynamic_range": "sdr",
+            "has_audio_only": false,
+            "is_encrypted": false,
+            "max_resolution": "2160p",
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": null,
+                    "url": "https://world-vod.dchdns.net/dash/dch/52501-1/hevc_,LOW_ONE,HIGH,VERY_HIGH_ONE,ULTRA_HIGH,.mp4.urlset/manifest.mpd",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "dash_abr"
+        },
+        "vod_hevc_pd_hlg": {
+            "codec": "hevc",
+            "dynamic_range": "hlg",
+            "has_audio_only": false,
+            "is_encrypted": false,
+            "max_resolution": null,
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": "LOW_ONE",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/hevc_LOW_ONE.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                },
+                {
+                    "audio_language": null,
+                    "quality": "MEDIUM_ONE",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/hevc_MEDIUM_ONE.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                },
+                {
+                    "audio_language": null,
+                    "quality": "HIGH",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/hevc_HIGH.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                },
+                {
+                    "audio_language": null,
+                    "quality": "VERY_HIGH_ONE",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/hevc_VERY_HIGH_ONE.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                },
+                {
+                    "audio_language": null,
+                    "quality": "ULTRA_HIGH",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/hevc_ULTRA_HIGH.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "progressive_download"
+        },
+        "vod_hevc_pd_sdr": {
+            "codec": "hevc",
+            "dynamic_range": "sdr",
+            "has_audio_only": false,
+            "is_encrypted": false,
+            "max_resolution": null,
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": "LOW_ONE",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/hevc_LOW_ONE.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                },
+                {
+                    "audio_language": null,
+                    "quality": "MEDIUM_ONE",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/hevc_MEDIUM_ONE.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                },
+                {
+                    "audio_language": null,
+                    "quality": "HIGH",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/hevc_HIGH.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                },
+                {
+                    "audio_language": null,
+                    "quality": "VERY_HIGH_ONE",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/hevc_VERY_HIGH_ONE.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                },
+                {
+                    "audio_language": null,
+                    "quality": "ULTRA_HIGH",
+                    "url": "https://world-vod.dchdns.net/sdl/dch/52501-1/hevc_ULTRA_HIGH.mp4?token=exp=1572100779~acl=/sdl/dch/52501-1/*~hmac=a27372ccc54e87aa0a14de590ffd3fe17fc40decc6d19e0d75064ff323f7a82a",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "progressive_download"
+        },
+        "vod_mixed_dash_h264_hevc_abr_hd": {
+            "codec": "mixed_h264_hevc",
+            "dynamic_range": "sdr",
+            "has_audio_only": true,
+            "is_encrypted": false,
+            "max_resolution": "1080p",
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": null,
+                    "url": "https://world-vod.dchdns.net/dash/dch/52501-1/,hevc_LOW_ONE,hevc_HIGH,hevc_VERY_HIGH_ONE,h264_AUDIO_64,h264_AUDIO_128,h264_AUDIO_256,h264_LOW_THREE,h264_LOW_TWO,h264_LOW_ONE,h264_MEDIUM_TWO,h264_MEDIUM_ONE,h264_HIGH,h264_VERY_HIGH_ONE,.mp4.urlset/manifest.mpd",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "dash_abr"
+        },
+        "vod_mixed_hls_h264_hevc_abr_hd": {
+            "codec": "mixed_h264_hevc",
+            "dynamic_range": "sdr",
+            "has_audio_only": true,
+            "is_encrypted": false,
+            "max_resolution": "1080p",
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": null,
+                    "url": "https://world-vod.dchdns.net/hls/dch/52501-1/,hevc_LOW_ONE,hevc_MEDIUM_ONE,hevc_HIGH,hevc_VERY_HIGH_ONE,h264_LOW_THREE,h264_LOW_TWO,h264_LOW_ONE,h264_MEDIUM_TWO,h264_MEDIUM_ONE,h264_HIGH,h264_VERY_HIGH_ONE,h264_AUDIO_256,.mp4.urlset/master.m3u8?token=exp=1572079479~acl=/shls/dch/52501-1/*~hmac=bf2716b6a057ffc51e2b7d67aae3e01f8d6d25bc6361b1d354ff943a76c940a0",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "hls_abr"
+        },
+        "vod_mixed_hls_h264_hevc_abr_uhd": {
+            "codec": "mixed_h264_hevc",
+            "dynamic_range": "sdr",
+            "has_audio_only": true,
+            "is_encrypted": false,
+            "max_resolution": "2160p",
+            "stream": [
+                {
+                    "audio_language": null,
+                    "quality": null,
+                    "url": "https://world-vod.dchdns.net/hls/dch/52501-1/,hevc_ULTRA_HIGH_ONE,h264_LOW_THREE,h264_LOW_TWO,h264_LOW_ONE,h264_MEDIUM_TWO,h264_MEDIUM_ONE,h264_HIGH,h264_VERY_HIGH_ONE,h264_AUDIO_256,.mp4.urlset/master.m3u8?token=exp=1572079479~acl=/shls/dch/52501-1/*~hmac=bf2716b6a057ffc51e2b7d67aae3e01f8d6d25bc6361b1d354ff943a76c940a0",
+                    "video_language": null
+                }
+            ],
+            "streaming_technique": "hls_abr"
+        }
+    },
+    "updated": 1572079179
+}

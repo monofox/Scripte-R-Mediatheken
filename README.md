@@ -1,4 +1,4 @@
-# Scripte ÖR Mediatheken
+# Scripte ÖR Mediatheken (und ein paar mehr)
 
 Dieses Archiv bietet Scripte zum Extrahieren von Videos aus den ÖR Mediatheken.
 
@@ -43,9 +43,21 @@ Zum Abruf eines Videos aus der ARTE-Mediathek einfach die URL aus dem Browser ko
 
 Im Falle von ARTE werden die entsprechenden unterschiedlichen Sprachen und Qualität aufgeschlüsselt.
 
+### Berliner Philharmoniker (Digital Concert Hall)
+
+Zum Abruf eines Videos aus der Digital Concert Hall der Berliner Philharmoniker einfach die URL aus dem Browser kopieren und einsetzen.
+Derzeit sucht das Script den besten Stream (mit der höchsten Auflösung, das könnte natürlich ggf. in der ein oder anderen Situation ärgerlich sein).
+
+Aufruf via:
+```sh
+  $ ./berphilStream --play https://www.digitalconcerthall.com/de/concert/52502
+```
+
+Filme und Interviews werden ebenso unterstützt. Leider ist der Betreiber der Plattform nicht daran interessiert, die APIs für jedermann zu öffnen. Ohne entsprechenden Client Secret (OAuth) ist ein Zugriff nicht möglich. Gerne den Betreiber anschreiben und anfragen.
+
 ## Livestreams
 
-Die Livestreams lassen sich mit Aufruf des jeweiligen Senderscripts öffnen. Die hinterlegten URLs sind (derzeit) die höchst verfügbar Auflösungen.
+Die Livestreams lassen sich mit Aufruf des jeweiligen Senderscripts öffnen. Die hinterlegten URLs sind (derzeit) die höchst verfügbaren Auflösungen.
 
 ## Contributions
 Contributions, Proposals, Feedback sind herzlich willkommen.

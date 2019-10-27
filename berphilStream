@@ -77,6 +77,14 @@ import subprocess
 import os
 import getpass
 import datetime
+import queue
+import threading
+import re
+import telnetlib
+import time
+import hashlib
+import math
+import socket
 
 class BerPhilStream(object):
 
@@ -373,6 +381,7 @@ class BerPhilSession(object):
 	def __init__(self):
 		self._apiBaseUrl = 'https://api.digitalconcerthall.com/v2'
 		self._apiOfferUrl = 'https://apps.digitalconcerthall.com/offers.json'
+		self._apiStreamlog = 'https://api.digitalconcerthall.com/streamlog.php'
 		# device client token
 		self._clientTokenType = None
 		self._clientToken = None
@@ -381,6 +390,7 @@ class BerPhilSession(object):
 		self._clientTokenExpires = None
 		# client secret
 		self._clientSecret = None
+		self._clientApiKey = None
 
 	def _parseTypeAndId(self, url):
 		ux = urllib.parse.urlsplit(url)
@@ -399,8 +409,9 @@ class BerPhilSession(object):
 
 		return (pathFragments[1], pathFragments[0])
 
-	def setSecret(self, secret):
+	def setSecret(self, secret, apiKey):
 		self._clientSecret = secret
+		self._clientApiKey = apiKey
 
 	def getAppInformation(self):
 		return {
@@ -487,6 +498,7 @@ class BerPhilSession(object):
 		if r:
 			# this is now overwriting the regular token!
 			self._setToken(r.json())
+			self._user = self.getUser()
 			return True
 		else:
 			self._setToken(None)
@@ -509,7 +521,7 @@ class BerPhilSession(object):
 			'Cache-Control': 'no-cache',
 			'Authorization': 'Bearer ' + token
 		}
-		r = requests.post(self._apiBaseUrl + '/device', headers=hdr)
+		r = requests.post(self._apiBaseUrl + '/device', data=data, headers=hdr)
 		if r:
 			return r.json()
 		else:
@@ -651,30 +663,317 @@ class BerPhilSession(object):
 		else:
 			raise Exception('Could not retrieve concert info.')
 
+	def sendHeartbeat(self, mediaId, playbackPosition, watchingDuration):
+		ts = int(time.time())
+		hmd5 = hashlib.new('MD5')
+		hmd5.update('{apikey}{uid:d}{ts:d}'.format(
+				apikey=self._clientApiKey,
+				uid=self._user['uid'],
+				ts=ts
+			).encode('utf-8')
+		)
+		pingHash = hmd5.hexdigest()
+		data = {
+			'uid': self._user['uid'],
+			'ts': ts,
+			'pos': playbackPosition,
+			'dur': watchingDuration,
+			'productid': mediaId,
+			'app_id': self.getAppInformation()['app_id'],
+			'device_vendor': self.getDeviceInformation()['device_vendor'],
+			'hash': pingHash,
+			#'offline': 0
+		}
+		hdr = {
+			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+			'Accept-Language': 'de, en',
+			'Cache-Control': 'no-cache',
+
+		}
+		print('Heartbeat to ' + self._apiStreamlog + ' with content: ' + json.dumps(data))
+		r = requests.post(self._apiStreamlog, data=data, headers=hdr)
+		if r.status_code != 200:
+			sys.stderr.write('Couldn\'t send heartbeat.' + os.linesep)
+			return False
+		else:
+			sys.stdout.write('Heartbeat successful.' + os.linesep)
+			return True
+
+class BerPhilTrackerCmd(object):
+
+	def __init__(self, cmd):
+		self.cmd = cmd
+
+	@classmethod
+	def heartbeat(bptc, mediaId, streamPos, watchingDuration):
+		self = bptc('heartbeat')
+		self.mediaId = mediaId
+		self.pos = streamPos
+		self.dur = watchingDuration
+
+		return self
+
+	@classmethod
+	def terminate(bptc):
+		self = bptc('terminate')
+		return self
+
+class BerPhilTrackerTransmitter(threading.Thread):
+	"""Track listening/displaying of concerts / programs.
+
+	streamlog.php/tracker required to inform about the listened
+	minutes (needs to be updated every played minute).
+	telnet interface is able to use command get_time in order to see the
+	time of the current playlist entry (if user sees forward, it changes!)
+	Ber Phil Media GmbH requires it in order to pay the right people.
+	We calculate the watching time and fetch the stream position through the
+	VLC telnet interface (done through BerPhilStatisticCollector).
+	We just cache and send the data via BerPhilSession to the streamlog.php.
+	"""
+
+	def __init__(self, msgQueue, event, bps):
+		super().__init__()
+		self._msgQueue = msgQueue
+		self._event = event
+		self._bps = bps
+		self._running = False
+		self._pending = []
+
+	def _processQueue(self):
+		while self._pending:
+			cmdObj = self._pending[0]
+			if cmdObj.cmd == 'heartbeat':
+				if self._bps.sendHeartbeat(cmdObj.mediaId, cmdObj.pos, cmdObj.dur):
+					self._pending.pop(0)
+				else:
+					break
+
+	def run(self):
+		self._running = True
+		while self._running:
+			self._event.wait(timeout=60)
+			self._event.clear()
+			while True:
+				try:
+					cmdObj = self._msgQueue.get_nowait()
+				except queue.Empty:
+					break
+				if cmdObj:
+					if cmdObj.cmd == 'terminate':
+						self._running = False
+					else:
+						self._pending.append(cmdObj)
+				else:
+					break
+			# try to send the heartbeat
+			self._processQueue()
+		print('BerPhilTrackerTransmitter terminates...')
+
+class BerPhilStatisticCollector(threading.Thread):
+
+	def __init__(self, msgQueue, bps, streamUrls, vlcPort):
+		super().__init__()
+		self._msgQueue = msgQueue
+		self._bps = bps
+		self._urls = streamUrls
+		self._port = vlcPort
+		self._trackerQueue = queue.Queue()
+		self._trackerEvents = threading.Event()
+		self._trackerThread = None
+		self._running = False
+
+	def _getPlaybackStat(self):
+		totalLength = None
+		playPosition = None
+		with telnetlib.Telnet('localhost', self._port) as tn:
+			data = tn.read_until('Password:'.encode('utf-8'))
+			if data:
+				tn.write('berphil\n'.encode('utf-8'))
+			else:
+				return (totalLength, playPosition)
+
+			data = tn.read_until('> '.encode('utf-8'))
+			if data:
+				tn.write('get_length\n'.encode('utf-8'))
+			else:
+				return (totalLength, playPosition)
+
+			data = tn.read_until('> '.encode('utf-8'))
+			if data:
+				# parse the total length
+				totalLength = int(data.decode('utf-8').replace('>', '').replace('\r\n', '').strip())
+				tn.write('get_time\n'.encode('utf-8'))
+			else:
+				return (totalLength, playPosition)
+
+			data = tn.read_until('> '.encode('utf-8'))
+			if data:
+				playPosition = int(data.decode('utf-8').replace('>', '').replace('\r\n', '').strip())
+			return (totalLength, playPosition)
+
+	def startTrackerTransmitter(self):
+		self._trackerThread = BerPhilTrackerTransmitter(self._trackerQueue, self._trackerEvents, self._bps)
+		self._trackerThread.start()
+
+	def run(self):
+		lastSend = None
+		state = None
+		lastUrl = None
+		lastPosition = 0
+		lastDuration = 0
+		lastLength = 0
+		mediaId = None
+		watchingDuration = 0
+		lastWatchStart = 0
+		self._running = True
+		while self._running:
+			try:
+				cmd = self._msgQueue.get(timeout=1)
+			except queue.Empty:
+				cmd = None
+
+			if cmd:
+				print('Got cmd: ' + cmd)
+			if cmd == 'terminate':
+				self._running = False
+				self._trackerQueue.put(BerPhilTrackerCmd.terminate())
+				self._trackerEvents.set()
+			elif cmd == 'stream paused':
+				if mediaId is not None and lastWatchStart > 0.0 and state == 'playing':
+					watchingDuration += math.ceil(time.time() - lastWatchStart)
+				state = 'paused'
+			elif cmd == 'stream resumed':
+				state = 'playing'
+				lastWatchStart = time.time()
+			elif cmd == 'item stopped':
+				state = 'stopped'
+			elif cmd and cmd.startswith('start:'):
+				state = 'start-playing'
+				if not self._trackerThread:
+					self.startTrackerTransmitter()
+				lastDuration = 0
+				lastPosition = 0
+				lastLength = 0
+				lastUrl = cmd[6:]
+				watchingDuration = 0
+				lastWatchStart = time.time()
+				mediaId = None
+				for (media, url) in self._urls:
+					if url == lastUrl:
+						mediaId = media
+						break
+			elif state == 'start-playing':
+				(streamLength, streamPos) = self._getPlaybackStat()
+				if streamPos > 0:
+					lastWatchStart = time.time() - streamPos
+					state = 'playing'
+			elif state == 'playing':
+				watchingDuration += int(time.time() - lastWatchStart)
+				lastWatchStart = time.time()
+				if watchingDuration > lastDuration and (watchingDuration - lastDuration) >= 60:
+					(streamLength, streamPos) = self._getPlaybackStat()
+					if streamPos <= streamLength:
+						if mediaId:
+							self._trackerQueue.put(BerPhilTrackerCmd.heartbeat(mediaId, streamPos, watchingDuration))
+							self._trackerEvents.set()
+						else:
+							sys.stderr.write('Cannot send heartbeat due to missing mediaId!' + os.linesep)
+					lastDuration = watchingDuration
+					lastPosition = streamPos
+					lastLength = streamLength
+					lastSend = datetime.datetime.now()
+
+		print('BerPhilStatisticCollector terminates...')
+
+class BerPhilPlayer(object):
+
+	def __init__(self, streamUrls, bps):
+		self._bps = bps
+		self._statisticsQueue = queue.Queue()
+		self._statisticsCollector = None
+		self.streamUrls = streamUrls
+
+	def _getFreePort(self):
+		tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		tcp.bind(('', 0))
+		addr, port = tcp.getsockname()
+		tcp.close()
+		return port
+
+	def play(self):
+		openRegex = re.compile(r"^\[[0-9a-z]+\]\s+main input debug: `(.*)' \w+ opened$")
+		urlList = ''
+		for (mediaId, streamUrl) in self.streamUrls:
+			urlList += ' "' + streamUrl + '" '
+
+		# get a free TCP port in order to communicate with VLC about the streaming / status.
+		port = self._getFreePort()
+		fullCmd = shlex.split(
+			'vlc' + ' --extraintf telnet' + ' --telnet-password berphil' + #' --no-color' + 
+			' --play-and-exit' + ' -vv' + ' --stats' + ' --telnet-host=127.0.0.1 ' + 
+			' --telnet-port {:d}'.format(port) + urlList
+		)
+		p = subprocess.Popen(fullCmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+		self._statisticsCollector = BerPhilStatisticCollector(
+			self._statisticsQueue, self._bps, self.streamUrls, port
+		)
+		self._statisticsCollector.start()
+		while True:
+			try:
+				xret = p.wait(timeout=1)
+			except subprocess.TimeoutExpired:
+				xret = None
+			else:
+				self._statisticsQueue.put('terminate')
+				print('Terminating...')
+				break
+			# check the stdout.
+			for line in p.stdout:
+				line = line.decode('utf-8').rstrip()
+				if 'prefetch stream debug:' in line:
+					if line.endswith('pausing'):
+						self._statisticsQueue.put('stream paused')
+					elif line.endswith('resuming'):
+						self._statisticsQueue.put('stream resumed')
+				elif 'main input debug:' in line and line.endswith('opened'):
+					x = openRegex.match(line)
+					if x:
+						self._statisticsQueue.put('start:' + x.group(1))
+				elif 'scaletempo' in line:
+					self._statisticsQueue.put('speed changed')
+				elif 'main playlist debug:' in line:
+					if line.endswith('stopping current input'):
+						self._statisticsQueue.put('item stopped')
+					elif line.endswith('skip: -1'):
+						self._statisticsQueue.put('skip prev url')
+					elif line.endswith('skip: 1'):
+						self._statisticsQueue.put('skip next url')
+					elif line.endswith('skip: 0'):
+						self._statisticsQueue.put('direct selection')
+
 class BerPhilApi(object):
 
 	def __init__(self):
 		self._user = ''
 		self._pwd = ''
 		self._secret = ''
+		self._apiKey = ''
 		self._bps = BerPhilSession()
 
 	def _playUrl(self, streamUrls):
-		urlList = ''
-		for f in streamUrls:
-			urlList += ' "' + f + '" '
-		fullCmd = shlex.split('vlc' + urlList)
-		subprocess.Popen(fullCmd)
+		p = BerPhilPlayer(streamUrls, self._bps)
+		p.play()
 
-	def login(self, username=None, password=None, secret=None):
-		if not username or not password or not secret:
+	def login(self, username=None, password=None, secret=None, apiKey=None):
+		if not username or not password or not secret or not apiKey:
 			if not self.checkSettings():
 				return False
 		else:
 			self._user = username
 			self._pwd = password
 			self._secret = secret
-		self._bps.setSecret(self._secret)
+			self._apiKey = apiKey
+		self._bps.setSecret(self._secret, self._apiKey)
 		return self._bps.signIn(self._user, self._pwd)
 
 	def checkSettings(self):
@@ -687,6 +986,7 @@ class BerPhilApi(object):
 				self._user = settings['user']
 				self._pwd = settings['pwd']
 				self._secret = settings['api-secret']
+				self._apiKey = settings['api-key']
 				return True
 
 		# ask for credentials:
@@ -702,6 +1002,10 @@ class BerPhilApi(object):
 		if not self._secret:
 			sys.stderr.write('User aborted login.' + os.linesep)
 			return False
+		self._apiKey = getpass.getpass('Client API Key: ')
+		if not self._apiKey:
+			sys.stderr.write('User aborted login.' + os.linesep)
+			return False
 
 		return True
 
@@ -709,7 +1013,8 @@ class BerPhilApi(object):
 		data = {
 			'user': self._user,
 			'pwd': self._pwd,
-			'api-secret': self._secret
+			'api-secret': self._secret,
+			'api-key': self._apiKey
 		}
 
 		settingsFile = os.path.join(os.path.expanduser('~'), '.berphiluser')
@@ -718,10 +1023,11 @@ class BerPhilApi(object):
 
 	def _playProgram(self, tx):
 		# each program
+		urls = []
 		for p in tx.program:
 			# first streamlist.
-			sl = p.streamList.values()[0][0]
-			self._playUrl(sl)
+			urls.append((p.id, p.streamList.getBestStream()[-1].url))
+		self._playUrl(urls)
 
 	def _printProgram(self, p, i, mediaSelectionList, dspTitle=True):
 		if dspTitle:
@@ -740,7 +1046,7 @@ class BerPhilApi(object):
 					quality=s.quality, url=s.url
 				)
 			)
-			mediaSelectionList.append(s.url)
+			mediaSelectionList.append((p.id, s.url))
 			i += 1
 		else:
 			print('/No streams available/')
@@ -791,11 +1097,11 @@ class BerPhilApi(object):
 					self._playProgram(tx)
 				else:
 					try:
-						streamUrl = mediaSelectionList[playNo]
+						(mediaId, streamUrl) = mediaSelectionList[playNo]
 					except KeyError:
 						sys.stderr.write('Stream # not existant.' + os.linesep)
 					else:
-						self._playUrl([streamUrl])
+						self._playUrl([(mediaId, streamUrl)])
 
 	@staticmethod
 	def format_duration(seconds):

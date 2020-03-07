@@ -5,13 +5,15 @@ import sys
 import pprint
 import subprocess
 import shlex
+# take care of types (mypy, PEP 484 / PEP 526)
+from typing import Dict
 
 API_URL = 'https://api.arte.tv'
 API_PATH = 'api/player/v1/config/de'
 API_PARAMS = '?autostart=0&lifeCycle=1'
 PLAYER = '/usr/bin/mplayer'
 
-def getMovieID(url):
+def getMovieID(url: str) -> str:
 	# for certain urls (especially concert.arte.tv), it is necessary to retrieve
 	# the real website first. 
 	fullUrl = None
@@ -31,7 +33,7 @@ def getMovieID(url):
 		# OK.. no real move ID retrieved (starts always with number...)
 		req = urllib.request.Request(url)
 		r = urllib.request.urlopen(req)
-		if r.code != 200:
+		if r.getcode() != 200:
 			raise Exception('Could not retrieve the original site!')
 
 		cnt = r.read().decode('utf-8')
@@ -47,14 +49,14 @@ def getMovieID(url):
 		raise Exception('Could not find the API url!')
 	return fullUrl
 
-def fetchStream(url):
-	streams = {}
+def fetchStream(url: str) -> dict:
+	streams: Dict[str, dict] = {}
 	fullUrl = getMovieID(url)
 
 	print('Fetch URL: ', fullUrl)
 	req = urllib.request.Request(fullUrl)
 	r = urllib.request.urlopen(req)
-	if r.code != 200:
+	if r.getcode() != 200:
 		raise Exception('Could not retrieve the configuration file!')
 
 	streamInfo = json.loads(r.read().decode('utf-8'))
@@ -71,7 +73,7 @@ def fetchStream(url):
 		if fl['quality'] not in streams[fl['mimeType']][streamKey].keys():
 			streams[fl['mimeType']][streamKey][fl['quality']] = []
 
-			e = {
+			e: Dict[str, str] = {
 				'title': fl['versionLibelle'],
 				'url': fl['url']
 			}

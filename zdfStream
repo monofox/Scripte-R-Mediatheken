@@ -79,6 +79,8 @@ def fetchStream(url):
 	for e in streamInfo['priorityList']:
 		for fl in e['formitaeten']:
 			streams[fl['mimeType']] = {}
+			# for mime type video/mp4, we might need to manipulate the streams!
+			# steps: 808k (low), 1628k (med), 3328k (veryhigh)
 			for qual in fl['qualities']:
 				qualKey = 'XQ'
 				if qual['hd'] == True:
@@ -93,12 +95,66 @@ def fetchStream(url):
 					qualKey = 'EQ'
 				elif qual['quality'] == 'veryhigh':
 					qualKey = 'SQ'
-				streams[fl['mimeType']][qualKey] = ''
 				for track in qual['audio']['tracks']:
+					# track['class'] contains information about type of stream:
+					# ad = audio description
+					# main = regular
+					if track['class'] in ['ad']:
+						continue
+					# seems like the quality code for video/mp4 is a bit
+					# wrong assigned by ZDF
+					if fl['mimeType'] == 'video/mp4' and track['uri'].endswith('808k_p11v15.mp4'):
+						qualKey = 'MQ'
 					# do not override!
-					if len(streams[fl['mimeType']][qualKey]) <= 0:
+					if fl['mimeType'] == 'video/mp4' and qualKey == 'SQ':
+						trackList = extractHQUrls(qualKey, track['uri'])
+						for x in trackList:
+							streams[fl['mimeType']][x[0]] = x[1]
+					elif qualKey not in streams[fl['mimeType']].keys() or len(streams[fl['mimeType']][qualKey]) <= 0:
 						streams[fl['mimeType']][qualKey] = track['uri']
 	return streams
+
+def extractHQUrls(oQual, oUri):
+	trackList = []
+	added = []
+	uriCombi = [
+		('1456k_p13v12.mp4', '3328k_p36v12.mp4', 'HQ', 'EQ'),
+		('2256k_p14v12.mp4', '3328k_p36v12.mp4', 'HQ', 'EQ'),
+		('2328k_p35v12.mp4', '3328k_p36v12.mp4', 'HQ', 'EQ'),
+		('1456k_p13v12.mp4', '3256k_p15v12.mp4', 'HQ', 'EQ'),
+		('2256k_p14v12.mp4', '3256k_p15v12.mp4', 'HQ', 'EQ'),
+		('2328k_p35v12.mp4', '3256k_p15v12.mp4', 'HQ', 'EQ'),
+		('1496k_p13v13.mp4', '3296k_p15v13.mp4', 'HQ', 'EQ'),
+		('2296k_p14v13.mp4', '3296k_p15v13.mp4', 'HQ', 'EQ'),
+		('2328k_p35v13.mp4', '3296k_p15v13.mp4', 'HQ', 'EQ'),
+		('1496k_p13v13.mp4', '3328k_p36v13.mp4', 'HQ', 'EQ'),
+		('2296k_p14v13.mp4', '3328k_p36v13.mp4', 'HQ', 'EQ'),
+		('2328k_p35v13.mp4', '3328k_p36v13.mp4', 'HQ', 'EQ'),
+		('1496k_p13v14.mp4', '3328k_p36v14.mp4', 'HQ', 'EQ'),
+		('2296k_p14v14.mp4', '3328k_p36v14.mp4', 'HQ', 'EQ'),
+		('2328k_p35v14.mp4', '3328k_p36v14.mp4', 'HQ', 'EQ'),
+		('1496k_p13v14.mp4', '3328k_p35v14.mp4', 'HQ', 'EQ'),
+		('2296k_p14v14.mp4', '3328k_p35v14.mp4', 'HQ', 'EQ'),
+		('2328k_p35v14.mp4', '3328k_p35v14.mp4', 'HQ', 'EQ'),
+		('1628k_p13v15.mp4', '3360k_p36v15.mp4', 'HQ', 'SQ'),
+		('2360k_p35v15.mp4', '3360k_p36v15.mp4', 'HQ', 'SQ'),
+	]
+	for x in uriCombi:
+		if oUri.endswith(x[0]):
+			if oUri not in added:
+				trackList.append(
+					(x[2], oUri)
+				)
+				added.append(oUri)
+			newUri = oUri.replace(x[0], x[1])
+			if newUri not in added:
+				r = requests.head(newUri)
+				if r.status_code == 200:
+					trackList.append(
+						(x[3], newUri)
+					)
+					added.append(newUri)
+	return trackList
 
 def printStreams(streams, play=False):
 	i = 0

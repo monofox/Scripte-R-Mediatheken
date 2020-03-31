@@ -2,7 +2,6 @@
 from urllib.parse import urlparse, parse_qs	
 from xml.dom.minidom import parseString
 from lxml import etree
-from slimit import ast
 from slimit.visitors import nodevisitor
 import urllib.request
 import urllib.parse
@@ -13,6 +12,7 @@ import subprocess
 import json
 import re
 import datetime
+import os
 
 PLAYER = '/usr/bin/mplayer'
 API_URL = 'https://api.ardmediathek.de/public-gateway?variables={variables}&extensions={extensions}'
@@ -24,7 +24,7 @@ API_VARIABLES = {
 API_EXTENSIONS = {
 	'persistedQuery': {
 			'version':1,
-			'sha256Hash':'38e4c23d15b4b007e2e31068658944f19797c2fb7a75c93bc0a77fe1632476c6'
+			'sha256Hash':'ddd2b90858eda4352ec87f12e91dd7b4297645ca288680679c32f7ebbd258610'
 		}
 }
 CMD_TPL = '{:s} "{:s}"'
@@ -151,6 +151,9 @@ def parsePublicApi(clipId):
 
 	# now we need to extract some data.
 	js = json.loads(r.read().decode('utf-8'))
+	if js['data']['playerPage']['blockedByFsk']:
+		sys.stderr.write('Clip is FSK blocked. Please be patient.' + os.linesep)
+		sys.exit(1)
 	holder = ArdMediaHolder()
 	for sa in js['data']['playerPage']['mediaCollection']['_mediaArray']:
 		for media in sa['_mediaStreamArray']:
@@ -222,14 +225,14 @@ def parseHtmlDom(url):
 def parseArg(url):
 	# two variants we can try right now:
 	# extract the clip id here:
-	clipIdRe = re.compile(r'^http(s)?://(.*)/(?P<clipid>[a-zA-Z0-9]+)/.*$')
+	clipIdRe = re.compile(r'^http(s)?://(.*)/player/(?P<clipid>[a-zA-Z0-9]+)/?.*$')
 	clipMatch = clipIdRe.match(url)
 	if clipMatch:
 		clipId = clipMatch.group('clipid')
 		try:
 			parsePublicApi(clipId)
-		except:
-			sys.stderr.write('Fallback to html DOM parsing.\n\n')
+		except Exception as e:
+			sys.stderr.write('Fallback to html DOM parsing due to: {0}'.format(str(e)) + os.linesep * 2)
 			parseHtmlDom(url)
 	else:
 		parseHtmlDom(url)

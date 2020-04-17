@@ -1,199 +1,13 @@
 #!/usr/bin/env python3
-import urllib.parse
-import requests
-import json
 import sys
-import shlex
-import subprocess
+from publicbroadcasterapi import Zdf3SatApi
 
-API_TOKEN_PREFIX = 'Bearer'
-#API_TOKEN = '%s f4ba81fa117681c42383194a7103251db2981962' % (API_TOKEN_PREFIX,)
-API_TOKEN = '%s 7afe5efa279e5039d47a07f9a2c9974d0f53d7e1' % (API_TOKEN_PREFIX,)
-# NEW: d2726b6c8c655e42b68b0db26131b15b22bd1a32'
-API_TOKEN_URI = 'https://zdf-cdn.live.cellular.de/mediathekV2/token'
-API_URL = 'https://api.zdf.de'
-API_PATH = 'content/documents/zdf'
-API_PARAMS = '?profile=player'
-PLAYER_ID = 'ngplayer_2_3'
-PLAYER = 'mplayer'
-PLAYER_HLS = 'ffplay'
-
-def getBasePath(url):
-	urlAnalyze = urllib.parse.urlparse(url)
-	try:
-		return urlAnalyze.path.rstrip('.html')
-	except:
-		raise Exception('Invalid URL given!')
-
-def getAPIToken(url):
-	# alternative: ask json uri through https://zdf-cdn.live.cellular.de/mediathekV2/token
-	global API_TOKEN
-	api = None
-	r = requests.get(API_TOKEN_URI)
-	if r.status_code == 200:
-		jc = r.json()
-		api = '%s %s' % (jc['type'].capitalize(), jc['token'])
-
-	if api is None:
-		sys.stderr.write('Could not retrieve the API token!')
-		return None
-	else:
-		#print('Found API: %s' % (api,))
-		API_TOKEN = api
-		return api
-
-def fetchStream(url):
-	streams = {}
-	streamFileName = getBasePath(url)
-	token = getAPIToken(url)
-	if not token:
-		raise Exception('No API token available.')
-
-	fullUrl = API_URL + '/' + API_PATH + '/' + streamFileName + '.json' + API_PARAMS
-	#print('Fetch URL: ', fullUrl)
-	r = requests.get(fullUrl, headers={'Api-Auth': token})
-	if r.status_code != 200:
-		raise Exception('Could not retrieve the configuration file!')
-
-	config = r.json()
-	if not 'hasVideo' in config.keys():
-		raise Exception('Could not retrieve the configuration file (important info not given)!')
-	if not config['hasVideo']:
-		raise Exception('Site does not contain any video anymore!')
-	try:
-		nextUrlPath = config['mainVideoContent']['http://zdf.de/rels/target']['http://zdf.de/rels/streams/ptmd']
-	except KeyError:
-		nextUrlPath = config['mainVideoContent']['http://zdf.de/rels/target']['http://zdf.de/rels/streams/ptmd-template']
-	finally:
-		nextUrlPath = nextUrlPath.replace('{playerId}', PLAYER_ID)
-	#print('Found next URL path: %s' % (nextUrlPath,))
-
-	fullUrl = API_URL + ('/' if nextUrlPath[:1] != '/' else '') + nextUrlPath
-	#print('Fetch URL: ', fullUrl)
-	r = requests.get(fullUrl, headers={'Api-Auth': token})
-	if r.status_code != 200:
-		raise Exception('Could not retrieve the stream information!')
-
-	streamInfo = r.json()
-	# now try to fetch.
-	for e in streamInfo['priorityList']:
-		for fl in e['formitaeten']:
-			streams[fl['mimeType']] = {}
-			# for mime type video/mp4, we might need to manipulate the streams!
-			# steps: 808k (low), 1628k (med), 3328k (veryhigh)
-			for qual in fl['qualities']:
-				qualKey = 'XQ'
-				if qual['hd'] == True:
-					qualKey = 'HD'
-				elif qual['quality'] == 'auto':
-					qualKey = 'XQ'
-				elif qual['quality'] == 'low':
-					qualKey = 'MQ'
-				elif qual['quality'] == 'med':
-					qualKey = 'HQ'
-				elif qual['quality'] == 'high':
-					qualKey = 'EQ'
-				elif qual['quality'] == 'veryhigh':
-					qualKey = 'SQ'
-				for track in qual['audio']['tracks']:
-					# track['class'] contains information about type of stream:
-					# ad = audio description
-					# main = regular
-					if track['class'] in ['ad']:
-						continue
-					# seems like the quality code for video/mp4 is a bit
-					# wrong assigned by ZDF
-					if fl['mimeType'] == 'video/mp4' and track['uri'].endswith('808k_p11v15.mp4'):
-						qualKey = 'MQ'
-					# do not override!
-					if fl['mimeType'] == 'video/mp4' and qualKey == 'SQ':
-						trackList = extractHQUrls(qualKey, track['uri'])
-						for x in trackList:
-							streams[fl['mimeType']][x[0]] = x[1]
-					elif qualKey not in streams[fl['mimeType']].keys() or len(streams[fl['mimeType']][qualKey]) <= 0:
-						streams[fl['mimeType']][qualKey] = track['uri']
-	return streams
-
-def extractHQUrls(oQual, oUri):
-	trackList = []
-	added = []
-	uriCombi = [
-		('1456k_p13v12.mp4', '3328k_p36v12.mp4', 'HQ', 'EQ'),
-		('2256k_p14v12.mp4', '3328k_p36v12.mp4', 'HQ', 'EQ'),
-		('2328k_p35v12.mp4', '3328k_p36v12.mp4', 'HQ', 'EQ'),
-		('1456k_p13v12.mp4', '3256k_p15v12.mp4', 'HQ', 'EQ'),
-		('2256k_p14v12.mp4', '3256k_p15v12.mp4', 'HQ', 'EQ'),
-		('2328k_p35v12.mp4', '3256k_p15v12.mp4', 'HQ', 'EQ'),
-		('1496k_p13v13.mp4', '3296k_p15v13.mp4', 'HQ', 'EQ'),
-		('2296k_p14v13.mp4', '3296k_p15v13.mp4', 'HQ', 'EQ'),
-		('2328k_p35v13.mp4', '3296k_p15v13.mp4', 'HQ', 'EQ'),
-		('1496k_p13v13.mp4', '3328k_p36v13.mp4', 'HQ', 'EQ'),
-		('2296k_p14v13.mp4', '3328k_p36v13.mp4', 'HQ', 'EQ'),
-		('2328k_p35v13.mp4', '3328k_p36v13.mp4', 'HQ', 'EQ'),
-		('1496k_p13v14.mp4', '3328k_p36v14.mp4', 'HQ', 'EQ'),
-		('2296k_p14v14.mp4', '3328k_p36v14.mp4', 'HQ', 'EQ'),
-		('2328k_p35v14.mp4', '3328k_p36v14.mp4', 'HQ', 'EQ'),
-		('1496k_p13v14.mp4', '3328k_p35v14.mp4', 'HQ', 'EQ'),
-		('2296k_p14v14.mp4', '3328k_p35v14.mp4', 'HQ', 'EQ'),
-		('2328k_p35v14.mp4', '3328k_p35v14.mp4', 'HQ', 'EQ'),
-		('1628k_p13v15.mp4', '3360k_p36v15.mp4', 'HQ', 'SQ'),
-		('2360k_p35v15.mp4', '3360k_p36v15.mp4', 'HQ', 'SQ'),
-	]
-	for x in uriCombi:
-		if oUri.endswith(x[0]):
-			if oUri not in added:
-				trackList.append(
-					(x[2], oUri)
-				)
-				added.append(oUri)
-			newUri = oUri.replace(x[0], x[1])
-			if newUri not in added:
-				r = requests.head(newUri)
-				if r.status_code == 200:
-					trackList.append(
-						(x[3], newUri)
-					)
-					added.append(newUri)
-	return trackList
-
-def printStreams(streams, play=False):
-	i = 0
-	print('')
-	streamNumbered = []
-	streamInfo = []
-	for streamType, qualStreams in streams.items():
-		print(streamType + ':')
-		print((len(streamType) + 1)*'=')
-
-		for qualKey in ['XQ', 'MQ', 'HQ', 'EQ', 'SQ', 'HD']:
-			if qualKey in qualStreams.keys():
-				playNo = ''
-				if play:
-					playNo = '[{:>2d}] '.format(i)
-					streamNumbered.append(qualStreams[qualKey])
-					streamInfo.append(streamType)
-					i += 1
-				print('    ' + playNo + qualKey + ': ' + qualStreams[qualKey])
-				print(' ')
-
-	if play:
-		playNo = input('> ')
-		try:
-			playNo = int(playNo.strip())
-		except ValueError:
-			sys.stderr.write('Invalid number given. Cancel.\n')
-		else:
-			try:
-				streamUrl = streamNumbered[playNo]
-			except KeyError:
-				sys.stderr.write('Stream # not existant.\n')
-			else:
-				if streamInfo[playNo] == 'application/x-mpegURL':
-					selectedPlayer = PLAYER_HLS
-				else:
-					selectedPlayer = PLAYER
-				fullCmd = shlex.split(selectedPlayer + ' "' + streamUrl + '"')
-				subprocess.Popen(fullCmd)
+ENDPOINT = {
+	'apiTokenUri': 'https://zdf-cdn.live.cellular.de/mediathekV2/token',
+	'apiUrl': 'https://api.zdf.de',
+	'apiPath': 'content/documents/zdf',
+	'apiParams': '?profile=player'
+}
 
 if __name__ == '__main__':
 	playUrl = False
@@ -208,9 +22,10 @@ if __name__ == '__main__':
 	else:
 		url = input('Give me the URL: ')
 
-	streams = fetchStream(url)
+	media = Zdf3SatApi(ENDPOINT)
+	streams = media.fetchStream(url)
 	if playUrl:
-		printStreams(streams, True)
+		media.printStreams(streams, True)
 	else:
 		print('\nStreams: ')
-		printStreams(streams)
+		media.printStreams(streams)

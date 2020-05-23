@@ -7,3 +7,4 @@ pytz==2019.3
 requests==2.23.0
 slimit==0.8.1
 urllib3==1.25.8
+xmltodict==0.12.0

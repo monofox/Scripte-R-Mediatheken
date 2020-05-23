@@ -22,14 +22,14 @@ Zum Abruf eines Videos aus der ARD-Mediathek (der neuen) einfach die URL aus dem
 
 Zum Abruf eines Videos aus der ZDF-Mediathek einfach die URL aus dem Browser kopieren und einsetzen:
 ```sh
-  $ ./zdfPlay https://www.zdf.de/comedy/urban-priol-tilt-tschuessikowski-2018/tilt-tschuessikowski2018-100.html
+  $ ./zdfStream --play https://www.zdf.de/comedy/urban-priol-tilt-tschuessikowski-2018/tilt-tschuessikowski2018-100.html
 ```
 
 ### 3sat
 
 Zum Abruf eines Videos aus der 3sat-Mediathek einfach die URL aus dem Browser kopieren und einsetzen:
 ```sh
-  $ ./3satPlay 'http://www.3sat.de/mediathek/?mode=play&obj=78027'
+  $ ./3satStream --play 'http://www.3sat.de/mediathek/?mode=play&obj=78027'
 ```
 
 Wichtig ist hier, dass die URL die Objektnummer derzeit noch enthalten muss (wohingegen URLs wie http://www.3sat.de/webtv/?180311_lisa_eckhart_kabarett.rm oder http://www.3sat.de/page/?source=/kleinkunst/196667/index.html derzeit nicht funktionieren).
@@ -42,6 +42,13 @@ Zum Abruf eines Videos aus der ARTE-Mediathek einfach die URL aus dem Browser ko
 ```
 
 Im Falle von ARTE werden die entsprechenden unterschiedlichen Sprachen und Qualität aufgeschlüsselt.
+
+### KiKA
+
+Zum Abruf eines Videos aus der KiKA-Mediathek einfach die URL aus dem Browser kopieren und einsetzen:
+```sh
+  $ ./kikaStream --play https://www.kika.de/videos/sendung121052_zc-dbf2caa8_zs-5d23b3af.html
+```
 
 ### Berliner Philharmoniker (Digital Concert Hall)
 

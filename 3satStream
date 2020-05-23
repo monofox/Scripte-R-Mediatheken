@@ -2,7 +2,7 @@
 import sys
 import json
 import requests
-from publicbroadcasterapi import Zdf3SatApi
+from broadcast.zdf3sat import Zdf3SatApi
 
 API_TOKEN_PREFIX = 'Bearer'
 ENDPOINT = {

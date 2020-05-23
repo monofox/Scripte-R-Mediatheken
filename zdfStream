@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys
-from publicbroadcasterapi import Zdf3SatApi
+from broadcast.zdf3sat import Zdf3SatApi
 
 ENDPOINT = {
 	'apiTokenUri': 'https://zdf-cdn.live.cellular.de/mediathekV2/token',

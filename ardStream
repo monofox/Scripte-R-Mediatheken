@@ -1,66 +1,23 @@
 #!/usr/bin/env python3
-import urllib.request
-import urllib.parse
 import sys
-import pprint
-
-import json
-
-API_BASE_URI = 'http://www.daserste.de/api'
-BASE_VIDEO_URI = 'http://ctv-videos.daserste.de/int'
-VIDEO_FILE = '960-1.mp4'
-MAX_DAYS = 7
-
-def getBasePath(url):
-	try:
-		return url.rstrip('.html').rsplit('/', 1)[-1]
-	except:
-		raise Exception('Invalid URL given!')
-
-def fetchStream(url):
-	baseUrl = getBasePath(url)
-	upr = urllib.parse.urlparse(url)
-	jsonUri = API_BASE_URI + upr.path[:upr.path.rfind('/')] + '/' + baseUrl + '.json'
-	req = urllib.request.Request(jsonUri)
-	r = urllib.request.urlopen(req)
-	if r.code != 200:
-		raise Exception('Could not retrieve the json file!')
-
-	js = json.loads(r.read().decode('utf-8'))
-
-	streams = {}
-	try:
-		for video in js['result']['videos']:
-			for asset in video['assets']:
-				for k, u in asset.items():
-					if 'http' in u:
-						streams[k] = u
-	except KeyError as e:
-		# than lets try to get it through another URL.
-		jsonUri = js['result']['broadcasts'][0]['videos'][0]['url']
-		req = urllib.request.Request(jsonUri)
-		r = urllib.request.urlopen(req)
-		if r.code != 200:
-			raise Exception('Fallback json file not retrieved!')
-		js = json.loads(r.read().decode('utf-8'))
-		for video in js['result']['videos']:
-			for asset in video['assets']:
-				for k, u in asset.items():
-					if 'http' in u:
-						streams[k] = u
-
-	return streams
+from broadcast.ard import ArdApi
 
 if __name__ == '__main__':
-	if len(sys.argv) > 1:
+	playUrl = False
+	if len(sys.argv) > 2:
+		if sys.argv[1] == '--play':
+			playUrl = True
+			url = sys.argv[2]
+		else:
+			url = sys.argv[1]
+	elif len(sys.argv) > 1:
 		url = sys.argv[1]
 	else:
 		url = input('Give me the URL: ')
 
-	try:
-		streams = fetchStream(url)
-		print('Streams: ')
-		pprint.pprint(streams)
-	except Exception as e:
-		sys.stderr.write('Could not retrieve stream information (%s).' % (str(e),))
-		sys.exit(1)
+	media = ArdApi()
+	streams = media.fetchStream(url)
+	if playUrl:
+		media.printStreams(streams, True)
+	else:
+		media.printStreams(streams)

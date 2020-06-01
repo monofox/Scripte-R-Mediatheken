@@ -228,5 +228,9 @@ class ArdApi(object):
 						except IndexError:
 							sys.stderr.write('Stream # not existant.\n')
 						else:
-							cmd = CMD_TPL.format(PLAYER, streamUrl)
-							subprocess.run(cmd, shell=True, check=True)
+							if streamUrl.endswith('.m3u8'):
+								selectedPlayer = PLAYER_HLS
+							else:
+								selectedPlayer = PLAYER
+							fullCmd = shlex.split(selectedPlayer + ' "' + streamUrl + '"')
+							subprocess.Popen(fullCmd)

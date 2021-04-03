@@ -1,6 +1,1 @@
-#!/bin/sh
-# Different qualities: https://www.kika.de/resources/player/xml/kika/hls-livestream.xml (not supported here)
-# at the end, seems to be the same....; dynamic:
-#vlc 'https://kikageohls-i.akamaihd.net/hls/live/1006268/livetvkika_de/master.m3u8'
-# if you want highest always:
-vlc 'https://kikageohls-i.akamaihd.net/hls/live/1006268/livetvkika_de/master_720.m3u8'
+https://kikageohls-i.akamaihd.net/hls/live/1006268/livetvkika_de/master_1080.m3u8

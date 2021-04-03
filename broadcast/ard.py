@@ -8,7 +8,7 @@ import os.path
 import datetime
 
 PLAYER_ID = 'ngplayer_2_3'
-PLAYER = 'mplayer'
+PLAYER = 'mpv'
 PLAYER_HLS = 'ffplay'
 CONFIG_PATTERN = 'https://page.ardmediathek.de/page-gateway/pages/daserste/item/{mediaId}?devicetype=pc'
 
@@ -85,7 +85,8 @@ class ArdApi(object):
 		holder._geoBlocked = data['widgets'][0]['geoblocked']
 		holder._blockedByFsk = data['widgets'][0]['blockedByFsk']
 		holder._broadcastOn = datetime.datetime.strptime(data['widgets'][0]['broadcastedOn'], '%Y-%m-%dT%H:%M:%SZ')
-		holder._availableUntil = datetime.datetime.strptime(data['widgets'][0]['availableTo'], '%Y-%m-%dT%H:%M:%SZ')
+		if data['widgets'][0]['availableTo']:
+			holder._availableUntil = datetime.datetime.strptime(data['widgets'][0]['availableTo'], '%Y-%m-%dT%H:%M:%SZ')
 
 		# parse media streams
 		streamDecoded = None

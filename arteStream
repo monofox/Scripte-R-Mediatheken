@@ -11,7 +11,7 @@ from typing import Dict
 API_URL = 'https://api.arte.tv'
 API_PATH = 'api/player/v1/config/de'
 API_PARAMS = '?autostart=0&lifeCycle=1'
-PLAYER = '/usr/bin/mplayer'
+PLAYER = '/usr/bin/mpv'
 
 def getMovieID(url: str) -> str:
 	# for certain urls (especially concert.arte.tv), it is necessary to retrieve

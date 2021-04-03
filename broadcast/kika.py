@@ -8,7 +8,7 @@ from xml.dom import minidom
 import xmltodict
 
 PLAYER_ID = 'ngplayer_2_3'
-PLAYER = 'mplayer'
+PLAYER = 'mpv'
 PLAYER_HLS = 'ffplay'
 
 class KikaApi(object):

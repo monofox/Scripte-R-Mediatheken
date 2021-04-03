@@ -7,7 +7,7 @@ import shlex
 import subprocess
 
 PLAYER_ID = 'ngplayer_2_3'
-PLAYER = 'mplayer'
+PLAYER = 'mpv'
 PLAYER_HLS = 'ffplay'
 
 class Zdf3SatApi(object):

@@ -104,14 +104,6 @@ import tempfile
 import select
 from python_mpv_jsonipc import MPV
 import logging
-import logging.handlers
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-log = logging.getLogger()
-log.setLevel(logging.DEBUG)
-ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)
-ch.setFormatter(formatter)
-log.addHandler(ch)
 
 class BerPhilStream(PlaylistItemStream):
 
@@ -374,7 +366,7 @@ class BerPhilSession(object):
         # client secret
         self._clientSecret = None
         self._clientApiKey = None
-        
+        self._log = logging.getLogger(__name__)
 
     def _parseTypeAndId(self, url):
         ux = urllib.parse.urlsplit(url)
@@ -551,7 +543,7 @@ class BerPhilSession(object):
             'Cache-Control': 'no-cache',
             'Authorization': 'Bearer ' + token
         }
-        r = requests.post(self._apiBaseUrl + '/user/favourites', headers=hdr)
+        r = requests.post(self._apiBaseUrl + '/user/favourites', headers=hdr, json=data)
         if r:
             return r.json()
         else:
@@ -683,13 +675,13 @@ class BerPhilSession(object):
             'Cache-Control': 'no-cache',
 
         }
-        log.debug('Heartbeat sent to {:s} with content {:s}'.format(self._apiStreamlog, json.dumps(data)))
+        self._log.debug('Heartbeat sent to {:s} with content {:s}'.format(self._apiStreamlog, json.dumps(data)))
         r = requests.post(self._apiStreamlog, data=data, headers=hdr)
         if r.status_code != 200:
-            log.error('Could not sent heartbeat to {:s}, code: {:d}'.format(self._apiStreamlog, r.status_code))
+            self._log.error('Could not sent heartbeat to {:s}, code: {:d}'.format(self._apiStreamlog, r.status_code))
             return False
         else:
-            log.info('Heartbeat successful.')
+            self._log.info('Heartbeat successful.')
             return True
 
 class BerPhilTrackerCmd(object):
@@ -729,6 +721,7 @@ class BerPhilTrackerTransmitter(threading.Thread):
         self._bps = bps
         self._running = False
         self._pending = []
+        self._log = logging.getLogger(__name__)
 
     def _processQueue(self):
         while self._pending:
@@ -750,7 +743,7 @@ class BerPhilTrackerTransmitter(threading.Thread):
                 except queue.Empty:
                     break
                 if cmdObj:
-                    log.debug('Received command: {:s}'.format(cmdObj.cmd))
+                    self._log.debug('Received command: {:s}'.format(cmdObj.cmd))
                     if cmdObj.cmd == 'terminate':
                         self._running = False
                     else:
@@ -759,7 +752,7 @@ class BerPhilTrackerTransmitter(threading.Thread):
                     break
             # try to send the heartbeat
             self._processQueue()
-        log.info('BerPhilTrackerTransmitter is terminating...')
+        self._log.info('BerPhilTrackerTransmitter is terminating...')
 
 class BerPhilPlayer(object):
 
@@ -768,6 +761,7 @@ class BerPhilPlayer(object):
         self._trackerQueue = queue.Queue()
         self._trackerEvents = threading.Event()
         self._trackerThread = None
+        self._log = logging.getLogger(__name__)
         self.streamUrls = args
 
         self.currentTrack = None
@@ -793,7 +787,7 @@ class BerPhilPlayer(object):
 
         if (self.getCurrentPlaybackDuration() >= 60.0 or force) and self.currentTrack != None \
             and self.playbackTime > 0.0:
-            log.info('Adding BerPhilTracker: {:s}, at {:.2f} for {:.2f}'.format(
+            self._log.info('Adding BerPhilTracker: {:s}, at {:.2f} for {:.2f}'.format(
                 self.streamUrls[self.currentTrack].mediaId, 
                 self.playbackTime, 
                 self.getCurrentPlaybackDuration()
@@ -820,7 +814,7 @@ class BerPhilPlayer(object):
         self.playbackTime = 0.0
         self.playbackDuration = 0.0
         self.resumeCurrentTrack()
-        log.info('Start track #{:d}.'.format(trackId+1))
+        self._log.info('Start track #{:d}.'.format(trackId+1))
 
     def stopCurrentTrack(self, name=None, final=True, *args, **kwargs):
         if self.currentTrack != None:
@@ -830,16 +824,16 @@ class BerPhilPlayer(object):
                 self.playbackStartTime = None
             self.onPlaybackTimeChanged(force=True)
             if final:
-                log.info('Stopped track #{:d}.'.format(self.currentTrack+1))
+                self._log.info('Stopped track #{:d}.'.format(self.currentTrack+1))
             else:
-                log.info('Paused track #{:d}.'.format(self.currentTrack+1))
+                self._log.info('Paused track #{:d}.'.format(self.currentTrack+1))
 
     def pauseCurrentTrack(self, *args, **kwargs):
         self.stopCurrentTrack(final=False)
 
     def resumeCurrentTrack(self, *args, **kwargs):
         self.playbackStartTime = time.time()
-        log.info('Resuming track #{:d}.'.format(self.currentTrack+1))
+        self._log.info('Resuming track #{:d}.'.format(self.currentTrack+1))
 
     def onPlayerStart(self, *args, **kwargs):
         self.startTrackerTransmitter()
@@ -867,10 +861,11 @@ class BerphilMediaBackend(MediaBackend):
         self._secret = ''
         self._apiKey = ''
         self._bps = BerPhilSession()
+        self._log = logging.getLogger(__name__)
 
     def load(self):
         if not self.login():
-            log.error('User is not authenticated, media cannot be loaded.')
+            self._log.error('User is not authenticated, media cannot be loaded.')
             return False
 
         self.playlist = self._bps.getMedia(self.media)

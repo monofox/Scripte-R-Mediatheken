@@ -6,14 +6,6 @@ import monomedia.api
 from python_mpv_jsonipc import MPV
 import time
 import logging
-import logging.handlers
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-log = logging.getLogger()
-log.setLevel(logging.INFO)
-ch = logging.StreamHandler()
-ch.setLevel(logging.INFO)
-ch.setFormatter(formatter)
-log.addHandler(ch)
 
 class MpvPlayer(monomedia.api.Player):
     
@@ -29,6 +21,7 @@ class MpvPlayer(monomedia.api.Player):
         self.sigPlayerStart = monomedia.api.Signal('player-start')
         self.sigPlayerEnd = monomedia.api.Signal('player-end')
         self.sigPlaybackTimeChanged = monomedia.api.Signal('playback-time')
+        self._log = logging.getLogger(__name__)
 
     def play(self):
         mpv = MPV()
@@ -63,7 +56,7 @@ class MpvPlayer(monomedia.api.Player):
         i = 0
         for stream in self.items:
             i += 1
-            log.info('Loading track #{:d}'.format(i))
+            self._log.info('Loading track #{:d}'.format(i))
             mpv.loadfile(stream.stream, 'append-play')
 
         running = True
@@ -72,7 +65,7 @@ class MpvPlayer(monomedia.api.Player):
             try:
                 currentPlaybackPosition = mpv.command('get_property', 'playback-time')
             except BrokenPipeError as e:
-                log.error('MPV died. Stopping playback.')
+                self._log.error('MPV died. Stopping playback.')
                 self.sigPlaybackAbort()
                 running = False
             else:

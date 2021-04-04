@@ -13,14 +13,6 @@ import urllib.parse
 import os.path
 import datetime
 import logging
-import logging.handlers
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-log = logging.getLogger()
-log.setLevel(logging.INFO)
-ch = logging.StreamHandler()
-ch.setLevel(logging.INFO)
-ch.setFormatter(formatter)
-log.addHandler(ch)
 
 PLAYER_ID = 'ngplayer_2_3'
 CONFIG_PATTERN = 'https://page.ardmediathek.de/page-gateway/pages/daserste/item/{mediaId}?devicetype=pc'
@@ -69,6 +61,7 @@ class ARDMediaBackend(MediaBackend):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self._log = logging.getLogger(__name__)
 
     @staticmethod
     def isResponsible(url, live=False):
@@ -109,7 +102,7 @@ class ARDMediaBackend(MediaBackend):
 
         req = requests.get(mediaUrl)
         if req.status_code != 200:
-            log.error('Could not retrieve corresponding video page!')
+            self._log.error('Could not retrieve corresponding video page!')
             return False
 
         data = req.json()
@@ -150,7 +143,7 @@ class ARDMediaBackend(MediaBackend):
             self.setPlaylist(playlist)
             return True
         else:
-            log.error('Could not find any stream!')
+            self._log.error('Could not find any stream!')
             return False
 
     def _convertQuality(self, quality):

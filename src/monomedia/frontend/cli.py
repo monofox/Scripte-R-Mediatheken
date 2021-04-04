@@ -4,6 +4,9 @@
 
 from .. import backend
 import argparse
+import logging
+import logging.config
+import yaml
 import sys
 import os
 
@@ -13,7 +16,14 @@ def main():
     parser.add_argument('media', type=str, help='URL/stream to media (e.g. from media center).')
     parser.add_argument('--live', action='store_const', const=True, default=False, help='Defines broadcast sender for live stream.')
     parser.add_argument('--select', action='store_const', const=True, default=False, help='Print all available selections.')
+    parser.add_argument('--config', type=str, default='logging.yml', help='Defines / specifies log file')
     args = parser.parse_args()
+
+    if args.config:
+        try:
+            logging.config.dictConfig(yaml.safe_load(open(args.config, 'rb')))
+        except FileNotFoundError:
+            pass
 
     mb = backend.getMediaBackend(args.media, args.live)
     if not mb:

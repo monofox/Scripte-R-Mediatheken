@@ -89,7 +89,7 @@ class ARDMediaBackend(MediaBackend):
         if self.live:
             mediaPlayer = monomedia.player.getPlayer()(self.getLiveStream())
         else:
-            mediaPlayer = monomedia.player.getPlayer()(self.playlist.getStream(mediaIndex))
+            mediaPlayer = monomedia.player.getPlayer()(self.playlist.getStream(mediaIndex)[1])
 
         mediaPlayer.play()
 
@@ -169,7 +169,7 @@ class ARDMediaBackend(MediaBackend):
             qualKey = PlaylistItemStream.QUALITY_AUTO
         return qualKey
 
-    def printSelection(self):
+    def printSelection(self, selectDetail=False):
         """
         Prints all found streams (streams consist of ArdMediaHolder)
         """
@@ -187,21 +187,16 @@ class ARDMediaBackend(MediaBackend):
             lastQuality = None
             i = 0
             for metaStream in item:
+                if not selectDetail and not metaStream.isBest:
+                    continue
                 if not lastQuality or lastQuality != metaStream.quality:
                     print('')
                     print(metaStream.quality + ':')
                     lastQuality = metaStream.quality
                     
-                playNo = ''
-                streamList = []
-                streamList.append(metaStream.stream)
-
-                for streamEntry in streamList:
-                    if streamEntry.startswith('//'):
-                        streamEntry = 'https:' + streamEntry
-                    playNo = '[{:>2d}] '.format(i)
-                    i += 1
-                    print('    ' + playNo + ': ' + streamEntry)
+                playNo = '[{:>2d}] '.format(i)
+                i += 1
+                print('    ' + playNo + ': ' + metaStream.stream)
             print(' ')
 
             # some more information available?
@@ -242,7 +237,7 @@ class ARDMediaBackend(MediaBackend):
                 if playNo < 0:
                     sys.stderr.write('Invalid number given. Cancel.\n')
                 else:
-                    stream = self.playlist.getStream(playNo)
+                    playNo, stream = self.playlist.getStream(playNo, not selectDetail)
                     if not stream:
                         sys.stderr.write('Stream # does not exist.\n')
                     else:

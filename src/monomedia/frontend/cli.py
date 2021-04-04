@@ -12,6 +12,7 @@ def main():
             description='Listen and view media of public and non-public broadcasts.')
     parser.add_argument('media', type=str, help='URL/stream to media (e.g. from media center).')
     parser.add_argument('--live', action='store_const', const=True, default=False, help='Defines broadcast sender for live stream.')
+    parser.add_argument('--select', action='store_const', const=True, default=False, help='Print all available selections.')
     args = parser.parse_args()
 
     mb = backend.getMediaBackend(args.media, args.live)
@@ -23,7 +24,7 @@ def main():
             sys.stderr.write('Had trouble during loading media information.' + os.linesep)
         elif mb.hasSelection():
             # encapsulate!
-            selection = mb.printSelection()
+            selection = mb.printSelection(args.select)
             if selection:
                 mb.play(selection)
             else:

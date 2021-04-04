@@ -20,26 +20,26 @@ class MediaBackend(object):
         pass
 
     def load(self):
-        raise NotImplemented("Loading of data must be implemented")
+        raise Exception("Loading of data must be implemented")
 
     def hasSelection(self):
-        raise NotImplemented("hasSelection function must be implemented.")
+        raise Exception("hasSelection function must be implemented.")
 
     def printSelection(self):
-        raise NotImplemented("printSelection function must be implemented.")
+        raise Exception("printSelection function must be implemented.")
 
     def getLiveStream(self):
         if self.live:
-            raise NotImplemented("Media backend seems to support live stream, but did not implemented it.")
+            raise Exception("Media backend seems to support live stream, but did not implemented it.")
         else:
-            raise NotImplemented("Media backend does not support live streams!")
+            raise Exception("Media backend does not support live streams!")
 
     def play(self):
-        raise NotImplemented("play function must be implemented.")
+        raise Exception("play function must be implemented.")
 
     @staticmethod
     def isResponsible(url, live=False):
-        raise NotImplemented("Important interface function not implemented.")
+        raise Exception("Important interface function not implemented.")
 
 class Signal(object):
 
@@ -50,25 +50,29 @@ class Signal(object):
     def emit(self, *args, **kwargs):
         for itm in self.observer:
             try:
-                itm(name, *args, **kwargs)
-            except Exception:
-                pass
+                itm(self.name, *args, **kwargs)
+            except Exception as e:
+                #print(str(e))
+                #pass
+                raise e
 
     def __len__(self):
         return len(self.observer)
 
     def __call__(self, *args, **kwargs):
-        self.emit(*args, **kwargs)
+        return self.emit(*args, **kwargs)
 
-    def __radd__(self, item):
+    def __iadd__(self, item):
         if not item in self.observer:
             self.observer.append(item)
+        return self
 
-    def __rsub__(self, item):
+    def __isub__(self, item):
         try:
             self.observer.remove(item)
         except:
             pass
+        return self
 
 class Player(object):
     
@@ -78,5 +82,5 @@ class Player(object):
             self.items.append(i)
 
     def play(self):
-        raise NotImplemented("Abstract class. Please choose the right one.")
+        raise Exception("Abstract class. Please choose the right one.")
 

@@ -3,9 +3,10 @@
 # vim:fenc=utf-8:ts=4:sw=4:sta:et:sts=4:fdm=marker:ai
 
 import sys, inspect
+from .berphil import BerphilMediaBackend
 from .ard import ARDMediaBackend
 
-backends = ['ARDMediaBackend']
+backends = ['BerphilMediaBackend','ARDMediaBackend']
 __all__ = ['getMediaBackend']
 __all__ += backends
 

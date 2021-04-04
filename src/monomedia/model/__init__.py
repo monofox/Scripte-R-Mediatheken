@@ -5,25 +5,81 @@
 __all__ = ['Playlist', 'PlaylistItem', 'PlaylistItemStream']
 
 class Playlist(list):
+
+    def __init__(self, title=None, totalDuration=None):
+        self.title = title
+        self.totalDuration = totalDuration
     
-    def getStream(self, mediaIndex):
+    def getStream(self, mediaIndex, best=False):
         assert mediaIndex != None
 
         if mediaIndex == -1:
-            return True
+            return mediaIndex, True
         else:
             i = 0
+            j = 0
             for item in self:
                 for stream in item:
+                    if best and not stream.isBest:
+                        j += 1
+                        continue
                     if i == mediaIndex:
-                        return stream
+                        return j, stream
                     i += 1
-            return False
+                    j += 1
+            return mediaIndex, False
+
+    @property
+    def duration(self):
+        if self.totalDuration:
+            return self.format_duration(self.totalDuration)
+        else:
+            return 0
+
+    @staticmethod
+    def format_duration(seconds):
+        """
+        Stole from: http://www.voidcn.com/article/p-qlzvdfdd-c.html
+        """
+        if seconds == 0: return "now"
+        origin = seconds
+        dic = {
+            'year': 60 * 60 * 24 * 365,
+            'day': 60 * 60 * 24,
+            'hour': 60 * 60,
+            'minute': 60,
+            'second': 1
+        }
+        spent = {}
+        ans = ""
+        for x in ['year','day','hour','minute','second']:
+            spent[x] = seconds // dic[x]
+            ans += "{}{} {}{}".format('' if seconds == origin else ' and ' if seconds % dic[x] == 0 else ', ',spent[x],x,'s' if spent[x] > 1 else '') if spent[x] > 0 else ''
+            seconds %= dic[x]
+        return ans
 
 class PlaylistItem(list):
     
-    def __init__(self, title):
+    def __init__(self, title, totalDuration=None):
         self.title = title
+        self.totalDuration = totalDuration
+
+    @property
+    def duration(self):
+        if self.totalDuration:
+            return Playlist.format_duration(self.totalDuration)
+        else:
+            return 0
+
+    def sort(self, *args, **kwargs):
+        super().sort(*args, **kwargs)
+
+        for f in self:
+            f.isBest = False
+        try:
+            self[-1].isBest = True
+        except:
+            pass
     
     def append(self, *args, **kwargs):
         super().append(*args, **kwargs)
@@ -32,15 +88,17 @@ class PlaylistItem(list):
 class PlaylistItemStream(object):
     
     QUALITY_AUTO = 'auto'
-    QUALITY_LQ = 'LQ'
-    QUALITY_MQ = 'MQ'
-    QUALITY_HQ = 'HQ'
-    QUALITY_EQ = 'EQ'
-    QUALITY_HD = 'HD'
-    QUALITY_SQ = 'SQ'
+    QUALITY_AUDIO = 'audio'
+    QUALITY_LQ = 'LQ' # 360p, 370p
+    QUALITY_MQ = 'MQ' # 380p
+    QUALITY_HQ = 'HQ' # 540p
+    QUALITY_EQ = 'EQ' # 720p
+    QUALITY_HD = 'HD' # 740p
+    QUALITY_SQ = 'SQ' # 1080p
+    QUALITY_XQ = 'XQ' # 2160p
     
-    SEQ_QUALITY = [QUALITY_AUTO, QUALITY_LQ, QUALITY_MQ, QUALITY_HQ, \
-        QUALITY_EQ, QUALITY_HD, QUALITY_SQ]
+    SEQ_QUALITY = [QUALITY_AUTO, QUALITY_AUDIO, QUALITY_LQ, QUALITY_MQ, \
+        QUALITY_HQ, QUALITY_EQ, QUALITY_HD, QUALITY_SQ, QUALITY_XQ]
     
     def __init__(self, quality, stream):
         assert quality in self.SEQ_QUALITY

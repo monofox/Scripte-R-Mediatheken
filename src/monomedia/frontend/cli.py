@@ -12,7 +12,13 @@ import os
 
 def main():
     parser = argparse.ArgumentParser(
-            description='Listen and view media of public and non-public broadcasts.')
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description='Listen and view media of public and non-public broadcasts.\n\n \
+    monomedia  Copyright (C) 2021  Lukas Schreiner\n \
+    This program comes with ABSOLUTELY NO WARRANTY and is licensed under GPLv3+.\n \
+    This is free software, and you are welcome to redistribute it\n \
+    under certain conditions; cf. LICENSE file.'
+    )
     parser.add_argument('media', type=str, help='URL/stream to media (e.g. from media center).')
     parser.add_argument('--live', action='store_const', const=True, default=False, help='Defines broadcast sender for live stream.')
     parser.add_argument('--select', action='store_const', const=True, default=False, help='Print all available selections.')

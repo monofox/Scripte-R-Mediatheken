@@ -7,8 +7,10 @@ from .berphil import BerphilMediaBackend
 from .ard import ARDMediaBackend
 from .hr2 import Hr2MediaBackend
 from .swr2 import Swr2MediaBackend
+from .kika import KikaMediaBackend
 
-backends = ['BerphilMediaBackend','ARDMediaBackend', 'Hr2MediaBackend', 'Swr2MediaBackend']
+backends = ['BerphilMediaBackend','ARDMediaBackend', 'Hr2MediaBackend', \
+    'Swr2MediaBackend', 'KikaMediaBackend']
 __all__ = ['getMediaBackend']
 __all__ += backends
 

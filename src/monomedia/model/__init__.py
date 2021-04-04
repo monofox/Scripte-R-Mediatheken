@@ -80,10 +80,17 @@ class PlaylistItem(list):
             self[-1].isBest = True
         except:
             pass
+
+    def isStreamKnown(self, stream):
+        for istream in self:
+            if istream.stream == stream:
+                return True
+        return False
     
-    def append(self, *args, **kwargs):
-        super().append(*args, **kwargs)
-        self.sort()
+    def append(self, item, *args, **kwargs):
+        if not self.isStreamKnown(item.stream):
+            super().append(item, *args, **kwargs)
+            self.sort()
 
 class PlaylistItemStream(object):
     

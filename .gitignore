@@ -67,3 +67,6 @@ target/
 
 # json results
 crawler/*/*.json
+
+# visual studio code
+.vscode/

@@ -1,2 +1,0 @@
-#!/bin/sh
-vlc 'https://artelive-lh.akamaihd.net/i/artelive_de@393591/master.m3u8'

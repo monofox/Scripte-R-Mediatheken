@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 # vim:fenc=utf-8:ts=4:sw=4:sta:et:sts=4:fdm=marker:ai
 
-from monomedia.api import MediaBackend, Playlist, PlaylistItem, PlaylistItemStream
+from monomedia.api import MediaBackend
+from monomedia.model import Playlist, PlaylistItem, PlaylistItemStream
 import monomedia.player
 import requests
 import sys

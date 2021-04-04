@@ -1,4 +1,0 @@
-#!/bin/sh
-# http://live.daserste.de/live-de-102~playerJson.json
-#vlc rtsp://daserste.edges.wowza.gl-systemhaus.de/live/mp4:daserste_int_576
-mpv -playlist 'https://mcdn.daserste.de/daserste/de/master.m3u8'

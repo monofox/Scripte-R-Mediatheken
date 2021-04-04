@@ -253,13 +253,13 @@ class BerPhilMediaItem(PlaylistItem):
     @classmethod
     def createFromJson(bpw, jsobj):
         self = bpw(jsobj['id'], jsobj['title'])
-        self.isHighlight = jsobj['is_highlight']
+        self.isHighlight = jsobj['is_highlight'] if 'is_highlight' in jsobj else False
         self.isFree = jsobj['is_free']
         try:
             self.totalDuration = jsobj['duration']
         except:
             self.totalDuration = 0
-        self.composerName = jsobj['name_composer']
+        self.composerName = jsobj['name_composer'] if 'name_composer' in jsobj else None
         self.beginDate = self.createDate(jsobj, 'begin')
         self.endDate = self.createDate(jsobj, 'end')
         self.publishedDate = self.createDate(jsobj, 'published')
@@ -274,26 +274,43 @@ class BerPhilMediaItem(PlaylistItem):
 
         return self
 
+
 class BerPhilInterview(BerPhilMediaItem):
     pass
+
+class BerPhilInterviewWrapper(Playlist):
+
+    def fetchStreams(self, bps):
+        for p in self:
+            p.fetchStreams(bps)
+
+    @classmethod
+    def createFromJson(bpi, jsobj):
+        self = bpi()
+        self.isFree = jsobj['is_free']
+        self.shortDescription = jsobj['short_description']
+        self.title = jsobj['title']
+        self.totalDuration = jsobj['duration']
+        self.append(BerPhilInterview.createFromJson(jsobj))
+        return self
 
 class BerPhilWork(BerPhilMediaItem):
     pass
 
-class BerPhilFilm(BerPhilMedia):
+class BerPhilFilm(Playlist):
 
-    def __init__(self):
-        super().__init__()
+    def fetchStreams(self, bps):
+        for p in self:
+            p.fetchStreams(bps)
 
     @classmethod
     def createFromJson(bpi, jsobj):
-        self = super().createFromJson(jsobj)
-        self.description = jsobj['description']
-        self.duration = jsobj['duration']
-        self.totalDuration = self.duration
-        if 'cuepoints' in jsobj.keys() and jsobj['cuepoints']:
-            for cp in jsobj['cuepoints']:
-                self.cuepoints.append(BerPhilCuePoint.createFromJson(cp))
+        self = bpi()
+        self.isFree = jsobj['is_free']
+        self.shortDescription = jsobj['short_description']
+        self.title = jsobj['title']
+        self.totalDuration = jsobj['duration']
+        self.append(BerPhilMediaItem.createFromJson(jsobj))
         return self
 
 class BerPhilConcert(Playlist):
@@ -596,6 +613,8 @@ class BerPhilSession(object):
         if className not in globals().keys():
             raise Exception('Media not known: ' + mediaType)
         
+        if className == 'BerPhilInterview':
+            className += 'Wrapper'
         createMethod = getattr(globals()[className], 'createFromJson')
         mediaObj = createMethod(tx)
         mediaObj.fetchStreams(self)
@@ -884,8 +903,11 @@ class BerphilMediaBackend(MediaBackend):
             os.linesep)
 
         # now the streams, etc. is handled differently depending on the media type.
-        if self.playlist.shortDescription:
-            print(self.playlist.shortDescription + os.linesep)
+        try:
+            if self.playlist.shortDescription:
+                print(self.playlist.shortDescription + os.linesep)
+        except AttributeError:
+            pass
 
         # now each program.
         for item in self.playlist:
@@ -992,104 +1014,3 @@ class BerphilMediaBackend(MediaBackend):
             return True
         else:
             return False
-
-class BerPhilApi(object):
-
-    def __init__(self):
-        self._user = ''
-        self._pwd = ''
-        self._secret = ''
-        self._apiKey = ''
-        self._bps = BerPhilSession()
-
-    def _printProgram(self, p, i, mediaSelectionList, dspTitle=True):
-        if dspTitle:
-            titleMsg = '{title} ({clipLength})'.format(
-                title=p.title,
-                clipLength=self.format_duration(p.totalDuration)
-            )
-            print(titleMsg)
-            print('-'*len(titleMsg))
-        if p.streamList:
-            bs = p.streamList.getBestStream()
-            s = bs[-1]
-            print(
-                '[{id}] {quality}: {url}'.format(
-                    id=i,
-                    quality=s.quality, url=s.url
-                )
-            )
-            mediaSelectionList.append((p.id, s.url))
-            i += 1
-        else:
-            print('/No streams available/')
-
-        return (i, mediaSelectionList)
-
-    def printStreamsCool(self, url, play=False):
-        tx = self._bps.getMedia(url)
-        mediaSelectionList = []
-        i = 0
-
-        titleMsg = '{title} ({clipLength})'.format(
-                title=tx.title,
-                clipLength=self.format_duration(tx.totalDuration)
-            )
-        print(titleMsg)
-        print('='*len(titleMsg))
-        print('This media ' + ('is free.' if tx.isFree else 'requires a ticket.') + os.linesep)
-
-        # now the streams, etc. is handled differently depending on the media type.
-        if tx.shortDescription:
-            print(tx.shortDescription + os.linesep)
-
-        # now each program.
-        try:
-            for p in tx.program:
-                (i, mediaSelectionList) = self._printProgram(p, i, mediaSelectionList, dspTitle=True)
-                print('')
-        except AttributeError:
-            (i, mediaSelectionList) = self._printProgram(tx, i, mediaSelectionList, dspTitle=False)
-            print('')
-
-        if mediaSelectionList and play:
-            print('-1 = play whole program!')
-            playNo = input('> ')
-            try:
-                playNo = int(playNo.strip())
-            except ValueError:
-                sys.stderr.write('Invalid number given. Quit? Cancel!' + os.linesep)
-            else:
-                if playNo < -1 or playNo >= len(mediaSelectionList):
-                    sys.stderr.write('Invalid number given. Cancel.' + os.linesep)
-                elif playNo == -1:
-                    self._playProgram(tx)
-                else:
-                    try:
-                        (mediaId, streamUrl) = mediaSelectionList[playNo]
-                    except KeyError:
-                        sys.stderr.write('Stream # not existant.' + os.linesep)
-                    else:
-                        self._playUrl([(mediaId, streamUrl)])
-
-    @staticmethod
-    def format_duration(seconds):
-        """
-        Stole from: http://www.voidcn.com/article/p-qlzvdfdd-c.html
-        """
-        if seconds == 0: return "now"
-        origin = seconds
-        dic = {
-            'year': 60 * 60 * 24 * 365,
-            'day': 60 * 60 * 24,
-            'hour': 60 * 60,
-            'minute': 60,
-            'second': 1
-        }
-        spent = {}
-        ans = ""
-        for x in ['year','day','hour','minute','second']:
-            spent[x] = seconds // dic[x]
-            ans += "{}{} {}{}".format('' if seconds == origin else ' and ' if seconds % dic[x] == 0 else ', ',spent[x],x,'s' if spent[x] > 1 else '') if spent[x] > 0 else ''
-            seconds %= dic[x]
-        return ans

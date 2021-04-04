@@ -3,15 +3,9 @@
 # vim:fenc=utf-8:ts=4:sw=4:sta:et:sts=4:fdm=marker:ai
 
 from monomedia.api import MediaBackend
-from monomedia.model import Playlist, PlaylistItem, PlaylistItemStream
+from monomedia.model import PlaylistItemStream
 import monomedia.player
-import requests
 import sys
-import shlex
-import subprocess
-import urllib.parse
-import os.path
-import datetime
 import logging
 
 class Hr2MediaBackend(MediaBackend):
@@ -40,13 +34,6 @@ class Hr2MediaBackend(MediaBackend):
             mediaPlayer = monomedia.player.getPlayer()(self.playlist.getStream(mediaIndex)[1])
 
         mediaPlayer.play()
-
-    def getMediaId(self):
-        docpath = urllib.parse.urlsplit(self.media).path
-        if docpath.endswith('/'):
-            docpath = docpath[:-1]
-
-        return os.path.split(docpath)[-1]
 
     def load(self):
         if self.live:

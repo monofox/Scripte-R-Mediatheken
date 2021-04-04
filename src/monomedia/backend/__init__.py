@@ -6,8 +6,9 @@ import sys, inspect
 from .berphil import BerphilMediaBackend
 from .ard import ARDMediaBackend
 from .hr2 import Hr2MediaBackend
+from .swr2 import Swr2MediaBackend
 
-backends = ['BerphilMediaBackend','ARDMediaBackend', 'Hr2MediaBackend']
+backends = ['BerphilMediaBackend','ARDMediaBackend', 'Hr2MediaBackend', 'Swr2MediaBackend']
 __all__ = ['getMediaBackend']
 __all__ += backends
 

@@ -1,4 +1,0 @@
-#!/bin/sh
-# if user is (due to GEO blocking) not allowed to stream for current program,
-# error code 400 is returned.
-vlc 'https://orf2.mdn.ors.at/out/u/orf2/qxb/manifest.m3u8'

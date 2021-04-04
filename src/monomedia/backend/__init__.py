@@ -8,9 +8,10 @@ from .ard import ARDMediaBackend
 from .hr2 import Hr2MediaBackend
 from .swr2 import Swr2MediaBackend
 from .kika import KikaMediaBackend
+from .zdf3sat import ZDFMediaBackend, DreiSatMediaBackend
 
 backends = ['BerphilMediaBackend','ARDMediaBackend', 'Hr2MediaBackend', \
-    'Swr2MediaBackend', 'KikaMediaBackend']
+    'Swr2MediaBackend', 'KikaMediaBackend', 'ZDFMediaBackend', 'DreiSatMediaBackend']
 __all__ = ['getMediaBackend']
 __all__ += backends
 

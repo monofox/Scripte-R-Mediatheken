@@ -34,7 +34,7 @@ class MediaBackend(object):
         else:
             raise Exception("Media backend does not support live streams!")
 
-    def play(self):
+    def play(self, mediaIndex = None):
         raise Exception("play function must be implemented.")
 
     @staticmethod

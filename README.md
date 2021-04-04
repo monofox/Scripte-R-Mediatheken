@@ -7,6 +7,12 @@ Voraussetzungen sind die in `requirements.txt` beschriebenen Python-Module, Pyth
 
 Aktuell sind die Videoplayer derzeit hartkodiert in den Scripten abgelegt.
 
+## Installation
+As simple as possible:
+```sh
+  $ pip install .
+```
+
 ## Aufrufe
 
 In allen Fällen sollte die Scripte in der PATH-Umgebungsvariablen verfügbar sein.

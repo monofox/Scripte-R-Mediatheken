@@ -22,9 +22,11 @@ class MpvPlayer(monomedia.api.Player):
         self.sigPlayerEnd = monomedia.api.Signal('player-end')
         self.sigPlaybackTimeChanged = monomedia.api.Signal('playback-time')
         self._log = logging.getLogger(__name__)
+        self._running = False
 
     def play(self):
         mpv = MPV()
+        self._running = True
 
         @mpv.property_observer("speed")
         def onSpeedChanged(name, value):
@@ -51,6 +53,15 @@ class MpvPlayer(monomedia.api.Player):
         def onPauseEvent(event_data):
             self.sigPause()
 
+        @mpv.on_event('end-file')
+        def onEndFileEvent(event_data):
+            self._log.info('End-file event reached for playlist # ' + str(event_data['playlist_entry_id']))
+            # check number of playlist entries
+            playlistCount = mpv.command('get_property', 'playlist/count')
+            if event_data['playlist_entry_id'] >= playlistCount:
+                self._log.info('End of playlist reached! Terminating!')
+                self._running = False
+
         self.sigPlayerStart()
 
         i = 0
@@ -59,16 +70,20 @@ class MpvPlayer(monomedia.api.Player):
             self._log.info('Loading track #{:d}'.format(i))
             mpv.loadfile(stream.stream, 'append-play')
 
-        running = True
-        while running:
+        while self._running:
             time.sleep(1.0)
             try:
                 currentPlaybackPosition = mpv.command('get_property', 'playback-time')
             except BrokenPipeError as e:
                 self._log.error('MPV died. Stopping playback.')
                 self.sigPlaybackAbort()
-                running = False
+                self._running = False
             else:
                 self.sigPlaybackTimeChanged(currentPlaybackPosition)
 
-        self.sigPlayerEnd()
+        try:
+            mpv.terminate()
+        except:
+            pass
+        finally:
+            self.sigPlayerEnd()

@@ -111,7 +111,7 @@ class PlaylistItemStream(object):
         assert quality in self.SEQ_QUALITY
 
         self.quality = quality
-        self.stream = stream
+        self.stream = ('https:' if stream.startswith('//') else '') + stream
 
     def __unicode__(self):
         return self.stream.encode('utf-8')

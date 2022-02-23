@@ -344,7 +344,9 @@ class BerPhilConcert(Playlist):
                         raise Exception('Does not know how to handle program type ' + programType)
                     creationMethod = getattr(globals()[className], 'createFromJson')
                     self.append(creationMethod(work))
-                self.sort(key=lambda x: x.id)
+                # Do not sort. It would sort based on -1, -10, -11, -2. 
+                # By default, its already sorted correctly.
+                #self.sort(key=lambda x: x.id)
 
         return self
 

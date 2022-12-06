@@ -7,7 +7,8 @@
 # (relevant is the id 52494). I might be wrong, but seems that there is no real authentication mechanism.
 # BUT: with curl, only the second part of the concert is given. Firefox retrieves both. Figured out, it has something to do with the cookie.
 # For each work in the get_stream_urls, we can retrieve the CUE points: https://www.digitalconcerthall.com/text_services/get_work_cuepoints?id=52494-1&language=de
-# Furthermore for each work we can retrieve the master playlist: https://world-vod.dchdns.net/hlss/dch/52494-1/,h264_LOW_THREE,h264_LOW_TWO,h264_LOW_ONE,h264_MEDIUM_TWO,h264_MEDIUM_ONE,h264_HIGH,h264_VERY_HIGH_ONE,.mp4.urlset/master.m3u8
+# Furthermore for each work we can retrieve the master playlist: 
+# https://world-vod.dchdns.net/hlss/dch/52494-1/,h264_LOW_THREE,h264_LOW_TWO,h264_LOW_ONE,h264_MEDIUM_TWO,h264_MEDIUM_ONE,h264_HIGH,h264_VERY_HIGH_ONE,.mp4.urlset/master.m3u8
 # And strange is, that there is an "encryption" key: https://world-vod.dchdns.net/hlss/dch/52494-1/h264_VERY_HIGH_ONE.mp4/encryption.key
 # User information retrieved via: https://www.digitalconcerthall.com/json_services/get_user (via cookies)
 # 
@@ -68,9 +69,10 @@
 # 		password 					<password>
 # 		grant_type 					password
 # Get user information:
-# 		curl -v 'https://api.digitalconcerthall.com/v2/user' -H 'Accept: application/json' -H 'Cache-Control: no-cache' -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImViNGQxZGIyYjkxNDU4MzE1ZGY4YmIzZjBkMGQ3MjE1MzFiNjczNjgxYWI2NmY5M2NmZTVmZjYxNDhkZGNlOWIzMTkyMjIyMjNmNTM3ZjVmIn0.eyJhdWQiOiJkY2guYW5kcm9pZCIsImp0aSI6ImViNGQxZGIyYjkxNDU4MzE1ZGY4YmIzZjBkMGQ3MjE1MzFiNjczNjgxYWI2NmY5M2NmZTVmZjYxNDhkZGNlOWIzMTkyMjIyMjNmNTM3ZjVmIiwiaWF0IjoxNTcyMDMzMjQzLCJuYmYiOjE1NzIwMzMyNDMsImV4cCI6MTU4Nzg0NDQ0Mywic3ViIjoiIiwic2NvcGVzIjpbXX0.mdwfUSTkkA1BVMHXswkOGeS2afC8XRSiZkENguDhiZUzc1V9T-9pwdSshNxbgaRbkUwYQt8rSe33FKpi1cgTHOfBsvIa-HkF6VYhB8CYirFkWYdj3Di1BxF011GgSKpsIVeeO0jFmzetZRiL0vtzY9s8gB4bNlHZHWuVBhtEq-8' -XGET
+# 		curl -v 'https://api.digitalconcerthall.com/v2/user' -H 'Accept: application/json' -H 'Cache-Control: no-cache' -H 'Authorization: Bearer ey....'
 # Concert info: (Accept-Language set to de,en to receive german text, here you find everything!!)
-# 		curl -v 'https://api.digitalconcerthall.com/v2/concert/52501' -H 'Accept: application/json' -H 'Accept-Language: de,en' -H 'Cache-Control: no-cache' -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImViNGQxZGIyYjkxNDU4MzE1ZGY4YmIzZjBkMGQ3MjE1MzFiNjczNjgxYWI2NmY5M2NmZTVmZjYxNDhkZGNlOWIzMTkyMjIyMjNmNTM3ZjVmIn0.eyJhdWQiOiJkY2guYW5kcm9pZCIsImp0aSI6ImViNGQxZGIyYjkxNDU4MzE1ZGY4YmIzZjBkMGQ3MjE1MzFiNjczNjgxYWI2NmY5M2NmZTVmZjYxNDhkZGNlOWIzMTkyMjIyMjNmNTM3ZjVmIiwiaWF0IjoxNTcyMDMzMjQzLCJuYmYiOjE1NzIwMzMyNDMsImV4cCI6MTU4Nzg0NDQ0Mywic3ViIjoiIiwic2NvcGVzIjpbXX0.mdwfUSTkkA1BVMHXswkOGeS2afC8XRSiZkENguDhiZUzc1V9T-9pwdSshNxbgaRbkUwYQt8rSe33FKpi1cgTHOfBsvIa-HkF6VYhB8CYirFkWYdj3Di1BxF011GgSKpsIVeeO0jFmzetZRiL0vtzY9s8gB4bNlHZHWuVBhtEq-8' -XGET
+# 		curl -v 'https://api.digitalconcerthall.com/v2/concert/52501' -H 'Accept: application/json' -H 'Accept-Language: de,en' -H 'Cache-Control: no-cache' \
+#            -H 'Authorization: Bearer ey...'
 # Structure BerPhil
 # Film
 # Concert
@@ -87,21 +89,13 @@ import urllib.parse
 import requests
 import json
 import sys
-import shlex
-import subprocess
 import os
 import getpass
 import datetime
 import queue
 import threading
-import re
-import telnetlib
 import time
 import hashlib
-import math
-import socket
-import tempfile
-import select
 from python_mpv_jsonipc import MPV
 import logging
 

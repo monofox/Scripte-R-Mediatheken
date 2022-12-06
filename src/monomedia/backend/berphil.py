@@ -45,6 +45,7 @@
     media_playerIntroDe: '//www.digitalconcerthall.com/concerthall/intro/logo_animation_nosony_de_400kbps.mp4',
     media_playerIntroEn: '//www.digitalconcerthall.com/concerthall/intro/logo_animation_nosony_en_400kbps.mp4',
     json_getSearchAutosuggestBase: '//www.digitalconcerthall.com/cms/cachedcontent/',
+    list_concerts: "//api.digitalconcerthall.com/v2/concerts"
 """
 # Secret (Production):
 # apiKey = <censored>
@@ -354,6 +355,8 @@ class BerPhilSession(object):
         self._apiOfferUrl = 'https://apps.digitalconcerthall.com/offers.json'
         self._apiStreamlog = 'https://api.digitalconcerthall.com/streamlog.php'
         # device client token
+        self._deviceTokenObj = None
+        self._sessionTokenObj = None
         self._clientTokenType = None
         self._clientToken = None
         self._clientRefreshToken = None
@@ -385,6 +388,12 @@ class BerPhilSession(object):
         self._clientSecret = secret
         self._clientApiKey = apiKey
 
+    def getDeviceTokenObj(self):
+        return self._deviceTokenObj
+
+    def getSessionTokenObj(self):
+        return self._sessionTokenObj
+
     def getAppInformation(self):
         return {
             'app_id': 'dch.android',
@@ -398,25 +407,38 @@ class BerPhilSession(object):
             'device_model': 'Pixel 10'
         }
 
-    def _setToken(self, tokenJson):
+    def _setToken(self, tokenJson, device=False):
         if tokenJson:
             self._clientToken = tokenJson['access_token']
             self._clientTokenExpires = tokenJson['expires_in']
             self._clientRefreshToken = tokenJson['refresh_token']
             self._clientTokenType = tokenJson['token_type']
-            self._clientTokenTime = datetime.datetime.now()
+            try:
+                self._clientTokenTime = datetime.datetime.fromisoformat(tokenJson['created'])
+            except KeyError:
+                self._clientTokenTime = datetime.datetime.now()
+                tokenJson['created'] = self._clientTokenTime.isoformat()
             if 'pin' in tokenJson:
                 self._clientTokenPin = tokenJson['pin']
         else:
             self._clientToken = None
             self._clientTokenType = None
             self._clientTokenTime = None
+        
+        if device:
+            self._deviceTokenObj = None if not tokenJson else tokenJson
+        else:
+            self._sessionTokenObj = None if not tokenJson else tokenJson
 
     def _getClientToken(self, clientSecret=None):
         # token already known and still valid?
         if self._clientToken and datetime.datetime.now() < (self._clientTokenTime + datetime.timedelta(seconds=self._clientTokenExpires)):
             return self._clientToken
-        # FIXME: refresh
+        else:
+            tokenObj = self._sessionTokenObj if self._sessionTokenObj else self._deviceTokenObj
+            tokenDev = False if self._sessionTokenObj else True
+            if tokenObj and self.refreshToken(tokenObj, tokenDev):
+                return self._clientToken
         # If token is expired, we need to re-request (thats why we save the refresh token). 
         # In case, we know already username + password, we shall auto-login.
 
@@ -445,10 +467,10 @@ class BerPhilSession(object):
         }
         r = requests.post(oauth2TokenUri, data=data, headers=hdr, allow_redirects=True)
         if not r:
-            self._setToken(None)
+            self._setToken(None, device=True)
             raise Exception('Could not fetch a device token.')
         else:
-            self._setToken(r.json())
+            self._setToken(r.json(), device=True)
 
         return self._clientToken
 
@@ -469,11 +491,35 @@ class BerPhilSession(object):
         r = requests.post(oauth2TokenUri, data=data, headers=hdr, allow_redirects=True)
         if r:
             # this is now overwriting the regular token!
-            self._setToken(r.json())
+            self._setToken(r.json(), device=False)
             self._user = self.getUser()
             return True
         else:
-            self._setToken(None)
+            self._setToken(None, device=False)
+            return False
+
+    def refreshToken(self, tokenObj, device=False):
+        oauth2TokenUri = self._apiBaseUrl + '/oauth2/token'
+        data = {
+            'grant_type': 'refresh_token',
+            'client_secret': self._clientSecret,
+            'app_id': 'dch.android',
+            'refresh_token': tokenObj['refresh_token']
+        }
+
+        hdr = {
+            'Accept': 'application/json',
+            'Accept-Language': 'de, en',
+            'Cache-Control': 'no-cache'
+        }
+        r = requests.post(oauth2TokenUri, data=data, headers=hdr, allow_redirects=True)
+        if r:
+            # this is now overwriting the regular token!
+            self._setToken(r.json(), device=device)
+            self._user = self.getUser()
+            return True
+        else:
+            self._setToken(None, device=device)
             return False
 
     def getToken(self):
@@ -863,6 +909,7 @@ class BerphilMediaBackend(MediaBackend):
         if not self.login():
             self._log.error('User is not authenticated, media cannot be loaded.')
             return False
+        self._saveSettings()
 
         self.playlist = self._bps.getMedia(self.media)
         return True
@@ -916,7 +963,7 @@ class BerphilMediaBackend(MediaBackend):
                     print('')
                     print(metaStream.quality + ':')
                     lastQuality = metaStream.quality
-                    
+
                 playNo = '[{:>2d}] '.format(i)
                 i += 1
                 print('    ' + playNo + ': ' + metaStream.stream)
@@ -928,6 +975,7 @@ class BerphilMediaBackend(MediaBackend):
             playNo = int(playNo.strip())
         except ValueError:
             sys.stderr.write('Invalid number given. Quit? Cancel!' + os.linesep)
+            self._saveSettings()
         else:
             if playNo == -1:
                 return playNo
@@ -962,6 +1010,14 @@ class BerphilMediaBackend(MediaBackend):
                 self._pwd = settings['pwd']
                 self._secret = settings['api-secret']
                 self._apiKey = settings['api-key']
+                try:
+                    self._bps._setToken(settings['device'], device=True)
+                except KeyError:
+                    pass
+                try:
+                    self._bps._setToken(settings['session'], device=False)
+                except KeyError:
+                    pass
                 return True
 
         # ask for credentials:
@@ -989,7 +1045,9 @@ class BerphilMediaBackend(MediaBackend):
             'user': self._user,
             'pwd': self._pwd,
             'api-secret': self._secret,
-            'api-key': self._apiKey
+            'api-key': self._apiKey,
+            'session': self._bps.getSessionTokenObj(),
+            'device': self._bps.getDeviceTokenObj()
         }
 
         settingsFile = os.path.join(os.path.expanduser('~'), '.berphiluser')

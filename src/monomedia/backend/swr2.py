@@ -25,7 +25,7 @@ class Swr2MediaBackend(MediaBackend):
         return False
 
     def getLiveStream(self):
-        return PlaylistItemStream('auto', 'https://swr-swr2-live.cast.addradio.de/swr/swr2/live/aac/128/stream.aac')
+        return PlaylistItemStream('auto', 'https://liveradio.swr.de/sw890cl/swr2/')
 
     def play(self, mediaIndex = None):
         if self.live:
